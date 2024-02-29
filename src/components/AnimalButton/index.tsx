@@ -9,7 +9,7 @@ export default function AnimalButton(props: AnimalButtonProps) {
       <Button 
         width={80} 
         height={80} 
-        margin={"318px 80px 0 0"} 
+        margin={"321px 80px 0 0"} 
         background={animalImage}
         onClick={props.onClick}
         position='relative'
