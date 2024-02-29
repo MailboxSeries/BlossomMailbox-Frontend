@@ -27,7 +27,7 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: 400;
     margin: 0;
     font-size: 16px;
-    background-color: #fefee7;
+    background-color: #ffb9b9;
   }
 
   #content {

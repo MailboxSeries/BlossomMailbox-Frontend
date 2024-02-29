@@ -1,6 +1,6 @@
-import NaverSignInButtonImg from '@/assets/Buttons/NaverSignInButton.svg';
-import KakaoSignInButtonImg from '@/assets/Buttons/KakaoSignInButton.svg';
-import GoogleSignInButtonImg from '@/assets/Buttons/GoogleSignInButton.svg';
+import NaverSignInButtonImg from '@/assets/socialButton/NaverSignInButton.svg';
+import KakaoSignInButtonImg from '@/assets/socialButton/KakaoSignInButton.svg';
+import GoogleSignInButtonImg from '@/assets/socialButton/GoogleSignInButton.svg';
 
 export const useSocialSignInImage = (socialType: string) => {
     switch(socialType) {
