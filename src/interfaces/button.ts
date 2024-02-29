@@ -25,48 +25,7 @@ export interface ButtonProps {
   boxShadow?: string;
 }
 
-export interface LikePageButtonProps extends Partial<ButtonProps> {}
-
-export interface MyPageButtonProps extends Partial<ButtonProps> {}
-
-export interface HomePageButtonProps extends Partial<ButtonProps> {}
-
-export interface CloseButtonProps extends Partial<ButtonProps> {}
-
-export interface GoToMyLocationButtonProps extends Partial<ButtonProps> {}
-
-export interface GetCafeLocationButtonProps extends Partial<ButtonProps> {}
-
-export interface FilterButtonProps extends Partial<ButtonProps> {}
-
-export interface CheckButtonProps extends Partial<ButtonProps> {}
-
-export interface LikeButtonProps extends Partial<ButtonProps> {
-  id: number;
-  liked: boolean | null;
-}
-
-export interface GoToCafeLocationButtonProps extends Partial<ButtonProps> {}
-
-export interface TextButtonProps extends Partial<ButtonProps> {}
-
-export interface CloseMapButtonProps extends Partial<ButtonProps> {}
-
-export interface SettingCloseButtonProps extends Partial<ButtonProps> {}
-
-export interface SettingInfoButtonProps extends Partial<ButtonProps> {}
-
-export interface SettingButtonProps extends Partial<ButtonProps> {}
-
-export interface DeleteFavoritePlaceButtonProps extends Partial<ButtonProps> {}
-
-export interface RegisterButtonProps extends Partial<ButtonProps> {
-  position: string;
-}
-
-export interface FavoritePlaceSelectButtonProps extends Partial<ButtonProps> {}
-
-export interface SmallButtonProps extends Partial<ButtonProps> {}
+export interface LongButtonProps extends Partial<ButtonProps> {}
 
 export interface SocialButtonProps extends Partial<ButtonProps> {}
 
