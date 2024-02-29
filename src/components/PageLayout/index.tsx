@@ -3,6 +3,7 @@ import * as Style from './style';
 import { useParams } from 'react-router-dom';
 import getCurrentSkyImage from '@/utils/getCurrentSkyImage';
 import Layout from '@/components/common/Layout';
+import FlowerFalling from '../FlowerFalling';
 
 interface Props {
   children: React.ReactNode;
@@ -18,6 +19,7 @@ export default function PageLayout({ children }: Props) {
       <Layout>
         <Style.SkyWrapper path={skyImagePath}>
           <Style.Wrapper>
+          <FlowerFalling />
             <Style.TextWrapper>
               <Style.SubLogoText>봄을 기다리며,</Style.SubLogoText>
               <Style.LogoText>{titleText}</Style.LogoText>

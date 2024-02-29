@@ -16,7 +16,7 @@ export const Button = styled.button<ButtonProps>`
   height: ${(props) => `${props.height}`};
   outline: none;
   border: none;
-  z-index: ${(props) => `${props.zIndex}`};
+  z-index: ${(props) => (props.zIndex ? `${props.zIndex}` : 1)};
   box-shadow: none;
   color: ${(props) => `${props.color}`};
   font-size: ${(props) => `${props.fontSize}px`};

@@ -34,6 +34,6 @@ export const GlobalStyle = createGlobalStyle`
     position: relative;
     height: 100%;
     overflow: auto;
-    z-index: 1;
+    z-index: 0;
   }
 `;

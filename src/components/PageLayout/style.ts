@@ -31,7 +31,7 @@ export const SkyWrapper = styled.div<SkyWrapperProps>`
 
 export const Wrapper = styled.div`
     position: absolute;
-    z-index: 2;
+    z-index: 0;
     max-height: 1180px;
     min-height: 1020px;
     @media (min-height: 1021px) {
