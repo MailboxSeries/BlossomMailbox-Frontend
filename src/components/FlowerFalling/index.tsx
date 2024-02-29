@@ -3,7 +3,7 @@ import flowerLeafSmallImg from "@/assets/flower/flowerLeafSmall.png";
 import flowerLeafBigImg from "@/assets/flower/flowerLeafBig.png";
 import * as Styled from './style';
 
-const numFlowers = 35;
+const numFlowers = 30;
 
 interface CSSPropertiesWithCustomVars extends CSSProperties {
   '--start-left'?: string;
@@ -19,7 +19,9 @@ export default function FlowerFalling() {
     const newFlowers = [];
       
     for (let i = 0; i < numFlowers; i++) {
-      const leafType = Math.random() > 0.5 ? flowerLeafSmallImg : flowerLeafBigImg;
+      const isSmall = Math.random() > 0.5;
+      const leafType = isSmall ? flowerLeafSmallImg : flowerLeafBigImg;
+      const size = isSmall ? '15px' : '20px'; // 작은 이미지와 큰 이미지에 대한 크기 설정
       const delay = Math.random() * 10;
       const startLeft = `${Math.random() * 200 - 50}%`;  
       const endLeft = `${Math.random() * 200 - 50}%`;   
@@ -35,7 +37,8 @@ export default function FlowerFalling() {
               "--start-left": startLeft,
               "--end-left": endLeft,
               "--rotation-start": rotateStart,
-              "--rotation-end": rotateEnd
+              "--rotation-end": rotateEnd,
+              "--size": size,
             } as CSSPropertiesWithCustomVars}
           />
         </Styled.FlowerWrapper>

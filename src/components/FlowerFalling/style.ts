@@ -11,7 +11,7 @@ interface FlowerProps extends CSSProperties {
 
 export const FlowerFall = keyframes`
   0% {
-      opacity: 0.5;
+      opacity: 0.9;
       top: -10%;
       left: var(--start-left);  
       transform: rotate(var(--rotation-start));
@@ -19,7 +19,7 @@ export const FlowerFall = keyframes`
   }
   100% {
       opacity: 0;
-      top: 90%;
+      top: 110%;
       left: var(--end-left); 
       transform: rotate(var(--rotation-end));
   }
@@ -29,8 +29,8 @@ export const FlowerFall = keyframes`
 export const Flower = styled.div<FlowerProps>`
   position: absolute;
   top: -20px;
-  width: 20px;
-  height: 20px;
+  width: var(--size, 20px);
+  height: var(--size, 20px);
   background-size: cover;
   
   animation: ${FlowerFall} 5s linear infinite;
