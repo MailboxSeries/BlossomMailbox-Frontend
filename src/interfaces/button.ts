@@ -18,10 +18,10 @@ export interface ButtonProps {
   fontSize?: number;
   zIndex?: number;
   position?: string;
-  top?: number;
-  bottom?: number;
-  right?: number;
-  left?: number;
+  top?: string;
+  bottom?: string;
+  right?: string;
+  left?: string;
   boxShadow?: string;
   fontFamily?: string;
 }
@@ -30,3 +30,6 @@ export interface LongButtonProps extends Partial<ButtonProps> {}
 
 export interface SocialButtonProps extends Partial<ButtonProps> {}
 
+export interface AnimalButtonProps extends Partial<ButtonProps> {
+  animal?: string;
+}

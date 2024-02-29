@@ -19,7 +19,7 @@ export default function Button(props: ButtonProps) {
       backgroundColor={props.backgroundColor}
       borderRadius={props.borderRadius}
       disabled={props.disabled}
-      dark={props.dark ? props.dark : false}
+      //dark={props.dark ? props.dark : false}
       color={props.color}
       fontSize={props.fontSize}
       zIndex={props.zIndex}

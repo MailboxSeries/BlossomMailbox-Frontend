@@ -24,8 +24,8 @@ export default function PageLayout({ children }: Props) {
               <Style.SubLogoText>벚꽃이 흩날리는 당신만의 공원을 꾸며보아요.</Style.SubLogoText>
             </Style.TextWrapper>
             {children}
-            </Style.Wrapper>
-          </Style.SkyWrapper>
+          </Style.Wrapper>
+        </Style.SkyWrapper>
       </Layout>
   );
 }
