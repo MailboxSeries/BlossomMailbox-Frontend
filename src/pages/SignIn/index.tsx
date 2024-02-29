@@ -1,7 +1,7 @@
-import SocialButton from '@/components/Button/SocialButton';
-import PageLayout from '@/components/PageLayout';
+import SocialButton from '@/components/common/Button/SocialButton';
+import PageLayout from '@/components/common/PageLayout';
 import * as Styled from './style';
-import LongButton from '@/components/Button/LongButton';
+import LongButton from '@/components/LongButton';
 import { useState } from 'react';
 
 export default function Home() {

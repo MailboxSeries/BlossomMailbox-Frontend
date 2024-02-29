@@ -1,4 +1,4 @@
-import Button from '@/components/Button';
+import Button from '@/components/common/Button';
 import { LongButtonProps } from '@/interfaces/button';
 import LongButtonImg from '@/assets/button/button-default.png';
 export default function LongButton(props: LongButtonProps) {
