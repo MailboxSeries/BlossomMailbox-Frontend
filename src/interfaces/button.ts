@@ -23,6 +23,7 @@ export interface ButtonProps {
   right?: number;
   left?: number;
   boxShadow?: string;
+  fontFamily?: string;
 }
 
 export interface LongButtonProps extends Partial<ButtonProps> {}

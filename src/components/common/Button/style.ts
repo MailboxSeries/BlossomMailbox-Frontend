@@ -28,4 +28,5 @@ export const Button = styled.button<ButtonProps>`
   left: ${(props) => `${props.left}px`};
   position: ${(props) => `${props.position}`};
   box-shadow: ${(props) => props.boxShadow || 'none'};
+  font-family: ${(props) => props.fontFamily || 'NanumBarunpenB'};
 `;

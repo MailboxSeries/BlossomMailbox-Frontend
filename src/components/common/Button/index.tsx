@@ -1,5 +1,5 @@
 import {ButtonProps} from '@/interfaces/button';
-import * as S from './style';
+import * as Styled from './style';
 import {useNavigate} from 'react-router-dom';
 
 export default function Button(props: ButtonProps) {
@@ -9,7 +9,7 @@ export default function Button(props: ButtonProps) {
     navigate(props.route!);
   };
   return (
-    <S.Button
+    <Styled.Button
       width={props.width}
       height={props.height}
       margin={props.margin}
@@ -31,6 +31,6 @@ export default function Button(props: ButtonProps) {
       boxShadow={props.boxShadow}
     >
       {props.children}
-    </S.Button>
+    </Styled.Button>
   );
 }

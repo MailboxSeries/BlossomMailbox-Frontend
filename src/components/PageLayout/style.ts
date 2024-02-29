@@ -2,20 +2,6 @@ import styled from 'styled-components';
 import theme from '@/theme';
 import Background from '@/assets/background/flower.png';
 
-export const Layout = styled.div`
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center; // 수직 중앙 정렬 추가
-  height: 100vh;
-  min-height: 1020px;
-  max-height: 1180px;
-  @media (min-height: 1021px) {
-    min-height: 1180px;
-
-    }
-`;
-
 interface SkyWrapperProps {
   path: string;
 }
@@ -23,10 +9,7 @@ interface SkyWrapperProps {
 export const SkyWrapper = styled.div<SkyWrapperProps>`
     position: absolute;
     z-index: 0;
-    //top: -80px;
-    //bottom: 80px;
     max-height: 1180px;
-    //height: 100%;
     min-height: 1020px;
     @media (min-height: 1021px) {
     min-height: 1180px;
@@ -49,10 +32,7 @@ export const SkyWrapper = styled.div<SkyWrapperProps>`
 export const Wrapper = styled.div`
     position: absolute;
     z-index: 2;
-    //top: -80px;
-    //bottom: 80px;
     max-height: 1180px;
-    //height: 100%;
     min-height: 1020px;
     @media (min-height: 1021px) {
     min-height: 1180px;

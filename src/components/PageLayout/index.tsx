@@ -2,6 +2,7 @@ import React from 'react';
 import * as Style from './style';
 import { useParams } from 'react-router-dom';
 import getCurrentSkyImage from '@/utils/getCurrentSkyImage';
+import Layout from '@/components/common/Layout';
 
 interface Props {
   children: React.ReactNode;
@@ -14,8 +15,7 @@ export default function PageLayout({ children }: Props) {
   const skyImagePath = getCurrentSkyImage(); // 현재 시간에 따른 이미지 경로 가져오기
 
   return (
-    <>
-      <Style.Layout>
+      <Layout>
         <Style.SkyWrapper path={skyImagePath}>
           <Style.Wrapper>
             <Style.TextWrapper>
@@ -26,7 +26,6 @@ export default function PageLayout({ children }: Props) {
             {children}
             </Style.Wrapper>
           </Style.SkyWrapper>
-      </Style.Layout>
-    </>
+      </Layout>
   );
 }
