@@ -10,7 +10,7 @@ interface Props {
 export default function PageLayout({ children }: Props) {
   const { ownerId } = useParams<{ ownerId?: string }>(); // useParams 사용
   // ownerId가 있을 경우 nickname을 사용, 없으면 기본 텍스트
-  const titleText = ownerId ? `${ownerId}의 벚꽃 공원` : "벚꽃 우편함";
+  const titleText = ownerId ? `${ownerId}의 벚꽃 공원` : "벚꽃 우편함"; //TODO: OwnerId가 아닌 유저의 닉네임을 사용해야 함
   const skyImagePath = getCurrentSkyImage(); // 현재 시간에 따른 이미지 경로 가져오기
 
   return (
