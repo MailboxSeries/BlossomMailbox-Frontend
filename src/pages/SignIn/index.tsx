@@ -3,6 +3,7 @@ import PageLayout from '@/components/PageLayout';
 import * as Styled from './style';
 import LongButton from '@/components/LongButton';
 import { useState } from 'react';
+import StoreLayout from '@/components/StoreLayout';
 
 export default function Home() {
   const [isGoToSignIn, setIsGoToSignIn] = useState<boolean>(false);
@@ -14,6 +15,7 @@ export default function Home() {
   return (
     <>
       <PageLayout>
+        <StoreLayout />
         <Styled.SocialButtonWrapper>
           {!isGoToSignIn && 
             <LongButton onClick={() => handleGoToSignIn()}>

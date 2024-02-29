@@ -11,5 +11,6 @@ export const Layout = styled.div`
   @media (min-height: 1021px) {
     min-height: 1180px;
 
-    }
+  }
+  position: absolute;
 `;
