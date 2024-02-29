@@ -1,6 +1,6 @@
 import {createGlobalStyle} from 'styled-components';
-import NanumBarunpenB from './static/font/NanumBarunpenB.woff2';
-import BareunHipi from './static/font/BareunHipi.woff2';
+import NanumBarunpenB from './static/fonts/NanumBarunpenB.woff2';
+import BareunHipi from './static/fonts/BareunHipi.woff2';
 
 export const GlobalStyle = createGlobalStyle`
     @font-face {
