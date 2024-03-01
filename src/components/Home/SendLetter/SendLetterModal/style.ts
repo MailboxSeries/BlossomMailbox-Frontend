@@ -41,7 +41,7 @@ export const ImageUploadLabel = styled.label`
 
 export const ImageUploadLabelText = styled.div`
   font-size: 12px;
-  color: ${theme.colors.babyPink};
+  color: ${theme.colors.white};
   text-align: center;
   display: flex;
   flex-direction: column;

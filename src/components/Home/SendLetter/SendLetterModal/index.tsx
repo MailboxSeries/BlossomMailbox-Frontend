@@ -1,40 +1,21 @@
 import * as Styled from './style';
-import React, { useState } from 'react';
+import React from 'react';
 import Modal from '@/components/common/Modal';
 import { SendLetterModalProps } from '@/interfaces/modal';
 import useInput from '@/hooks/useInput';
 import LongButton from '@/components/LongButton';
 import useToast from '@/hooks/useToast';
+import { useImageUpload } from '@/hooks/useImageUpload';
 
 function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
     const { displayToast } = useToast();
     const sender = useInput<HTMLInputElement>(); // 보내는 사람 이름을 관리하는 상태
     const content = useInput<HTMLTextAreaElement>(); // 편지 내용을 관리하는 상태
-    const [imageFile, setImageFile] = useState<File | null>(null); // 업로드할 이미지 파일을 관리하는 상태
-    const [uploadedImage, setUploadedImage] = useState<string | ArrayBuffer>(null); // 업로드 된 이미지 url 관리하는 상태
-
-    /** 이미지 업로드 핸들링  */ 
-    const handleFileInputChange = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            // 이미지 객체를 생성하여 크기 확인
-            const img = new Image();
-            img.onload = () => {
-            setUploadedImage(reader.result as string); // 타입 단언을 사용하여 string으로 설정
-            };
-            img.src = reader.result as string; // 여기도 타입 단언을 사용하여 string으로 설정
-        };
-        reader.readAsDataURL(file);
-        setImageFile(file); // 나중에 업로드할 이미지 파일을 상태에 저장
-        }
-    };
-    console.log('render')
-
+    const { uploadedImage, handleFileInputChange } = useImageUpload();
+    
     /** 편지 보내기 핸들링  */ 
     const handleSendLetter = async () => {
-        if (!content.value.trim()) {
+        if (!sender.value.trim() || !content.value.trim()) {
             displayToast(`이름과 편지 모두 입력해야 해요.`);
             return;
         } else {
@@ -57,20 +38,15 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
                             onClick={(event) => event.stopPropagation()}
                         > 
                         <Styled.ImageUploadLabelText>
-                        {`사진 올리기(선택)`}
+                            사진 올리기(선택)
                         </Styled.ImageUploadLabelText>
-
                             <Styled.ImageInput
                                 id="image-upload"
                                 type="file"
                                 accept="image/*"
                                 onChange={handleFileInputChange}
                             />
-                            {uploadedImage ? (
-                            <Styled.ImagePreview src={uploadedImage as string} />
-                            ) : (
-                                <></>
-                            )}
+                            {uploadedImage && <Styled.ImagePreview src={uploadedImage as string} />}
                         </Styled.ImageUploadLabel>
                         <Styled.NameInput
                             maxLength={10}
