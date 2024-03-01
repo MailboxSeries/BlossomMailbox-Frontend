@@ -1,14 +1,14 @@
-import PageLayout from '@/components/PageLayout';
 import * as Styled from './style';
 import Splash from '@/components/Splash';
+import Layout from '@/components/common/Layout';
 
 export default function Home() {
 
   return (
     <>
-      <PageLayout>
+      <Layout>
         <Splash showSplash={false}/>
-      </PageLayout>
+      </Layout>
     </>
   );
 }
