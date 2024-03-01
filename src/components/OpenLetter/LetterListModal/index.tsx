@@ -4,19 +4,18 @@ import Modal from '@/components/common/Modal';
 import DisabledFlowerBigImg from '@/assets/flower/flowerBtnDisabled.png';
 import flowerBigImg from '@/assets/flower/flowerBtnBig.png';
 import useToast from '@/hooks/useToast';
-import Toast from '@/components/common/Toast';
 import { LetterListModalProps } from '@/interfaces/modal';
 import useModal from '@/hooks/useModal';
 import DayLetterModal from '@/components/OpenLetter/DayLetterModal';
 
 function LetterListModal({onClose, isOpen, nowDate}: LetterListModalProps) {
-    const { showToast, displayToast, message } = useToast();
+    const { displayToast } = useToast();
     const { closeModal: closeLetterListModal } = useModal('LetterListModal');
     const { isOpenModal: isOpenDayLetterModal,
         openModal: openDayLetterModal, 
         closeModal: closeDayLetterModal } = useModal('DayLetterModal');
     const [selectedDate, setSelectedDate] = useState<number>(1);
-
+    console.log('render')
     const handleLetterReadModalOpen = (date: number) => {
         setSelectedDate(date); // 버튼을 클릭하면 선택된 날짜를 설정합니다.
         openDayLetterModal();
@@ -66,8 +65,6 @@ function LetterListModal({onClose, isOpen, nowDate}: LetterListModalProps) {
                     </Styled.InnerWrapper>
                 </Styled.Wrapper>
             </Modal>
-
-            {showToast && <Toast message={message} />}
 
             <DayLetterModal 
                 onClose={closeDayLetterModal} 

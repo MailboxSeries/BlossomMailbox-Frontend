@@ -8,6 +8,7 @@ import useScrollToTop from '@/hooks/useScrollToTop';
 import Splash from '@/components/Splash';
 import { useRecoilValue } from 'recoil';
 import { showSplashState } from '@/atoms/showSplashState';
+import ToastContainer from '@/components/common/ToastContainer';
 
 const App = () => {
   useScrollToTop();
@@ -21,6 +22,7 @@ const App = () => {
             <Router />
           </BrowserRouter>
         </ThemeProvider>
+        <ToastContainer />
       </Suspense> 
     </ErrorBoundary>
   );
