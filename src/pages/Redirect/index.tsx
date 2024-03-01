@@ -1,4 +1,3 @@
-import * as Styled from './style';
 import Splash from '@/components/Splash';
 import Layout from '@/components/common/Layout';
 
