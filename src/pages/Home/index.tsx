@@ -7,7 +7,7 @@ import MediumButton from '@/components/MediumButton';
 import ShortButton from '@/components/ShortButton';
 import ShareButton from '@/components/Home/ShareButton';
 import useModal from '@/hooks/useModal';
-import LetterListModal from '@/components/OpenLetter/LetterListModal';
+import LetterListModal from '@/components/Home/OpenLetter/LetterListModal';
 
 export default function Home() {
   const nowDate = 3; // TODO: 서버로 부터 받은 값으로 변경. 이건 임시 값

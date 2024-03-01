@@ -6,7 +6,7 @@ import flowerBigImg from '@/assets/flower/flowerBtnBig.png';
 import useToast from '@/hooks/useToast';
 import { LetterListModalProps } from '@/interfaces/modal';
 import useModal from '@/hooks/useModal';
-import DayLetterModal from '@/components/OpenLetter/DayLetterModal';
+import DayLetterModal from '@/components/Home/OpenLetter/DayLetterModal';
 
 function LetterListModal({onClose, isOpen, nowDate}: LetterListModalProps) {
     const { displayToast } = useToast();
