@@ -20,6 +20,8 @@ export default function PageLayout({ children, nickname }: Props) {
     titleText = nickname ? `${nickname}의 벚꽃 공원` : "벚꽃 우편함"; // nickname이 존재하면 사용, 그렇지 않으면 기본값
   }
   const skyImagePath = getCurrentSkyImage(); // 현재 시간에 따른 이미지 경로 가져오기
+  const subLogoText1 = pathname === '/redirect' ? '' : "봄을 기다리며,";
+  const subLogoText2 = pathname === '/redirect' ? '' : "벚꽃이 흩날리는 당신만의 공원을 꾸며보아요.";
 
   return (
       <Layout>
@@ -27,9 +29,9 @@ export default function PageLayout({ children, nickname }: Props) {
           <Style.Wrapper>
           <FlowerFalling />
             <Style.TextWrapper>
-              <Style.SubLogoText>봄을 기다리며,</Style.SubLogoText>
+              <Style.SubLogoText>{subLogoText1}</Style.SubLogoText>
               <Style.LogoText>{titleText}</Style.LogoText>
-              <Style.SubLogoText>벚꽃이 흩날리는 당신만의 공원을 꾸며보아요.</Style.SubLogoText>
+              <Style.SubLogoText>{subLogoText2}</Style.SubLogoText>
             </Style.TextWrapper>
             {children}
           </Style.Wrapper>
