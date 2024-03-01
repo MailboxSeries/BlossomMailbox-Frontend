@@ -6,7 +6,7 @@ import { useState } from 'react';
 import StoreLayout from '@/components/StoreLayout';
 import CharacterLayout from '@/components/CharacterLayout';
 import AnimalButton from '@/components/AnimalButton';
-import PolicyLinkText from '@/components/PolicyLinkText';
+import PolicyLinkText from '@/components/SignIn/PolicyLinkText';
 
 export default function Home() {
   const [isGoToSignIn, setIsGoToSignIn] = useState<boolean>(false);
