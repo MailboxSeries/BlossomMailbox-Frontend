@@ -25,7 +25,7 @@ export default function AlertModal({onClose, isOpen, ...props}: AlertModalProps)
   }, [isOpen, onClose]);
 
   return (
-    <Modal modalTitle={''} isOpen={isOpen} onClose={onClose} modalType={'SmallModal'} modalColor={theme.colors.white} color={theme.colors.darkBrown} fontSize={26} {...props}>
+    <Modal modalTitle={''} isOpen={isOpen} onClose={onClose} modalType={'SmallModal'} modalColor={theme.colors.pink} color={theme.colors.white} fontSize={26} {...props}>
       <Styled.ModalInnerWrapper>
         {props.children}
       </Styled.ModalInnerWrapper>
