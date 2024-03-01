@@ -1,4 +1,4 @@
-import AnimalButton from '@/components/\bAnimalButton';
+import AnimalButton from '@/components/AnimalButton';
 import CharacterLayout from '@/components/CharacterLayout';
 import PageLayout from '@/components/PageLayout';
 import StoreLayout from '@/components/StoreLayout';
