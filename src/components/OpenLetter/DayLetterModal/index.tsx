@@ -1,19 +1,17 @@
 import * as Styled from './style';
 import React from 'react';
 import Modal from '@/components/common/Modal';
-import useToast from '@/hooks/useToast';
-import Toast from '@/components/common/Toast';
 import { DayLetterModalProps } from '@/interfaces/modal';
 import useModal from '@/hooks/useModal';
+import BackButton from '@/components/BackButton';
 
 function DayLetterModal({onClose, isOpen, selectedDate}: DayLetterModalProps) {
-    const { isOpenModal: isOpenLetterListModal, 
-        openModal: openLetterListModal, 
-        closeModal: closeLetterListModal } = useModal('LetterListModal');
-    const { isOpenModal: isOpenDayLetterModal,
-        openModal: openDayLetterModal, 
-        closeModal: closeDayLetterModal } = useModal('DayLetterModal');
-
+    const { openModal: openLetterListModal } = useModal('LetterListModal');
+    const { closeModal: closeDayLetterModal } = useModal('DayLetterModal');
+    const handleBackButton = () => {
+        closeDayLetterModal();
+        openLetterListModal();
+    }
     return (
         <>
             <Modal
@@ -22,6 +20,7 @@ function DayLetterModal({onClose, isOpen, selectedDate}: DayLetterModalProps) {
                 modalTitle={`${selectedDate}일차 벚꽃`}
                 modalType={'Modal'}
             >
+                <BackButton onClick={() => handleBackButton()}/>
                 <Styled.Wrapper>
                     <Styled.InnerWrapper>
                     
