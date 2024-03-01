@@ -1,9 +1,9 @@
 {
-  "name": "blossommailbox",
-  "short_name": "blossommailbox",
+  "name": "벚꽃우편함",
+  "short_name": "벚꽃우편함",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "background_color": "#ffb9b9",
   "theme_color": "#ffb9b9",
   "description": "Blossom mailbox",
   "categories": ["food", "drink", "lifestyle"],
