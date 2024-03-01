@@ -27,9 +27,17 @@ export const ToastContainer = styled.div`
     transform: translateX(-50%); // 가로 중앙 정렬만 적용
     background: ${theme.colors.pink};
     color: white;
-    padding: 15px 30px;
+    padding: 15px;
+    width: auto; // 너비를 내용에 따라 자동 조절
+    max-width: 400px; // 최대 너비를 화면 너비의 90%로 제한
+    min-width: 100px; // 최소 너비 설정
     border-radius: 5px;
     animation: ${slideUpAndFade} 2s ease forwards;
     z-index: 10000;
     text-align: center;
+    white-space: nowrap; // 텍스트를 한 줄로 유지
+
+    @media (min-width: 500px) { // 뷰포트 너비가 500px 이상일 때
+        white-space: normal; // 텍스트 줄바꿈 허용
+    }
 `;

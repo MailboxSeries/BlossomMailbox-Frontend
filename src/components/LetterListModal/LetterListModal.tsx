@@ -29,49 +29,50 @@ function LetterListModal({closeModal, isOpen}: Props) {
 
     return (
         <>
-        <Modal
-        isOpen={isOpen}
-        onClose={closeModal}
-        modalTitle={'벚꽃을 기다리는 편지'}
-        modalType={'Modal'}
-        >
-        <Styled.Wrapper>
-            <Styled.InnerWrapper>
-                <Styled.ButtonWrapper>
-                    {Array.from({ length: 25 }).map((_, index) => {
-                    
-                        const date = index + 1;
-                        let isButtonActive = false;
-                        if (nowDate !== null && date < nowDate) {
-                            isButtonActive = true;
-                        } else if (nowDate !== null && date === nowDate) {
-                            isButtonActive = true;
-                        } 
+            <Modal
+            isOpen={isOpen}
+            onClose={closeModal}
+            modalTitle={'벚꽃을 기다리는 편지'}
+            modalType={'Modal'}
+            >
+            <Styled.Wrapper>
+                <Styled.InnerWrapper>
+                    <Styled.ButtonWrapper>
+                        {Array.from({ length: 35 }).map((_, index) => {
+                        
+                            const date = index + 1;
+                            let isButtonActive = false;
+                            if (nowDate !== null && date < nowDate) {
+                                isButtonActive = true;
+                            } else if (nowDate !== null && date === nowDate) {
+                                isButtonActive = true;
+                            } 
 
-                        return (
-                            <Styled.OrnamentButton
-                            key={index}
-                            onClick={() => {
-                                if (isButtonActive) {
-                                    handleLetterReadModalOpen(date);
-                                } else {
-                                    displayToast();
-                                }
-                            }}
-                            OrnamentImage={
-                            (!isButtonActive ? DisabledFlowerLeafBigImg : flowerLeafBigImg ) }
-                            >
-                            {date}
-                            </Styled.OrnamentButton>
-                        );
-                    })}
-                </Styled.ButtonWrapper>
-            </Styled.InnerWrapper>
-        </Styled.Wrapper>
-        </Modal>
+                            return (
+                                <Styled.OrnamentButton
+                                key={index}
+                                onClick={() => {
+                                    if (isButtonActive) {
+                                        handleLetterReadModalOpen(date);
+                                    } else {
+                                        displayToast();
+                                    }
+                                }}
+                                OrnamentImage={
+                                (!isButtonActive ? DisabledFlowerLeafBigImg : flowerLeafBigImg ) }
+                                >
+                                {date}
+                                </Styled.OrnamentButton>
+                            );
+                        })}
+                    </Styled.ButtonWrapper>
+                </Styled.InnerWrapper>
+            </Styled.Wrapper>
+            </Modal>
 
-        {showToast && <Toast message={`${35 - nowDate}일 뒤에 열람 가능해요.`} />}
+            {showToast && <Toast message={`${35 - nowDate}일 뒤에 열람 가능해요.`} />}
         </>
     );
 }
+
 export default React.memo(LetterListModal);

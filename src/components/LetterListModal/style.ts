@@ -4,13 +4,11 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: 98.5%;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
-
-
 
 export const ButtonWrapper = styled.div`
   display: flex;
@@ -48,10 +46,9 @@ export const OrnamentButton = styled.button<OrnamentButtonProps>`
 `;
 
 export const InnerWrapper = styled.div`
-  width: 250px;
-  height: 450px;
-  margin-top: 55px;
-  padding-top: 45px;
+  width: 100%;
+  margin-top: 45px;
+  padding-top: 230px;
   overflow-y: auto;
   display: flex;
   justify-content: center; // 가로 중앙 정렬
