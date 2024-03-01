@@ -28,6 +28,10 @@ export interface ButtonProps {
 
 export interface LongButtonProps extends Partial<ButtonProps> {}
 
+export interface ShortButtonProps extends Partial<ButtonProps> {}
+
+export interface MediumButtonProps extends Partial<ButtonProps> {}
+
 export interface SocialButtonProps extends Partial<ButtonProps> {}
 
 export interface AnimalButtonProps extends Partial<ButtonProps> {
