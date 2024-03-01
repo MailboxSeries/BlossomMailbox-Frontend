@@ -2,6 +2,7 @@ import Sky1 from '@/assets/background/sky1.png';
 import Sky2 from '@/assets/background/sky2.png';
 import Sky3 from '@/assets/background/sky3.png';
 
+/** 시간대 별 하늘 이미지 반환하는 함수 */
 export default function getCurrentSkyImage() {
     // 현재 시간 가져오기
     const now = new Date();

@@ -1,19 +1,13 @@
 import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
-import { deleteSignout } from '@/apis/signout';
-import { useMutation } from '@tanstack/react-query';
+//import { deleteSignout } from '@/apis/signout';
+//import { useMutation } from '@tanstack/react-query';
 
 export const useLoginStatus = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
-        const accessTokenCookie = Cookies.get('access_token');
-        const refreshTokenCookie = Cookies.get('refresh_token');
-        localStorage.setItem('accessToken', accessTokenCookie);
-        localStorage.setItem('refreshToken', refreshTokenCookie);
-        
-        const accessToken = localStorage.getItem('accessToken');
-        const refreshToken = localStorage.getItem('refreshtoken');
+        const accessToken = Cookies.get('access_token');
 
         console.log(accessToken);
 

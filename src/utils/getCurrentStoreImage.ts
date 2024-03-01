@@ -41,7 +41,7 @@ const leftStoreImages = {
     popcorn1, popcorn2, popcorn3
 };
 
-// 함수 정의
+/** 오른쪽, 왼쪽 상점 이미지 반환하는 함수 */
 export default function getCurrentStoreImage(rightStore?: string, leftStore?: string): { rightStoreImage: string, leftStoreImage: string } {
     // 기본 이미지 경로 설정
     let rightImage = rightStoreImages['piano4']; // rightStore 기본값

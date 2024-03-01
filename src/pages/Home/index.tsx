@@ -26,7 +26,7 @@ export default function Home() {
               편지 보기
             </MediumButton>
             <ShortButton>
-              D-{35-nowDate}
+              D-{35-nowDate} {/* TODO: 서버로 부터 받은 값으로 변경. 이건 임시 값 */}
             </ShortButton>
           </Styled.RowContainer>
           <ShareButton />

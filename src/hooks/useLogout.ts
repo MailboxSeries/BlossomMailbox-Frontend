@@ -2,13 +2,13 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { postLogout } from '@/apis/logout';
 import useModal from '@/hooks/useModal';
 import { alertModalState } from '@/atoms/modalState';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { isAxiosError } from 'axios';
 
 export const useLogout = () => {
     const { closeModal } = useModal();
     const queryClient = useQueryClient();
-    const [alertModal, setAlertModal] = useRecoilState(alertModalState);
+    const setAlertModal = useSetRecoilState(alertModalState);
 
     return useMutation({
         mutationFn: () => postLogout(),
