@@ -6,6 +6,7 @@ import { useState } from 'react';
 import StoreLayout from '@/components/StoreLayout';
 import CharacterLayout from '@/components/CharacterLayout';
 import AnimalButton from '@/components/\bAnimalButton';
+import PolicyLinkText from '@/components/PolicyLinkText';
 
 export default function Home() {
   const [isGoToSignIn, setIsGoToSignIn] = useState<boolean>(false);
@@ -31,6 +32,7 @@ export default function Home() {
               <SocialButton socialType={'kakao'}/>
               <SocialButton socialType={'naver'}/>
               <SocialButton socialType={'google'}/>
+              <PolicyLinkText />
             </>
           )}
         </Styled.SocialButtonWrapper>
