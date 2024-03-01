@@ -6,7 +6,7 @@ import {StaleWhileRevalidate} from 'workbox-strategies';
 
 clientsClaim();
 
-precacheAndRoute(self.__WB_MANIFEST);
+precacheAndRoute((self as any).__WB_MANIFEST);
 
 const fileExtensionRegexp = new RegExp('/[^/?]+\\.[^/]+$');
 registerRoute(({request, url}) => {
@@ -39,6 +39,6 @@ registerRoute(
 
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
-    self.skipWaiting();
+    (self as any).skipWaiting();
   }
 });
