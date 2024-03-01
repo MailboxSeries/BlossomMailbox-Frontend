@@ -4,6 +4,8 @@ import Modal from '@/components/common/Modal';
 import { useRecoilValue } from 'recoil';
 import DisabledFlowerLeafBigImg from '@/assets/flower/flowerBtnDisabled.png';
 import flowerLeafBigImg from '@/assets/flower/flowerBtnBig.png';
+import useToast from '@/hooks/useToast';
+import Toast from '@/components/common/Toast';
 
 type Props = {
   closeModal: () => void;
@@ -12,6 +14,7 @@ type Props = {
 
 function LetterListModal({closeModal, isOpen}: Props) {
     const nowDate = 3; //TODO: 서버로 부터 받은 값으로 변경. 이건 임시 값 
+    const { showToast, displayToast } = useToast(); // 3초 동안 Toast 표시
     const [selectedDate, setSelectedDate] = useState<number>(1);
     const [LetterReadModalOpen, setLetterReadModalOpen] = useState<boolean>(false);
     const closeLetterReadModal = useCallback(
@@ -52,7 +55,7 @@ function LetterListModal({closeModal, isOpen}: Props) {
                                 if (isButtonActive) {
                                     handleLetterReadModalOpen(date);
                                 } else {
-                                    alert(`${date - nowDate}일 뒤에 열람 가능해요.`)
+                                    displayToast();
                                 }
                             }}
                             OrnamentImage={
@@ -67,7 +70,7 @@ function LetterListModal({closeModal, isOpen}: Props) {
         </Styled.Wrapper>
         </Modal>
 
-         {/* 편지 리스트 모달 */}
+        {showToast && <Toast message={`${35 - nowDate}일 뒤에 열람 가능해요.`} />}
         </>
     );
 }
