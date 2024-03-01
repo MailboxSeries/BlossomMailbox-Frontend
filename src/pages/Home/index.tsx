@@ -15,7 +15,8 @@ import SendLetterModal from '@/components/Home/SendLetter/SendLetterModal';
 
 export default function Home() {
   const nowDate = 3; // TODO: 서버로 부터 받은 값으로 변경. 이건 임시 값
-  const myId = 'asdf'; //TODO: 서버로 부터 받은 값으로 변경. 이건 임시 값
+  const nickname = 'asdf'; //TODO: 서버로 부터 받은 값으로 변경. 이건 임시 값
+  const myId = 'asdfasdf'; //TODO: 서버로 부터 받은 값으로 변경. 이건 임시 값
   const navigate = useNavigate();
   const { isOpenModal: isOpenLetterListModal, openModal: openLetterListModal, closeModal: closeLetterListModal } = useModal('LetterListModal');
   const { isOpenModal: isOpenSendLetterModal, openModal: openSendLetterModal, closeModal: closeSendLetterModal } = useModal('SendLetterModal');
@@ -31,7 +32,7 @@ export default function Home() {
 
   return (
     <>
-      <PageLayout>
+      <PageLayout nickname={nickname}>
         <StoreLayout /> {/* TODO: rightStore, leftStore 서버로 부터 받은 값 넘겨야함 */}
         <CharacterLayout /> {/* TODO: sex, hair, face, top, bottom 서버로 부터 받은 값 넘겨야함 */}
         <AnimalButton /> {/* TODO: animal 서버로 부터 받은 값 넘겨야함 */}

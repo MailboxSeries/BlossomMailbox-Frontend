@@ -34,6 +34,7 @@ import womanBottom1 from '@/assets/character/woman/bottom/bottom1.png';
 import womanBottom2 from '@/assets/character/woman/bottom/bottom2.png';
 import womanBottom3 from '@/assets/character/woman/bottom/bottom3.png';
 
+/** 캐릭터 스킨 이미지 반환하는 함수 */
 export default function getCurrentCharacterImage(
     sex: string = 'woman',
     hair: number = 3,

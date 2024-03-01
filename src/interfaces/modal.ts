@@ -16,6 +16,7 @@ export interface ModalProps {
   // show 프로퍼티를 갖는 ModalWrapperProps 인터페이스를 정의
   export interface ModalWrapperProps {
     show: boolean;
+    isOpen?: boolean;
     modalType?: 'SmallModal' | 'Modal';
   }
 
