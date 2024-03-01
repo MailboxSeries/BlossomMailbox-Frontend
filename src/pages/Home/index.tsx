@@ -5,7 +5,7 @@ import StoreLayout from '@/components/StoreLayout';
 import * as Styled from './style';
 import MediumButton from '@/components/MediumButton';
 import ShortButton from '@/components/ShortButton';
-import ShareButton from '@/components/Home/LongButton';
+import ShareButton from '@/components/Home/ShareButton';
 
 export default function Home() {
   const nowDate = 3; // TODO: 서버로 부터 받은 값으로 변경. 이건 임시 값
