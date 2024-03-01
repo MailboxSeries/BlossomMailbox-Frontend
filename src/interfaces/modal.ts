@@ -30,3 +30,5 @@ export interface ModalProps {
   export interface DayLetterModalProps extends Partial<ModalProps> {
     selectedDate: number;
   }
+
+  export interface SendLetterModalProps extends Partial<ModalProps> {}

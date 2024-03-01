@@ -10,14 +10,23 @@ import useModal from '@/hooks/useModal';
 import LetterListModal from '@/components/Home/OpenLetter/LetterListModal';
 import useIsMyHome from '@/hooks/useIsMyHome';
 import LongButton from '@/components/LongButton';
+import { useNavigate } from 'react-router-dom';
+import SendLetterModal from '@/components/Home/SendLetter/SendLetterModal';
 
 export default function Home() {
   const nowDate = 3; // TODO: 서버로 부터 받은 값으로 변경. 이건 임시 값
-  const { isOpenModal, openModal, closeModal } = useModal('LetterListModal');
   const myId = 'asdf'; //TODO: 서버로 부터 받은 값으로 변경. 이건 임시 값
+  const navigate = useNavigate();
+  const { isOpenModal: isOpenLetterListModal, openModal: openLetterListModal, closeModal: closeLetterListModal } = useModal('LetterListModal');
+  const { isOpenModal: isOpenSendLetterModal, openModal: openSendLetterModal, closeModal: closeSendLetterModal } = useModal('SendLetterModal');
   const { isMyHome } = useIsMyHome(myId);
-  const handleOpenLetter = () => {
-    openModal();
+
+  const handleopenLetterListModal = () => {
+    openLetterListModal();
+  };
+
+  const handleOpenSendLetterModal = () => {
+    openSendLetterModal();
   };
 
   return (
@@ -30,7 +39,7 @@ export default function Home() {
         {isMyHome ? (
           <>
             <Styled.RowContainer>
-              <MediumButton onClick={() => handleOpenLetter()}>
+              <MediumButton onClick={() => handleopenLetterListModal()}>
                 편지 보기
               </MediumButton>
               <ShortButton>
@@ -41,10 +50,10 @@ export default function Home() {
           </>
         ) : (
           <>
-            <LongButton onClick={() => handleOpenLetter()}>
+            <LongButton onClick={() => handleOpenSendLetterModal()}>
               편지 보내기
             </LongButton>
-            <LongButton onClick={() => handleOpenLetter()}>
+            <LongButton onClick={() => navigate(`/home/${myId}`)}>
               내 공원으로 가기
             </LongButton>
           </>
@@ -53,9 +62,13 @@ export default function Home() {
       </PageLayout>
 
       <LetterListModal 
-        onClose={closeModal} 
-        isOpen={isOpenModal}
+        onClose={closeLetterListModal} 
+        isOpen={isOpenLetterListModal}
         nowDate={nowDate}
+      />
+      <SendLetterModal
+        onClose={closeSendLetterModal}
+        isOpen={isOpenSendLetterModal}
       />
     </>
   );

@@ -9,6 +9,7 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const RowContainer = styled.div`
+    margin-top: 8px;
     width: 250px; // 필요한 경우 너비 조정
     height: 40px; // 버튼 높이를 조정
     display: flex;
