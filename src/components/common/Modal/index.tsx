@@ -16,7 +16,7 @@ const Modal: React.FC<ModalProps> = ({
   if (!isOpen) return null;
 
   return ReactDOM.createPortal(
-    <Styled.ModalWrapper show={isOpen} modalType={modalType} onClick={onClose}>
+    <Styled.ModalWrapper isOpen={isOpen} modalType={modalType} onClick={onClose}>
       <Styled.ModalContent
         onClick={(e: React.SyntheticEvent) => e.stopPropagation()}
         modalType={modalType}
