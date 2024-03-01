@@ -23,9 +23,10 @@ export interface ModalProps {
     onClick: React.MouseEventHandler<HTMLButtonElement>;
   }
 
-  export interface FilterModalProps extends Partial<ModalProps> {
+  export interface LetterListModalProps extends Partial<ModalProps> {
+    nowDate: number;
   }
 
-
-  export interface AlertModalProps extends Partial<ModalProps> {
+  export interface DayLetterModalProps extends Partial<ModalProps> {
+    selectedDate: number;
   }

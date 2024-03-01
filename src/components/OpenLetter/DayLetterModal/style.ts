@@ -18,11 +18,11 @@ export const ButtonWrapper = styled.div`
   width: 230px;
 `;
 
-type OrnamentButtonProps = {
-    OrnamentImage: string;
+interface OrnamentButtonProps {
+  image: string;
 };
 
-export const OrnamentButton = styled.button<OrnamentButtonProps>`
+export const DayButton = styled.button<OrnamentButtonProps>`
   font-family: 'NanumBarunpenB';
   font-weight: bolder;
   text-align: center;
@@ -30,7 +30,7 @@ export const OrnamentButton = styled.button<OrnamentButtonProps>`
   line-height: 1;
   color: ${theme.colors.textMain};
   position: relative;
-  background: url(${props => props.OrnamentImage}) no-repeat center;
+  background: url(${props => props.image}) no-repeat center;
   background-size: 45px 45px;
   border: none;
   cursor: pointer;

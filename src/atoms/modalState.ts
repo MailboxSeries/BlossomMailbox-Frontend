@@ -1,15 +1,6 @@
-import { AlertModalState } from '@/interfaces/modalState';
-import { atom } from 'recoil';
+import { atomFamily } from 'recoil';
 
-export const alertModalState = atom<AlertModalState>({
-    key: 'alertModalState',
-    default: {
-        isOpen: false,
-        message: '',
-    },
-});
-
-export const currentModalState = atom<number | null>({
-    key: 'currentModalState',
-    default: null, // 기본값으로 null 설정
+export const modalState = atomFamily<boolean, string>({
+    key: 'modalState',
+    default: false, // 기본값은 모달이 닫혀있음을 의미
 });
