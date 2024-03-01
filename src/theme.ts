@@ -8,6 +8,7 @@ declare module 'styled-components' {
     | 'textMain'
     | 'gray'
     | 'pink'
+    | 'babyPink'  
     ;
 
   export interface DefaultTheme {
@@ -22,7 +23,8 @@ const colors = {
   black: '#000000',
   textMain: '#FEFFE7',
   gray: '#8B8B8B',
-  pink: '#ffb9b9'
+  pink: '#ffb9b9',
+  babyPink: '#ffabc8',
 };
 const theme: DefaultTheme = {
   colors,
