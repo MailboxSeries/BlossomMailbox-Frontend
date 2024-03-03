@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import theme from "@/theme";
 
 export const Wrapper = styled.div`
     width: 100%;
@@ -23,3 +24,13 @@ export const RowContainer = styled.div`
     display: flex;
     align-items: center;
 `;
+
+export const SkinTitle = styled.div`
+    font-size: 16px;
+    color: ${theme.colors.white};
+    text-align: center;
+    width: 100%;
+    display: flex;
+    margin-top: 4px;
+    margin-left: 16px;
+`; 

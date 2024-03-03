@@ -37,14 +37,16 @@ function SkinModal({ isOpen, onClose }: SkinModalProps) {
                     <SexButton selectedSex="woman" onClick={() => setSelectedSex('woman')}/>
                 </Styled.RowContainer>
                 <Styled.InnerWrapper>
-                    {skins[selectedSex].map(({ type, items }) => (
+                    {skins[selectedSex].map(({ type, items, title }) => (
+                    <React.Fragment key={type}>
+                    <Styled.SkinTitle>{title}</Styled.SkinTitle>
                     <SkinSelector
-                        key={type}
                         items={items}
                         selectedType={skin[type.toLowerCase()]}
                         onSelect={(selectedSkin) => onSelectSkin(`${type.toLowerCase()}`, selectedSkin)}
                         skinStatus={skinStatus}
                     />
+                    </React.Fragment>
                     ))}
                 </Styled.InnerWrapper>
                 <LongButton onClick={() => handleSelectComplete()}>
