@@ -30,7 +30,7 @@ export const SelectClickEvent = styled.div<{ isSelected?: boolean }>`
 `;
 
 export const LockIcon = styled.button`
-  position: absolute;
+    position: absolute;
     width: 50px;
     height: 50px;
     background-size: 50px 50px;
@@ -43,7 +43,7 @@ export const LockIcon = styled.button`
 `;
 
 export const UnLockIcon = styled.button`
-  position: absolute;
+    position: absolute;
     width: 50px;
     height: 50px;
     background-size: 50px 50px;

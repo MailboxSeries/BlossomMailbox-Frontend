@@ -3,7 +3,7 @@ import Top2 from './top2.png';
 import Top3 from './top3.png';
 
 export const WomanTop = [
-    { imgSrc: Top1, index: 1, width: 60, height: 120},
-    { imgSrc: Top2, index: 2, width: 60, height: 120},
-    { imgSrc: Top3, index: 3, width: 60, height: 120},
+    { imgSrc: Top1, index: 1, width: 60, height: 60},
+    { imgSrc: Top2, index: 2, width: 60, height: 60},
+    { imgSrc: Top3, index: 3, width: 60, height: 60},
 ]

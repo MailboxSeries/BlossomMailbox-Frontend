@@ -21,7 +21,7 @@ function SkinModal({ isOpen, onClose }: SkinModalProps) {
 
     const skinStatus = useCallback((type, index) => {
       // 잠금 상태 확인 로직
-        return 'unlocked';
+        return 'locked';
     }, []);
 
     const handleSelectComplete = () => {

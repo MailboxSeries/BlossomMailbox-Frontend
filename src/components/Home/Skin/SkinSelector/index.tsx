@@ -1,6 +1,6 @@
 // components/SkinSelector.tsx
 import React from 'react';
-import * as S from './style';
+import * as Styled from './style';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
@@ -32,19 +32,19 @@ export const SkinSelector: React.FC<SkinSelectorProps> = ({
     return (
         <Carousel showIndicators={false} emulateTouch={true} showArrows={false} showThumbs={false} showStatus={false} centerMode centerSlidePercentage={100/(items.length)}>
         {items.map((item, index) => (
-            <S.SelectClickEvent
+            <Styled.SelectClickEvent
             key={index}
             onClick={() => onSelect(item.index)}
             isSelected={selectedType === item.index}
             >
-            <S.ImageButton src={item.imgSrc} style={{ width: `${item.width}px`, height: `${item.height}px` }} />
-            {item.missionId && skinStatus('sex', index) === 'locked' && (
-                <S.LockIcon onClick={handleClick} />
-            )}
-            {item.missionId && skinStatus('sex', index) === 'unlocked' && (
-                <S.UnLockIcon onClick={handleClick} />
-            )}
-            </S.SelectClickEvent>
+                <Styled.ImageButton src={item.imgSrc} style={{ width: `${item.width}px`, height: `${item.height}px` }} />
+                {item.missionId && skinStatus('sex', index) === 'locked' && (
+                    <Styled.LockIcon onClick={handleClick} />
+                )}
+                {item.missionId && skinStatus('sex', index) === 'unlocked' && (
+                    <Styled.UnLockIcon onClick={handleClick} />
+                )}
+            </Styled.SelectClickEvent>
         ))}
         </Carousel>
     );
