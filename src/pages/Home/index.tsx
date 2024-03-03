@@ -32,7 +32,9 @@ export default function Home() {
   };
 
   const handleOpenSkinModal = () => {
-    openSkinModal();
+    if (isMyHome) {
+      openSkinModal();
+    }
   };
 
   return (
