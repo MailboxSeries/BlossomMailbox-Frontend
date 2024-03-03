@@ -25,10 +25,6 @@ export const skins = {
 };
 
 export const sex = {
-    man: [
-        { type: 'Face', items: ManBody, title: '남성'},
-    ],
-    woman: [
-        { type: 'Face', items: WomanBody, title: '얼굴'},
-    ],
+    man: ManBody.imgSrc,
+    woman: WomanBody.imgSrc,
 };

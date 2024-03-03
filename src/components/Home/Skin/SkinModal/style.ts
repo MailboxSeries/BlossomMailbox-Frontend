@@ -10,6 +10,7 @@ export const Wrapper = styled.div`
 
 export const InnerWrapper = styled.div`
     width: 100%;
+    height: 340px;
     overflow-y: auto;
     display: column;
     justify-content: center; // 가로 중앙 정렬
@@ -18,7 +19,7 @@ export const InnerWrapper = styled.div`
 
 export const RowContainer = styled.div`
     margin-top: 50px;
-    height: 40px; // 버튼 높이를 조정
+    height: 120px; // 버튼 높이를 조정
     display: flex;
     align-items: center;
 `;
