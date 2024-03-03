@@ -5,7 +5,7 @@ import LongButton from '@/components/LongButton';
 import { useState } from 'react';
 import StoreLayout from '@/components/StoreLayout';
 import CharacterLayout from '@/components/CharacterLayout';
-import AnimalButton from '@/components/AnimalButton';
+import AnimalButton from '@/components/Home/AnimalButton';
 import PolicyLinkText from '@/components/SignIn/PolicyLinkText';
 
 export default function Home() {

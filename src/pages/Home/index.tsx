@@ -1,4 +1,4 @@
-import AnimalButton from '@/components/AnimalButton';
+import AnimalButton from '@/components/Home/AnimalButton';
 import CharacterLayout from '@/components/CharacterLayout';
 import PageLayout from '@/components/PageLayout';
 import StoreLayout from '@/components/StoreLayout';
@@ -12,6 +12,7 @@ import useIsMyHome from '@/hooks/useIsMyHome';
 import LongButton from '@/components/LongButton';
 import { useNavigate } from 'react-router-dom';
 import SendLetterModal from '@/components/Home/SendLetter/SendLetterModal';
+import SkinModal from '@/components/Home/Skin/SkinModal';
 
 export default function Home() {
   const nowDate = 3; // TODO: 서버로 부터 받은 값으로 변경. 이건 임시 값
@@ -20,6 +21,7 @@ export default function Home() {
   const navigate = useNavigate();
   const { isOpenModal: isOpenLetterListModal, openModal: openLetterListModal, closeModal: closeLetterListModal } = useModal('LetterListModal');
   const { isOpenModal: isOpenSendLetterModal, openModal: openSendLetterModal, closeModal: closeSendLetterModal } = useModal('SendLetterModal');
+  const { isOpenModal: isOpenSkinModal, openModal: openSkinModal, closeModal: closeSkinModal } = useModal('SkinModal');
   const { isMyHome } = useIsMyHome(myId);
 
   const handleopenLetterListModal = () => {
@@ -30,12 +32,16 @@ export default function Home() {
     openSendLetterModal();
   };
 
+  const handleOpenSkinModal = () => {
+    openSkinModal();
+  };
+
   return (
     <>
       <PageLayout nickname={nickname}>
         <StoreLayout /> {/* TODO: rightStore, leftStore 서버로 부터 받은 값 넘겨야함 */}
         <CharacterLayout /> {/* TODO: sex, hair, face, top, bottom 서버로 부터 받은 값 넘겨야함 */}
-        <AnimalButton /> {/* TODO: animal 서버로 부터 받은 값 넘겨야함 */}
+        <AnimalButton onClick={() => handleOpenSkinModal()}/> {/* TODO: animal 서버로 부터 받은 값 넘겨야함 */}
         <Styled.ButtonWrapper>
         {isMyHome ? (
           <>
@@ -70,6 +76,10 @@ export default function Home() {
       <SendLetterModal
         onClose={closeSendLetterModal}
         isOpen={isOpenSendLetterModal}
+      />
+      <SkinModal
+        onClose={closeSkinModal}
+        isOpen={isOpenSkinModal}
       />
     </>
   );

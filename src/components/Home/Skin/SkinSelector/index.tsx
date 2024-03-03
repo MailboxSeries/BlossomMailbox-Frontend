@@ -1,0 +1,51 @@
+// components/SkinSelector.tsx
+import React from 'react';
+import * as S from './style';
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
+// Skin 항목의 타입을 업데이트하여 missionId를 포함시킵니다.
+export interface SkinItem {
+    imgSrc: string;
+    index: number;
+    missionId?: string; // missionId는 선택적 속성으로, 잠금 해제가 필요한 항목에만 존재합니다.
+    width: number;
+    height: number;
+};
+
+export interface SkinSelectorProps {
+    items: Array<SkinItem>;
+    selectedType: number | string;
+    onSelect: (index: number) => void;
+    skinStatus: (type: string, index: number) => string;
+};
+
+export const SkinSelector: React.FC<SkinSelectorProps> = ({
+    items,
+    selectedType,
+    onSelect,
+    skinStatus,
+}) => {
+    const handleClick = () => {
+
+    }
+    return (
+        <Carousel showIndicators={false} emulateTouch={true} showArrows={false} showThumbs={false} showStatus={false} centerMode centerSlidePercentage={100/(items.length)}>
+        {items.map((item, index) => (
+            <S.SelectClickEvent
+            key={index}
+            onClick={() => onSelect(item.index)}
+            isSelected={selectedType === item.index}
+            >
+            <S.ImageButton src={item.imgSrc} style={{ width: `${item.width}px`, height: `${item.height}px` }} />
+            {item.missionId && skinStatus('sex', index) === 'locked' && (
+                <S.LockIcon onClick={handleClick} />
+            )}
+            {item.missionId && skinStatus('sex', index) === 'unlocked' && (
+                <S.UnLockIcon onClick={handleClick} />
+            )}
+            </S.SelectClickEvent>
+        ))}
+        </Carousel>
+    );
+};

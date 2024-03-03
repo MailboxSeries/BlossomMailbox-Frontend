@@ -29,3 +29,5 @@ export interface ModalProps {
   }
 
   export interface SendLetterModalProps extends Partial<ModalProps> {}
+
+  export interface SkinModalProps extends Partial<ModalProps> {}
