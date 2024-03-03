@@ -16,6 +16,7 @@ export const InnerWrapper = styled.div`
     display: column;
     justify-content: center; // 가로 중앙 정렬
     align-items: center; // 세로 중앙 정렬
+    overflow-x: hidden;
 `;
 
 export const RowContainer = styled.div`
