@@ -16,13 +16,12 @@ import SkinModal from '@/components/Home/Skin/SkinModal';
 
 export default function Home() {
   const nowDate = 3; // TODO: 서버로 부터 받은 값으로 변경. 이건 임시 값
-  const nickname = 'asdf'; //TODO: 서버로 부터 받은 값으로 변경. 이건 임시 값
-  const myId = 'asdfasdf'; //TODO: 서버로 부터 받은 값으로 변경. 이건 임시 값
+  const nickname = 'asdfasdf'; //TODO: 서버로 부터 받은 값으로 변경. 이건 임시 값
   const navigate = useNavigate();
   const { isOpenModal: isOpenLetterListModal, openModal: openLetterListModal, closeModal: closeLetterListModal } = useModal('LetterListModal');
   const { isOpenModal: isOpenSendLetterModal, openModal: openSendLetterModal, closeModal: closeSendLetterModal } = useModal('SendLetterModal');
   const { isOpenModal: isOpenSkinModal, openModal: openSkinModal, closeModal: closeSkinModal } = useModal('SkinModal');
-  const { isMyHome } = useIsMyHome(myId);
+  const { myId, isMyHome } = useIsMyHome();
 
   const handleopenLetterListModal = () => {
     openLetterListModal();
