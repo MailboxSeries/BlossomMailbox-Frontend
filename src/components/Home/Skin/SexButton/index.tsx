@@ -1,6 +1,6 @@
 import Button from '@/components/common/Button';
 import { SexButtonProps } from '@/interfaces/button';
-import { sex } from '@/assets/character';
+import { sex } from '@/assets/skin';
 
 export default function SexButton(props: SexButtonProps) {
   const backgroundImage = sex[props.selectedSex].imgSrc;

@@ -15,6 +15,8 @@ export const skins = {
         { type: 'Hair', items: ManHair, title: '머리'},
         { type: 'Top', items: ManTop, title: '상의'},
         { type: 'Bottom', items: ManBottom, title: '하의' },
+
+
     ],
     woman: [
         { type: 'Face', items: WomanFace, title: '얼굴'},

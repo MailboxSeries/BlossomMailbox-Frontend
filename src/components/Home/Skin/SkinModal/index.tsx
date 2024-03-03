@@ -2,8 +2,8 @@ import React, { useState, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 import { skinState } from '@/atoms/skinState';
 import Modal from '@/components/common/Modal';
-import { SkinSelector } from '../SkinSelector';
-import { skins } from '@/assets/character'; // 스킨 데이터 경로 확인
+import { SkinSelector } from '../SkinSelector'
+import { skins } from '@/assets/skin'; // 스킨 데이터 경로 확인
 import { SkinModalProps } from '@/interfaces/modal';
 import * as Styled from './style';
 import SexButton from '@/components/Home/Skin/SexButton';
