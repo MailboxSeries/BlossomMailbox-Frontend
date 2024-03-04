@@ -43,3 +43,5 @@ export interface BackButtonProps extends Partial<ButtonProps> {}
 export interface SexButtonProps extends Partial<ButtonProps> {
   selectedSex: string;
 }
+
+export interface MenuButtonProps extends Partial<ButtonProps> {}

@@ -47,5 +47,5 @@ export const FlowerWrapper = styled.div`
   right: 50%;
   transform: translateX(-50%);
   overflow: hidden;
-  z-index: 1;
+  z-index: 0;
 `;

@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import getCurrentSkyImage from '@/utils/getCurrentSkyImage';
 import Layout from '@/components/common/Layout';
 import FlowerFalling from '../FlowerFalling';
+import MenuButton from '@/components/Home/MenuButton';
 
 interface Props {
   children: React.ReactNode;
@@ -27,6 +28,7 @@ export default function PageLayout({ children, nickname }: Props) {
       <Layout>
         <Style.SkyWrapper path={skyImagePath}>
           <Style.Wrapper>
+          <MenuButton />
           <FlowerFalling />
             <Style.TextWrapper>
               <Style.SubLogoText>{subLogoText1}</Style.SubLogoText>
