@@ -21,6 +21,7 @@ function SignoutModal({ isOpen, onClose }: SignoutModalProps) {
             //signout();
         } else {
             displayToast('잘못 입력하셨어요! 다시 입력해주세요.');
+            closeSignoutModal();
         }
     }
 
