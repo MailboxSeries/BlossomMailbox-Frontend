@@ -18,10 +18,15 @@ function SkinModal({ isOpen, onClose }: SkinModalProps) {
         console.log('selectedSkin',selectedSkin)
     }, [skin, setSkin]);
 
-    const skinStatus = useCallback((type, index) => {
-      // 잠금 상태 확인 로직
-        return 'locked';
-    }, []);
+    const skinStatus = (type, index) => {
+        //const item = data[type] && data[type][index]; //TODO: 서버로 부터 받은 { data }에서 가져와야함.
+        // if (item.missionStatus && !item.missionChecked) {
+        //     return 'unlocked';
+        // } else {
+        //     return 'locked';
+        // }
+        return 'locked'; // TODO: 임시로 locked로 설정. 
+    };
 
     console.log('skin',skin)
 
@@ -45,7 +50,7 @@ function SkinModal({ isOpen, onClose }: SkinModalProps) {
                         items={items}
                         selectedType={skin[type]}
                         onSelect={(selectedSkin) => onSelectSkin(`${type}`, selectedSkin)}
-                        skinStatus={skinStatus}
+                        skinStatus={() => skinStatus(type, skin[type].index)}
                     />
                     </React.Fragment>
                     ))}
