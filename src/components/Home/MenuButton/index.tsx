@@ -4,7 +4,7 @@ import MenuButtonImg from '@/assets/flower/flowerBtnBig.png';
 import { useState } from 'react';
 import * as Styled from './style';
 import useIsMyHome from '@/hooks/useIsMyHome';
-import LogoutModal from '@/components/LogoutModal';
+import LogoutModal from '@/components/Home/LogoutModal';
 import useModal from '@/hooks/useModal';
 
 export default function MenuButton(props: MenuButtonProps) {

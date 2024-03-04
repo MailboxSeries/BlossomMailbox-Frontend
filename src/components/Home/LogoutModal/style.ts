@@ -18,13 +18,13 @@ export const InnerWrapper = styled.div`
     overflow-y: auto;
     overflow-x: hidden;
     padding: 20px;
-    margin-top: 90px;
-    font-size: 20px;
 `;
 
 export const ModalText = styled.div`
     width: 100%;
+    margin-top: 80px;
     overflow-x: hidden;
     color: ${theme.colors.white};
     text-align: center;
+    font-size: 20px;
 `;

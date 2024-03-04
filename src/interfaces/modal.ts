@@ -33,3 +33,5 @@ export interface ModalProps {
   export interface SkinModalProps extends Partial<ModalProps> {}
 
   export interface LogoutModalProps extends Partial<ModalProps> {}
+
+  export interface SignoutModalProps extends Partial<ModalProps> {}

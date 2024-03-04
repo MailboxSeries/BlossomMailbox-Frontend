@@ -64,10 +64,10 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
                             onChange={content.handleChange}
                         />
                         <Styled.CheckTextLength>{content.value.length}/200</Styled.CheckTextLength>
-                        </Styled.Form>
-                        <LongButton onClick={() => handleSendLetter()}>
-                            보내기
-                        </LongButton>
+                    </Styled.Form>
+                    <LongButton onClick={() => handleSendLetter()}>
+                        보내기
+                    </LongButton>
                 </Styled.Wrapper>
             </Modal>
         </>
