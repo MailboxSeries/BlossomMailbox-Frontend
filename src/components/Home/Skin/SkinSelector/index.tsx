@@ -11,12 +11,13 @@ export interface SkinItem {
     missionId?: string; // missionId는 선택적 속성으로, 잠금 해제가 필요한 항목에만 존재합니다.
     width: number;
     height: number;
+    name: string | number;
 };
 
 export interface SkinSelectorProps {
     items: Array<SkinItem>;
     selectedType: number | string;
-    onSelect: (index: number) => void;
+    onSelect: (name: string | number) => void;
     skinStatus: (type: string, index: number) => string;
 };
 
@@ -30,12 +31,12 @@ export const SkinSelector: React.FC<SkinSelectorProps> = ({
 
     }
     return (
-        <Carousel showIndicators={false} emulateTouch={true} showArrows={false} showThumbs={false} showStatus={false} centerMode centerSlidePercentage={100/(items.length)}>
+        <Carousel showIndicators={false} emulateTouch={true} showArrows={true} showThumbs={false} showStatus={false} centerMode centerSlidePercentage={100/3}>
         {items.map((item, index) => (
             <Styled.SelectClickEvent
             key={index}
-            onClick={() => onSelect(item.index)}
-            isSelected={selectedType === item.index}
+            onClick={() => onSelect(item.name)}
+            isSelected={selectedType === item.name}
             >
                 <Styled.ImageButton src={item.imgSrc} style={{ width: `${item.width}px`, height: `${item.height}px` }} />
                 {item.missionId && skinStatus('sex', index) === 'locked' && (

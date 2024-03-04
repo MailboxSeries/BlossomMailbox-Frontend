@@ -10,7 +10,7 @@ export const skinState = atom<ISkinState>({
         face: 1,
         hair: 1,
         animal: "cat1",
-        rightStore: "churros1",
-        leftStore: "balloon1",
+        rightStore: "balloon1",
+        leftStore: "churros1",
     },
 });

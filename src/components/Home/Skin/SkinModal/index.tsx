@@ -43,8 +43,8 @@ function SkinModal({ isOpen, onClose }: SkinModalProps) {
                     <Styled.SkinTitle>{title}</Styled.SkinTitle>
                     <SkinSelector
                         items={items}
-                        selectedType={skin[type.toLowerCase()]}
-                        onSelect={(selectedSkin) => onSelectSkin(`${type.toLowerCase()}`, selectedSkin)}
+                        selectedType={skin[type]}
+                        onSelect={(selectedSkin) => onSelectSkin(`${type}`, selectedSkin)}
                         skinStatus={skinStatus}
                     />
                     </React.Fragment>

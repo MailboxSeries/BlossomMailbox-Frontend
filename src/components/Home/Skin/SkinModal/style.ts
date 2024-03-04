@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
 `;
 
 export const InnerWrapper = styled.div`
-    width: 100%;
+    width: 240px;
     height: 340px;
     overflow-y: auto;
     display: column;
@@ -33,5 +33,5 @@ export const SkinTitle = styled.div`
     width: 100%;
     display: flex;
     margin-top: 4px;
-    margin-left: 16px;
+    //margin-left: 16px;
 `; 

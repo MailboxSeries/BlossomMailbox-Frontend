@@ -13,19 +13,19 @@ import { leftStore } from "./leftStore";
 import { animal } from "@/assets/animal";
 export const skins = {
     man: [
-        { type: 'Face', items: ManFace, title: '얼굴'},
-        { type: 'Hair', items: ManHair, title: '머리'},
-        { type: 'Top', items: ManTop, title: '상의'},
-        { type: 'Bottom', items: ManBottom, title: '하의' },
+        { type: 'face', items: ManFace, title: '얼굴'},
+        { type: 'hair', items: ManHair, title: '머리'},
+        { type: 'top', items: ManTop, title: '상의'},
+        { type: 'bottom', items: ManBottom, title: '하의' },
         { type: 'animal', items: animal, title: '고양이'},
         { type: 'rightStore', items: rightStore, title: '가게(오)'},
         { type: 'leftStore', items: leftStore, title: '가게(왼)'},
     ],
     woman: [
-        { type: 'Face', items: WomanFace, title: '얼굴'},
-        { type: 'Hair', items: WomanHair, title: '머리'},
-        { type: 'Top', items: WomanTop, title: '상의'},
-        { type: 'Bottom', items: WomanBottom, title: '하의'},
+        { type: 'face', items: WomanFace, title: '얼굴'},
+        { type: 'hair', items: WomanHair, title: '머리'},
+        { type: 'top', items: WomanTop, title: '상의'},
+        { type: 'bottom', items: WomanBottom, title: '하의'},
         { type: 'animal', items: animal, title: '고양이'},
         { type: 'rightStore', items: rightStore, title: '가게(오)'},
         { type: 'leftStore', items: leftStore, title: '가게(왼)'},
