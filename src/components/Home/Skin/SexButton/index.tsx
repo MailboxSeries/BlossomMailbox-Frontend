@@ -3,7 +3,7 @@ import { SexButtonProps } from '@/interfaces/button';
 import { sex } from '@/assets/skin';
 
 export default function SexButton(props: SexButtonProps) {
-  const backgroundImage = sex[props.selectedSex].imgSrc;
+  const backgroundImage = sex[props.selectedSex];
 
   return (
     <Button 
