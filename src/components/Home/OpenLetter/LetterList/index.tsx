@@ -2,7 +2,7 @@ import LetterCard from '@/components/Home/OpenLetter/LetterCard';
 import * as Styled from './style';
 import { ILetterList } from '@/interfaces/letter';
 
-export default function LetterList({ data }: { data?: ILetterList }) { //TODO: 옵셔널 체이닝 지우기
+export default function LetterList({ data }: { data?: ILetterList }) {
 
     const handleLetterModalOpen = () => {
 
@@ -12,7 +12,7 @@ export default function LetterList({ data }: { data?: ILetterList }) { //TODO: �
         <>
             <Styled.Container>
                 {data?.letters.length === 0 ? (
-                    <></>
+                    <Styled.Text>받은 편지가 없어요.</Styled.Text>
                 ) : (
                     data?.letters.map((letter) => {
                     return (
