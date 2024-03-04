@@ -33,5 +33,5 @@ export const SkinTitle = styled.div`
     width: 100%;
     display: flex;
     margin-top: 4px;
-    //margin-left: 16px;
+    margin-bottom: 10px;
 `; 
