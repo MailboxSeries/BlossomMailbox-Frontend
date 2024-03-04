@@ -8,12 +8,12 @@ interface ImageButtonProps {
 };
 
 export const ImageButton = styled.button<ImageButtonProps>`
-cursor: pointer;
-background-image: url(${props => props.src});
-border: transparent;
-background-size: cover;
-background-color: transparent;
-z-index: 2;
+    cursor: pointer;
+    background-image: url(${props => props.src});
+    border: transparent;
+    background-size: cover;
+    background-color: transparent;
+    z-index: 0;
 `;
 
 export const SelectClickEvent = styled.div<{ isSelected?: boolean }>`
@@ -31,26 +31,30 @@ export const SelectClickEvent = styled.div<{ isSelected?: boolean }>`
 
 export const LockIcon = styled.button`
     position: absolute;
-    width: 50px;
-    height: 50px;
-    background-size: 50px 50px;
+    width: 40px;
+    height: 40px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); // 중앙 정렬
+    background-size: cover;
     background-image: url(${LockIconImg});
     background-repeat: no-repeat;
-    z-index: 3;
-    top: 30px;
-    left: 17px;
     background-color: transparent;
+    border: none;
+    cursor: pointer;
 `;
 
 export const UnLockIcon = styled.button`
     position: absolute;
-    width: 50px;
-    height: 50px;
-    background-size: 50px 50px;
+    width: 40px;
+    height: 40px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); // 중앙 정렬
+    background-size: cover;
     background-image: url(${UnLockIconImg});
     background-repeat: no-repeat;
-    z-index: 3;
-    top: 30px;
-    left: 17px;
     background-color: transparent;
+    border: none;
+    cursor: pointer;
 `;
