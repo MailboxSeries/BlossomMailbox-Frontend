@@ -12,7 +12,7 @@ export default function ShareButton() {
   const { displayToast } = useToast();
 
   const handleShareLink = async () => {
-    displayToast('링크가 클립보드에 복사되었습니다.'); // Toast 메시지에 남은 일수 표시
+    displayToast('링크가 클립보드에 복사되었습니다.');
   };
 
   return (
