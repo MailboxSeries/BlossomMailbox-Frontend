@@ -15,22 +15,24 @@ export default function MenuButton(props: MenuButtonProps) {
 
   return (
     <>
-      <Button 
-        width={60} 
-        height={60} 
-        margin={"0px 0 0 0"} 
-        background={MenuButtonImg}
-        fontSize={20}
-        onClick={handleMenuOpen}
-        position='absolute'
-        top={"10px"}
-        right={"10px"}
-        zIndex={3}
-        {...props}
-      >
-        {props.children}
-        
-      </Button>
+        <Button 
+          width={55} 
+          height={55} 
+          margin={"0px 0 0 0"} 
+          background={MenuButtonImg}
+          fontSize={20}
+          onClick={handleMenuOpen}
+          position='absolute'
+          top={"12px"}
+          right={"12px"}
+          zIndex={3}
+          {...props}
+        >
+          {props.children}
+          
+        </Button>
+        <Styled.GlowContainer />
+
       {isOpen &&
         Array.from({ length: 50 }, (_, i) => (
           <Styled.SunRay

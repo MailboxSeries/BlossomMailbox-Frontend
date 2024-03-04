@@ -1,6 +1,32 @@
 import styled, { keyframes } from "styled-components";
 import theme from "@/theme";
 
+export const glowAnimation = keyframes`
+    0% {
+        box-shadow: 0 0 5px 5px ${theme.colors.pink}, 0 0 10px 5px ${theme.colors.pink};
+    }
+    50% {
+        box-shadow: 0 0 10px 10px ${theme.colors.pink}, 0 0 15px 10px ${theme.colors.pink};
+    }
+    100% {
+        box-shadow: 0 0 5px 5px ${theme.colors.pink}, 0 0 10px 5px ${theme.colors.pink};
+    }
+`;
+
+export const GlowContainer = styled.div`
+    animation: ${glowAnimation} 1s infinite ease-in-out;
+    display: inline-block;
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 45px;
+    height: 45px;
+    z-index: 2;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: ${theme.colors.pink};
+`;
+
 interface SunRayProps {
     isActive: boolean;
 }
@@ -32,12 +58,12 @@ export const fadeIn = keyframes`
     }
 `;
 
-export const fadeOut = keyframes` //안됨..
-    from {
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+export const fadeOut = keyframes`
+    0% {
+        opacity: 1;
     }
-    to {
-        clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+    100% {
+        opacity: 0;
     }
 `;
 
