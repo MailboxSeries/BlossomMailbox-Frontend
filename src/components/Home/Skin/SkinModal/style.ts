@@ -24,6 +24,7 @@ export const RowContainer = styled.div`
     height: 120px; // 버튼 높이를 조정
     display: flex;
     align-items: center;
+    gap: 20px;
 `;
 
 export const SkinTitle = styled.div`
