@@ -18,8 +18,8 @@ function SkinModal({ isOpen, onClose }: SkinModalProps) {
         console.log('selectedSkin',selectedSkin)
     }, [skin, setSkin]);
 
-    const skinStatus = (type, index) => {
-        //const item = data[type] && data[type][index]; //TODO: 서버로 부터 받은 { data }에서 가져와야함.
+    const skinStatus = (skinType, index) => {
+        //const item = data[skinType] && data[skinType][index]; //TODO: 서버로 부터 받은 { data }에서 가져와야함.
         // if (item.missionStatus && !item.missionChecked) {
         //     return 'unlocked';
         // } else {
