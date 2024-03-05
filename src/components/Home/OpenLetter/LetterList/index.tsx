@@ -2,11 +2,11 @@ import LetterCard from '@/components/Home/OpenLetter/LetterCard';
 import * as Styled from './style';
 import { ILetterList } from '@/interfaces/letter';
 import useModal from '@/hooks/useModal';
-import LetterModal from '@/components/Home/OpenLetter/LetterModal';
+import LetterReadModal from '@/components/Home/OpenLetter/LetterReadModal';
 import { useState } from 'react';
 
 export default function LetterList({ data }: { data?: ILetterList }) {
-    const { isOpenModal: isDayLetterListModal, closeModal: closeDayLetterListModal } = useModal('DayLetterListModal');
+    const { isOpenModal: isOpenDayLetterListModal, closeModal: closeDayLetterListModal } = useModal('DayLetterListModal');
     const { isOpenModal: isOpenLetterModal, openModal: openLetterModal, closeModal: closeLetterModal } = useModal('LetterModal');
     const [cafeId, setCafeId] = useState<number>(0);
 
@@ -42,7 +42,7 @@ export default function LetterList({ data }: { data?: ILetterList }) {
                 )}
             </Styled.Container>
 
-            <LetterModal 
+            <LetterReadModal 
                 onClose={closeLetterModal}
                 isOpen={isOpenLetterModal}
                 id={cafeId}
