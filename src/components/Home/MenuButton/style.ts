@@ -17,8 +17,8 @@ export const GlowContainer = styled.div`
     animation: ${glowAnimation} 1s infinite ease-in-out;
     display: inline-block;
     position: absolute;
-    top: 18px;
-    right: 18px;
+    top: 17px;
+    right: 17px;
     width: 45px;
     height: 45px;
     z-index: 2;
