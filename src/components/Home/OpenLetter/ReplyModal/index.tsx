@@ -12,7 +12,6 @@ import { useImageUpload } from '@/hooks/useImageUpload';
 function ReplyModal({onClose, isOpen, data}: ReplyModalProps) {
     const { displayToast } = useToast();
     const { openModal: openLetterReadModal } = useModal('LetterReadModal');
-    const sender = useInput<HTMLInputElement>(); // 보내는 사람 이름을 관리하는 상태
     const content = useInput<HTMLTextAreaElement>(); // 편지 내용을 관리하는 상태
     const { uploadedImage, handleFileInputChange } = useImageUpload();
 
@@ -22,8 +21,8 @@ function ReplyModal({onClose, isOpen, data}: ReplyModalProps) {
     }
 
     const handleSendReply = () => {
-        if (!sender.value.trim() || !content.value.trim()) {
-            displayToast(`이름과 편지 모두 입력해야 해요.`);
+        if (!content.value.trim()) {
+            displayToast(`편지를 입력해야 해요.`);
             return;
         } else {
             //TODO: mutate
@@ -66,15 +65,6 @@ function ReplyModal({onClose, isOpen, data}: ReplyModalProps) {
                                 />
                                 {uploadedImage && <Styled.ImagePreview src={uploadedImage as string} />}
                             </Styled.ImageUploadLabel>
-                            <Styled.NameInput
-                                maxLength={10}
-                                type="text"
-                                name="guestName" // 상태와 일치하는 name 속성
-                                placeholder="이름을 적어주세요."
-                                value={sender.value}
-                                onChange={sender.handleChange}
-                            />
-                            <Styled.CheckTextLength>{sender.value.length}/10</Styled.CheckTextLength>
                             <Styled.LetterArea
                                 placeholder="따뜻한 마음을 남겨주세요."
                                 maxLength={200}
