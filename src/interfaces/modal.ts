@@ -39,3 +39,16 @@ export interface ModalProps {
   export interface LetterModalProps extends Partial<ModalProps> {
     id: number;
   }
+
+  export interface ReplyModalProps extends Partial<ModalProps> {
+    data: {
+      reply: boolean;
+      myContent: string;
+      myImage: string;
+      sender: string;
+      content: string;
+      image: string;
+    };
+  }
+
+  

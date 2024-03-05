@@ -48,3 +48,4 @@ export interface MenuButtonProps extends Partial<ButtonProps> {}
 
 export interface SignoutButtonProps extends Partial<ButtonProps> {}
 
+export interface ReplyButtonProps extends Partial<ButtonProps> {}
