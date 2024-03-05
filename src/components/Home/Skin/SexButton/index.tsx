@@ -7,7 +7,7 @@ export default function SexButton(props: SexButtonProps) {
 
   return (
     <Button 
-      width={60} 
+      width={120} 
       height={120} 
       margin={"0px 0 0 0"} 
       background={backgroundImage}
