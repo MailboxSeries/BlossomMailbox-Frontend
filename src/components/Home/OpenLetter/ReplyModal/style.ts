@@ -26,7 +26,7 @@ export const LetterImage = styled.div<{src: string}>`
   height: 220px;
   background-image: ${(props) => `url(${props.src})`};
   border: 3px solid ${theme.colors.babyPink};
-  border-radius: 15px;
+  border-radius: 20px;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -73,8 +73,8 @@ export const Form = styled.form`
 
 export const ImageUploadLabel = styled.label`
   cursor: pointer;
-  width: 240px;
-  height: 240px;
+  width: 220px;
+  height: 220px;
   border-radius: 20px;
   background-color: ${theme.colors.babyPink};
   background-size: cover;
@@ -113,8 +113,8 @@ export interface ImagePreviewProps {
 }
 
 export const ImagePreview = styled.div<ImagePreviewProps>`
-  width: 240px;
-  height: 240px;
+  width: 220px;
+  height: 220px;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -146,7 +146,7 @@ export const NameInput = styled.input`
 
 export const CheckTextLength = styled.div`
   font-family: 'BareunHipi';
-  margin-top: -35px;
+  margin-top: -45px;
   margin-right: 15px;;
   display: flex;
   flex-direction: column;
@@ -154,13 +154,13 @@ export const CheckTextLength = styled.div`
   font-size: 14px;
   font-weight: 400;
   color: ${theme.colors.white} !important;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   z-index: 2;
 `;
 
 export const LetterArea = styled.textarea`
   font-family: 'BareunHipi';
-  width: 210px;
+  width: 190px;
   height: 100px;
   border: none;
   border-radius: 20px;
@@ -176,5 +176,5 @@ export const LetterArea = styled.textarea`
       font-size: 20px;
     }
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 `;
