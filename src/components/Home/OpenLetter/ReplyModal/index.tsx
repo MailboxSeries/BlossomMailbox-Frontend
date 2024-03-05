@@ -32,7 +32,6 @@ function ReplyModal({onClose, isOpen, data}: ReplyModalProps) {
         }
     }
     return (
-        <>
             <Modal
                 isOpen={isOpen}
                 onClose={onClose}
@@ -87,8 +86,6 @@ function ReplyModal({onClose, isOpen, data}: ReplyModalProps) {
                     </Styled.InnerWrapper>
                 </Styled.Wrapper>
             </Modal>
-
-        </>
     );
 }
 

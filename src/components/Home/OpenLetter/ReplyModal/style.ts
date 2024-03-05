@@ -68,7 +68,7 @@ export const Form = styled.form`
   flex-wrap: nowrap;
   align-items: center; 
   justify-content: center;
-  margin-bottom: 10px
+  margin-bottom: 10px;
 `;
 
 export const ImageUploadLabel = styled.label`
