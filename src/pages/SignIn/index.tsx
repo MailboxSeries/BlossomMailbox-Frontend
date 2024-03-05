@@ -17,7 +17,7 @@ export default function Home() {
   
   return (
     <>
-      <PageLayout>
+      <PageLayout nowDate={20}>
         <StoreLayout />
         <CharacterLayout />
         <AnimalButton />

@@ -2,11 +2,12 @@ import styled from 'styled-components';
 import theme from '@/theme';
 import Background from '@/assets/background/flower.png';
 
-interface SkyWrapperProps {
+
+interface WrapperProps {
   path: string;
 }
 
-export const SkyWrapper = styled.div<SkyWrapperProps>`
+export const SkyWrapper = styled.div<WrapperProps>`
     position: absolute;
     z-index: 0;
     max-height: 1180px;
@@ -29,7 +30,8 @@ export const SkyWrapper = styled.div<SkyWrapperProps>`
   align-items: center;
 `;
 
-export const Wrapper = styled.div`
+
+export const Wrapper = styled.div<WrapperProps>`
     position: absolute;
     z-index: 0;
     max-height: 1180px;
@@ -41,7 +43,7 @@ export const Wrapper = styled.div`
     width: 100%;
     margin: 0;
     padding: 0;
-    background: url(${Background});
+    background-image: url(${props => props.path});
     background-position: bottom;
     background-repeat: no-repeat;
     background-size: auto; // 배경 이미지 사이즈 조정

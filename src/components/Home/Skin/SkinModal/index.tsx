@@ -55,7 +55,7 @@ function SkinModal({ isOpen, onClose }: SkinModalProps) {
                     </React.Fragment>
                     ))}
                 </Styled.InnerWrapper>
-                <LongButton onClick={() => handleSelectComplete()}>
+                <LongButton margin={"-10px 0 0 0"} onClick={() => handleSelectComplete()}>
                     선택 완료!
                 </LongButton>
             </Styled.Wrapper>

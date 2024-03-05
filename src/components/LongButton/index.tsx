@@ -8,7 +8,7 @@ export default function LongButton(props: LongButtonProps) {
     <Button 
       width={250} 
       height={40} 
-      margin={"0 0 0 0"} 
+      margin={"8px 0 0 0"} 
       background={LongButtonImg}
       fontSize={20}
       color={theme.colors.white}
