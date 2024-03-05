@@ -10,7 +10,7 @@ export default function ReplyButton(props: ReplyButtonProps) {
           width={55} 
           height={25} 
           color={theme.colors.white}
-          backgroundColor={theme.colors.pink}
+          backgroundColor={theme.colors.babyPink}
           fontSize={16}
           onClick={props.onClick}
           borderRadius='10px'

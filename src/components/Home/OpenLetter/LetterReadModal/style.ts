@@ -58,6 +58,6 @@ export const LetterContentText = styled.div`
 export const Line = styled.div`
   height: 3px;
   width: 100%;
-  background-color: ${theme.colors.pink};
+  background-color: ${theme.colors.babyPink};
   margin: 10px 0 10px 0;
 `;

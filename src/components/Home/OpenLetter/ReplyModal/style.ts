@@ -58,7 +58,7 @@ export const LetterContentText = styled.div`
 export const Line = styled.div`
   height: 3px;
   width: 100%;
-  background-color: ${theme.colors.pink};
+  background-color: ${theme.colors.babyPink};
   margin: 10px 0 10px 0;
 `;
 
@@ -84,16 +84,19 @@ export const ImageUploadLabel = styled.label`
 `;
 
 export const ImageUploadLabelText = styled.div`
-  font-size: 12px;
+  font-size: 16px;
   color: ${theme.colors.white};
   text-align: center;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  top: 108px;
-  left: 78px;
+  justify-content: center;
+  align-items: center; 
   position: absolute;
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
 `;
+
 
 export const ImageInput = styled.input`
   opacity: 0; // 투명하게 설정

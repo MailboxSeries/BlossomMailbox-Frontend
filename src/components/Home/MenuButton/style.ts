@@ -3,13 +3,13 @@ import theme from "@/theme";
 
 export const glowAnimation = keyframes`
     0% {
-        box-shadow: 0 0 5px 5px ${theme.colors.pink}, 0 0 10px 5px ${theme.colors.pink};
+        box-shadow: 0 0 5px 5px ${theme.colors.babyPink}, 0 0 10px 5px ${theme.colors.babyPink};
     }
     50% {
-        box-shadow: 0 0 10px 10px ${theme.colors.pink}, 0 0 15px 10px ${theme.colors.pink};
+        box-shadow: 0 0 10px 10px ${theme.colors.babyPink}, 0 0 15px 10px ${theme.colors.babyPink};
     }
     100% {
-        box-shadow: 0 0 5px 5px ${theme.colors.pink}, 0 0 10px 5px ${theme.colors.pink};
+        box-shadow: 0 0 5px 5px ${theme.colors.babyPink}, 0 0 10px 5px ${theme.colors.babyPink};
     }
 `;
 
@@ -24,7 +24,7 @@ export const GlowContainer = styled.div`
     z-index: 2;
     border-radius: 50%;
     overflow: hidden;
-    background-color: ${theme.colors.pink};
+    background-color: ${theme.colors.babyPink};
 `;
 
 interface SunRayProps {
@@ -44,7 +44,7 @@ export const SunRay = styled.div<SunRayProps>`
         position: absolute;
         height: 100%;
         width: 100%;
-        background: linear-gradient(to bottom, ${theme.colors.pink} -100%, transparent 100%);
+        background: linear-gradient(to bottom, ${theme.colors.babyPink} -100%, transparent 100%);
     }
     z-index: 1;
 `;

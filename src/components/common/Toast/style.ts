@@ -25,7 +25,7 @@ export const ToastContainer = styled.div`
     bottom: 50px; // 초기 위치 지정
     left: 50%;
     transform: translateX(-50%); // 가로 중앙 정렬만 적용
-    background: ${theme.colors.pink};
+    background: ${theme.colors.babyPink};
     color: white;
     padding: 15px;
     width: auto; // 너비를 내용에 따라 자동 조절

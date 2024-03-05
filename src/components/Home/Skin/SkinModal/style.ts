@@ -21,6 +21,7 @@ export const InnerWrapper = styled.div`
 
 export const RowContainer = styled.div`
     margin-top: 50px;
+    margin-bottom: 10px;
     height: 120px; // 버튼 높이를 조정
     display: flex;
     align-items: center;
@@ -33,5 +34,5 @@ export const SkinTitle = styled.div`
     width: 100%;
     display: flex;
     margin-top: 4px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 `; 

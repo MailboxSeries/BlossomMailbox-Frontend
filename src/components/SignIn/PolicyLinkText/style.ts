@@ -23,6 +23,6 @@ export const PolicyStyledLink = styled.a`
   text-decoration: underline;  // 밑줄 추가
 
   &:hover {
-    color: ${theme.colors.pink};
+    color: ${theme.colors.babyPink};
   }
 `;

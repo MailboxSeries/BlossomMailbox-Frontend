@@ -4,7 +4,7 @@ import theme from '@/theme';
 export const Container = styled.div`
     width: 200px;
     height: 54px;
-    background-color: ${theme.colors.pink};
+    background-color: ${theme.colors.babyPink};
     border-radius: 16px;
     display: flex;
     justify-content: center;
