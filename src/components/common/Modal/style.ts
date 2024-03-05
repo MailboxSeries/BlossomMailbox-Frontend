@@ -109,7 +109,7 @@ export const ModalTitle = styled.div`
   color: ${theme.colors.white};
   font-size: 20px;
   overflow-y: auto;
-  white-space: pre;
   overflow: hidden;
+  margin-top: 3px;
 `;
 
