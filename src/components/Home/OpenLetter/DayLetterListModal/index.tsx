@@ -1,10 +1,10 @@
 import * as Styled from './style';
 import React from 'react';
 import Modal from '@/components/common/Modal';
-import { DayLetterModalProps } from '@/interfaces/modal';
+import { DayLetterListModalProps } from '@/interfaces/modal';
 import useModal from '@/hooks/useModal';
 import BackButton from '@/components/BackButton';
-import LetterList from '../LetterList';
+import LetterList from '@/components/Home/OpenLetter/LetterList';
 
 // 더미 데이터
 const lettersList = {
@@ -62,16 +62,15 @@ const lettersList = {
     ]
 };
 
-function DayLetterModal({onClose, isOpen, selectedDate}: DayLetterModalProps) {
+function DayLetterListModal({onClose, isOpen, selectedDate}: DayLetterListModalProps) {
     const { openModal: openLetterListModal } = useModal('LetterListModal');
-    const { closeModal: closeDayLetterModal } = useModal('DayLetterModal');
     const handleBackButton = () => {
-        closeDayLetterModal();
+        onClose();
         openLetterListModal();
     }
     return (
         <>
-4            <Modal
+            <Modal
                 isOpen={isOpen}
                 onClose={onClose}
                 modalTitle={`${selectedDate}일차 벚꽃`}
@@ -84,9 +83,8 @@ function DayLetterModal({onClose, isOpen, selectedDate}: DayLetterModalProps) {
                     </Styled.InnerWrapper>
                 </Styled.Wrapper>
             </Modal>
-
         </>
     );
 }
 
-export default React.memo(DayLetterModal);
+export default React.memo(DayLetterListModal);

@@ -6,20 +6,19 @@ import flowerBigImg from '@/assets/flower/flowerBtnBig.png';
 import useToast from '@/hooks/useToast';
 import { LetterListModalProps } from '@/interfaces/modal';
 import useModal from '@/hooks/useModal';
-import DayLetterModal from '@/components/Home/OpenLetter/DayLetterModal';
+import DayLetterListModal from '@/components/Home/OpenLetter/DayLetterListModal';
 
 function LetterListModal({onClose, isOpen, nowDate}: LetterListModalProps) {
     const { displayToast } = useToast();
-    const { closeModal: closeLetterListModal } = useModal('LetterListModal');
-    const { isOpenModal: isOpenDayLetterModal,
-        openModal: openDayLetterModal, 
-        closeModal: closeDayLetterModal } = useModal('DayLetterModal');
+    const { isOpenModal: isOpenDayLetterListModal,
+        openModal: openDayLetterListModal, 
+        closeModal: closeDayLetterListModal } = useModal('DayLetterListModal');
     const [selectedDate, setSelectedDate] = useState<number>(1);
     console.log('render')
-    const handleLetterReadModalOpen = (date: number) => {
-        setSelectedDate(date); // 버튼을 클릭하면 선택된 날짜를 설정합니다.
-        openDayLetterModal();
-        closeLetterListModal();
+    const handleDayLetterListModalOpen = (date: number) => {
+        setSelectedDate(date); // 버튼을 클릭하면 선택된 날짜를 설정
+        openDayLetterListModal();
+        onClose();
     };
 
     return (
@@ -47,7 +46,7 @@ function LetterListModal({onClose, isOpen, nowDate}: LetterListModalProps) {
                                         key={index}
                                         onClick={() => {
                                             if (isButtonActive) {
-                                                handleLetterReadModalOpen(date);
+                                                handleDayLetterListModalOpen(date);
                                             } else {
                                                 setSelectedDate(date); // 사용자가 클릭한 날짜 업데이트
                                                 const daysLeft = date - nowDate; // 열람까지 남은 일수 계산
@@ -66,9 +65,9 @@ function LetterListModal({onClose, isOpen, nowDate}: LetterListModalProps) {
                 </Styled.Wrapper>
             </Modal>
 
-            <DayLetterModal 
-                onClose={closeDayLetterModal} 
-                isOpen={isOpenDayLetterModal}
+            <DayLetterListModal 
+                onClose={closeDayLetterListModal} 
+                isOpen={isOpenDayLetterListModal}
                 selectedDate={selectedDate}
             />
         </>

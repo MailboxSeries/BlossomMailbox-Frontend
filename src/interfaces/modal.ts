@@ -24,7 +24,7 @@ export interface ModalProps {
     nowDate: number;
   }
 
-  export interface DayLetterModalProps extends Partial<ModalProps> {
+  export interface DayLetterListModalProps extends Partial<ModalProps> {
     selectedDate: number;
   }
 
@@ -35,3 +35,7 @@ export interface ModalProps {
   export interface LogoutModalProps extends Partial<ModalProps> {}
 
   export interface SignoutModalProps extends Partial<ModalProps> {}
+
+  export interface LetterModalProps extends Partial<ModalProps> {
+    id: number;
+  }
