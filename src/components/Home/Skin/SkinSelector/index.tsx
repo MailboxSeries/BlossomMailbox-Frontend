@@ -19,7 +19,7 @@ export interface SkinItem {
 
 export interface SkinSelectorProps {
     items: Array<SkinItem>;
-    selectedType: string | number;
+    selectedType: number;
     onSelect: (index: number) => void;
     skinStatus: (type: string | number, index: number) => string;
 };
