@@ -6,6 +6,7 @@ import Layout from '@/components/common/Layout';
 import FlowerFalling from '../FlowerFalling';
 import MenuButton from '@/components/Home/MenuButton';
 import getCurrentBackgroundImage from '@/utils/getCurrentBackgroundImage';
+import AttendButton from '@/components/Home/AttendButton';
 
 interface Props {
   children: React.ReactNode;
@@ -33,6 +34,7 @@ export default function PageLayout({ children, nickname, nowDate }: Props) {
         <Style.SkyWrapper path={skyImagePath}>
           <Style.Wrapper  path={backgroundImagePath}>
           <MenuButton />
+          <AttendButton />
           <FlowerFalling />
             <Style.TextWrapper>
               <Style.SubLogoText>{subLogoText1}</Style.SubLogoText>

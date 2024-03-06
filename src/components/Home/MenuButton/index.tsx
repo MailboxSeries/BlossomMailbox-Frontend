@@ -38,7 +38,6 @@ export default function MenuButton(props: MenuButtonProps) {
           {props.children}
           
         </Button>
-        <Styled.GlowContainer />
 
       {isOpen &&
         Array.from({ length: 50 }, (_, i) => (
