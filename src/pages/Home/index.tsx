@@ -13,6 +13,7 @@ import LongButton from '@/components/LongButton';
 import { useNavigate } from 'react-router-dom';
 import SendLetterModal from '@/components/Home/SendLetter/SendLetterModal';
 import SkinModal from '@/components/Home/Skin/SkinModal';
+import useToast from '@/hooks/useToast';
 
 export default function Home() {
   const nowDate = 3; // TODO: 서버로 부터 받은 값으로 변경. 이건 임시 값
@@ -22,6 +23,7 @@ export default function Home() {
   const { isOpenModal: isOpenSendLetterModal, openModal: openSendLetterModal, closeModal: closeSendLetterModal } = useModal('SendLetterModal');
   const { isOpenModal: isOpenSkinModal, openModal: openSkinModal, closeModal: closeSkinModal } = useModal('SkinModal');
   const { myId, isMyHome } = useIsMyHome();
+  const { displayToast } = useToast();
 
   const handleopenLetterListModal = () => {
     openLetterListModal();
@@ -50,8 +52,8 @@ export default function Home() {
               <MediumButton onClick={() => handleopenLetterListModal()}>
                 편지 보기
               </MediumButton>
-              <ShortButton>
-                D-{35-nowDate} {/* TODO: 서버로 부터 받은 값으로 변경. 이건 임시 값 */}
+              <ShortButton onClick={() => displayToast(`${20-nowDate}일 뒤에 벚꽃이 만개해요!`)}>
+                D-{20-nowDate} {/* TODO: 서버로 부터 받은 값으로 변경. 이건 임시 값 */}
               </ShortButton>
             </Styled.RowContainer>
             <ShareButton />

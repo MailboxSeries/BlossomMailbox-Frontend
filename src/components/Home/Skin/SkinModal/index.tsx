@@ -25,7 +25,7 @@ function SkinModal({ isOpen, onClose }: SkinModalProps) {
         // } else {
         //     return 'locked';
         // }
-        return 'locked'; // TODO: 임시로 locked로 설정. 
+        return 'unlocked'; // TODO: 임시로 locked로 설정. 
     };
 
     console.log('skin',skin)
