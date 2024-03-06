@@ -13,20 +13,20 @@ import BackButton from '@/components/BackButton';
 function SkinModal({ isOpen, onClose }: SkinModalProps) {
     const [skin, setSkin] = useRecoilState(skinState);
 
-    const onSelectSkin = useCallback((skinType, selectedSkin) => {
-        setSkin({ ...skin, [skinType]: selectedSkin });
-        console.log('selectedSkin',selectedSkin)
+    const onSelectSkin = useCallback((skinType, selectedSkinIndex: number) => {
+        setSkin({ ...skin, [skinType]: selectedSkinIndex });
+        console.log('selectedSkinIndex', selectedSkinIndex);
     }, [skin, setSkin]);
 
-    const skinStatus = (skinType, index) => {
+    const skinStatus = useCallback((type, index) => {
         //const item = data[skinType] && data[skinType][index]; //TODO: 서버로 부터 받은 { data }에서 가져와야함.
         // if (item.missionStatus && !item.missionChecked) {
         //     return 'unlocked';
         // } else {
         //     return 'locked';
         // }
-        return 'unlocked'; // TODO: 임시로 locked로 설정. 
-    };
+        return ''; // TODO: 임시로 locked로 설정. 
+    }, []);
 
     console.log('skin',skin)
 
@@ -49,9 +49,9 @@ function SkinModal({ isOpen, onClose }: SkinModalProps) {
                     <SkinSelector
                         items={items}
                         selectedType={skin[type]}
-                        onSelect={(selectedSkin) => onSelectSkin(`${type}`, selectedSkin)}
-                        skinStatus={() => skinStatus(type, skin[type].index)}
-                    />
+                        onSelect={(selectedSkinIndex) => onSelectSkin(type, selectedSkinIndex)}
+                        skinStatus={skinStatus}
+                        />
                     </React.Fragment>
                     ))}
                 </Styled.InnerWrapper>

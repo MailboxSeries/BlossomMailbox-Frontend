@@ -20,7 +20,7 @@ export interface SkinItem {
 export interface SkinSelectorProps {
     items: Array<SkinItem>;
     selectedType: string | number;
-    onSelect: (name: string | number) => void;
+    onSelect: (index: number) => void;
     skinStatus: (type: string | number, index: number) => string;
 };
 
@@ -33,8 +33,8 @@ export const SkinSelector: React.FC<SkinSelectorProps> = ({
     const { displayToast } = useToast();
     const skin = useRecoilValue(skinState);
 
-    const handleItemClick = (item: SkinItem, index: number) => {
-        const status = skinStatus(selectedType, index);
+    const handleItemClick = (item: SkinItem) => {
+        const status = skinStatus(selectedType, item.index);
         // 'locked' 또는 'unlocked' 상태일 때는 클릭 이벤트 무시
         if (status === 'locked') {
             displayToast(`출석 미션을 통해 획득하실 수 있어요!`);
@@ -42,7 +42,7 @@ export const SkinSelector: React.FC<SkinSelectorProps> = ({
             //TODO: 미션 완료 로직. mutate해서 skin을 서버로 보내야함.
             displayToast(`미션 완료로 잠금 해제됩니다.`);
         } else {
-            onSelect(item.name);
+            onSelect(item.index);
         }
     };
 
@@ -51,8 +51,8 @@ export const SkinSelector: React.FC<SkinSelectorProps> = ({
         {items.map((item, index) => (
             <Styled.SelectClickEvent
             key={index}
-            onClick={() => handleItemClick(item, index)}
-            isSelected={selectedType === item.name}
+            onClick={() => handleItemClick(item)}
+            isSelected={selectedType === item.index}
             >
                 <Styled.ImageButton 
                 src={item.imgSrc} 

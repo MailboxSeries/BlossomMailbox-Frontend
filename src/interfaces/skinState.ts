@@ -4,7 +4,7 @@ export interface ISkinState {
     bottom: number;
     face: number;
     hair: number;
-    animal: string;
-    rightStore: string;
-    leftStore: string;
+    animal: number;
+    rightStore: number;
+    leftStore: number;
 }
