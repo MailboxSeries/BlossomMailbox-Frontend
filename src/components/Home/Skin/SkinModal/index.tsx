@@ -10,13 +10,59 @@ import SexButton from '@/components/Home/Skin/SexButton';
 import LongButton from '@/components/LongButton';
 import BackButton from '@/components/BackButton';
 
+export const mockData = {
+    success: true,
+    data: {
+        lockSkinCnt: 5,
+        hair: {
+            having: [1, ],
+            unlock: [3, ],
+            lock: [2]
+        },
+        face: {
+            having: [1, ],
+            unlock: [3, ],
+            lock: [2]
+        },
+        top: {
+            having: [1, ],
+            unlock: [3, ],
+            lock: [2]
+        },
+        bottom: {
+            having: [1, ],
+            unlock: [3, ],
+            lock: [2]
+        },
+        animal: {
+            having: [1],
+            unlock: [2],
+            lock: [3, 4]
+        },
+        rightStore: {
+            having: [1, 2, 5],
+            unlock: [3],
+            lock: [4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+        },
+        leftStore: {
+            having: [1, 6],
+            unlock: [2, 3],
+            lock: [4, 5, 7, 8, 9, 10, 11, 12]
+        }
+    },
+    error: null
+};
+
 function SkinModal({ isOpen, onClose }: SkinModalProps) {
     const [skin, setSkin] = useRecoilState(skinState);
 
     const onSelectSkin = useCallback((skinType, selectedSkinIndex: number) => {
-        setSkin({ ...skin, [skinType]: selectedSkinIndex });
+        setSkin(prevSkin => ({
+            ...prevSkin,
+            [skinType]: selectedSkinIndex
+        }));
         console.log('selectedSkinIndex', selectedSkinIndex);
-    }, [skin, setSkin]);
+    }, [setSkin]);
 
     const skinStatus = useCallback((type, index) => {
         //const item = data[skinType] && data[skinType][index]; //TODO: 서버로 부터 받은 { data }에서 가져와야함.
@@ -25,7 +71,11 @@ function SkinModal({ isOpen, onClose }: SkinModalProps) {
         // } else {
         //     return 'locked';
         // }
-        return 'unlocked'; // TODO: 임시로 locked로 설정. 
+        // const statusData = mockData.data[type];
+        // if (statusData.lock.includes(index)) return 'locked';
+        // if (statusData.unlock.includes(index)) return 'unlocked';
+        // if (statusData.having.includes(index)) return 'having';
+        return ''; // 기본값
     }, []);
 
     console.log('skin',skin)
