@@ -44,7 +44,7 @@ export default function Home() {
       <PageLayout nickname={nickname} nowDate={nowDate}>
         <StoreLayout /> {/* TODO: rightStore, leftStore 서버로 부터 받은 값 넘겨야함 */}
         <CharacterLayout /> {/* TODO: sex, hair, face, top, bottom 서버로 부터 받은 값 넘겨야함 */}
-        <AnimalButton onClick={() => handleOpenSkinModal()}/> {/* TODO: animal 서버로 부터 받은 값 넘겨야함 */}
+        <AnimalButton onClick={() => handleOpenSkinModal()} /> {/* TODO: animal 서버로 부터 받은 값 넘겨야함 */}
         <Styled.ButtonWrapper>
         {isMyHome ? (
           <>

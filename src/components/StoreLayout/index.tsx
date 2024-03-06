@@ -3,8 +3,8 @@ import Layout from '@/components/common/Layout';
 import getCurrentStoreImage from '@/utils/getCurrentStoreImage';
 
 interface Props {
-  rightStore?: string;
-  leftStore?: string;
+  rightStore?: number;
+  leftStore?: number;
 }
 
 export default function StoreLayout({ rightStore, leftStore }: Props) {

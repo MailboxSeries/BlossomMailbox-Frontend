@@ -28,34 +28,49 @@ import popcorn2 from '@/assets/store/popcorn2.png';
 import popcorn3 from '@/assets/store/popcorn3.png';
 
 // 이미지를 매핑하는 객체 생성
-const rightStoreImages = {
-    churros1, churros2, churros3, churros4,
-    cottonCandy1, cottonCandy2, cottonCandy3, cottonCandy4,
-    piano1, piano2, piano3, piano4
+const leftStoreImages = {
+    1: churros1, 
+    2: churros2, 
+    3: churros3, 
+    4: churros4,
+    5: cottonCandy1, 
+    6: cottonCandy2, 
+    7: cottonCandy3, 
+    8: cottonCandy4,
+    9: piano1, 
+    10: piano2, 
+    11: piano3, 
+    12: piano4
 };
 
-const leftStoreImages = {
-    balloon1, balloon2, balloon3, balloon4,
-    hotdog1, hotdog2, hotdog3, hotdog4,
-    juice1, juice2, juice3, juice4, juice5,
-    popcorn1, popcorn2, popcorn3
+const rightStoreImages = {
+    1: balloon1, 
+    2: balloon2, 
+    3: balloon3, 
+    4: balloon4,
+    5: hotdog1, 
+    6: hotdog2, 
+    7: hotdog3, 
+    8: hotdog4,
+    9: juice1, 
+    10: juice2, 
+    11: juice3, 
+    12: juice4, 
+    13: juice5,
+    14: popcorn1, 
+    15: popcorn2, 
+    16: popcorn3
 };
 
 /** 오른쪽, 왼쪽 상점 이미지 반환하는 함수 */
-export default function getCurrentStoreImage(rightStore?: string, leftStore?: string): { rightStoreImage: string, leftStoreImage: string } {
+export default function getCurrentStoreImage(rightStore?: number, leftStore?: number): { rightStoreImage: string, leftStoreImage: string } {
     // 기본 이미지 경로 설정
-    let rightImage = rightStoreImages['piano4']; // rightStore 기본값
-    let leftImage = leftStoreImages['juice2']; // leftStore 기본값
+    let rightImage = leftStoreImages[12]; // 기본값
+    let leftImage = rightStoreImages[10]; // 기본값
 
-    // rightStore 이미지 경로 결정
-    if (rightStore && rightStoreImages[rightStore]) {
-        rightImage = rightStoreImages[rightStore];
-    }
-
-    // leftStore 이미지 경로 결정
-    if (leftStore && leftStoreImages[leftStore]) {
-        leftImage = leftStoreImages[leftStore];
-    }
+    // rightStore와 leftStore 매개변수의 존재 여부와 매핑 객체에서 해당 키의 존재 여부를 확인하여 이미지 경로 결정
+    rightImage = rightStoreImages[rightStore] || rightImage;
+    leftImage = leftStoreImages[leftStore] || leftImage;
 
     // 두 이미지 경로를 객체로 반환
     return {
