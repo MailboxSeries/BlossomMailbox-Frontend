@@ -49,7 +49,7 @@ const data = [
 ]
 
 
-function LetterListModal({onClose, isOpen, nowDate}: LetterListModalProps) {
+function LetterListModal({onClose, isOpen, createdDayCnt}: LetterListModalProps) {
     const { displayToast } = useToast();
     const { isOpenModal: isOpenDayLetterListModal,
         openModal: openDayLetterListModal, 
@@ -87,7 +87,7 @@ function LetterListModal({onClose, isOpen, nowDate}: LetterListModalProps) {
                                             if (item.status === "active") {
                                                 handleDayLetterListModalOpen(date);
                                             } else if (item.status === "inactive") {
-                                                displayToast(`${date}일차 벚꽃 편지는 ${nowDate}일 뒤에 열람 가능해요.`);
+                                                displayToast(`${date}일차 벚꽃 편지는 ${createdDayCnt}일 뒤에 열람 가능해요.`);
                                             } else {
                                                 displayToast(`이 날짜의 벚꽃 편지는 지난 날짜입니다.`);
                                             }

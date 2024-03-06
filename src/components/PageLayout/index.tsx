@@ -11,10 +11,10 @@ import AttendButton from '@/components/Home/AttendButton';
 interface Props {
   children: React.ReactNode;
   nickname?: string;
-  nowDate: number;
+  createdDayCnt: number;
 }
 
-export default function PageLayout({ children, nickname, nowDate }: Props) {
+export default function PageLayout({ children, nickname, createdDayCnt }: Props) {
   const { pathname } = useLocation();
 
   let titleText: string;
@@ -24,7 +24,7 @@ export default function PageLayout({ children, nickname, nowDate }: Props) {
     titleText = nickname ? `${nickname}의 벚꽃 공원` : "벚꽃 우편함"; // nickname이 존재하면 사용, 그렇지 않으면 기본값
   }
   const skyImagePath = getCurrentSkyImage(); // 현재 시간에 따른 이미지 경로 가져오기
-  const backgroundImagePath = getCurrentBackgroundImage(nowDate); // 현재 시간에 따른 이미지 경로 가져오기
+  const backgroundImagePath = getCurrentBackgroundImage(createdDayCnt); // 현재 시간에 따른 이미지 경로 가져오기
 
   const subLogoText1 = pathname === '/redirect' ? '' : "봄을 기다리며,";
   const subLogoText2 = pathname === '/redirect' ? '' : "벚꽃이 흩날리는 당신만의 공원을 꾸며보아요.";

@@ -21,7 +21,7 @@ export interface ModalProps {
   }
 
   export interface LetterListModalProps extends Partial<ModalProps> {
-    nowDate: number;
+    createdDayCnt: number;
   }
 
   export interface DayLetterListModalProps extends Partial<ModalProps> {
