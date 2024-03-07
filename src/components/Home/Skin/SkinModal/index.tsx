@@ -10,6 +10,12 @@ import SexButton from '@/components/Home/Skin/SexButton';
 import LongButton from '@/components/LongButton';
 import BackButton from '@/components/BackButton';
 import { useGetSkins } from '@/hooks/useGetSkins';
+import { ISkinState } from '@/interfaces/skinState';
+import { useQueryClient } from '@tanstack/react-query';
+import { usePostSkins } from '@/hooks/usePostSkins';
+import { isAxiosError } from 'axios';
+import useToast from '@/hooks/useToast';
+import { useNavigate } from 'react-router-dom';
 
 export const data = {
         lockSkinCnt: 5,
@@ -53,6 +59,11 @@ export const data = {
 function SkinModal({ isOpen, onClose }: SkinModalProps) {
     const [skin, setSkin] = useRecoilState(skinState);
     //const { data } = useGetSkins(); //TODO: 더미데이터 삭제 후 이걸로 교체
+    const queryClient = useQueryClient();
+    const { mutate }  = usePostSkins();
+    const { displayToast } = useToast();
+    const navigate = useNavigate();
+
     const onSelectSkin = useCallback((skinType, selectedSkinIndex: number) => {
         setSkin(prevSkin => ({
             ...prevSkin,
@@ -91,7 +102,17 @@ function SkinModal({ isOpen, onClose }: SkinModalProps) {
     }, [data]);
     
     const handleSelectComplete = () => {
-        //TODO: mutate해서 서버에 스킨 정보 업데이트. skin값 보내면 됨.
+        mutate(skin, {
+            onSuccess: async () => {
+                await queryClient.invalidateQueries({queryKey: ['skins']});
+            },
+                onError: (error) => {
+                    if(isAxiosError(error)) {
+                        displayToast('출석하셨어요! 고양이에게 스킨을 받아가세요.');
+                        navigate('/')
+                    }
+                },
+        });
     }
 
     return (
