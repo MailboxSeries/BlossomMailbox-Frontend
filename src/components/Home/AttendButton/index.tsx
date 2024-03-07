@@ -2,7 +2,6 @@ import Button from '@/components/common/Button';
 import { AttendButtonProps } from '@/interfaces/button';
 import AttendButtonImg from '@/assets/button/eventBtn.png';
 import useIsMyHome from '@/hooks/useIsMyHome';
-import * as Styled from './style';
 
 export default function AttendButton(props: AttendButtonProps) {
   const { isMyHome } = useIsMyHome();
