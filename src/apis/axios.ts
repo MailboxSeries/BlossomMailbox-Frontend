@@ -2,21 +2,19 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import useSetTokens from '../hooks/useSetTokens';
 
-const accessToken = Cookies.get('access_token');
-const refreshToken = Cookies.get('refresh_token');
+console.log(Cookies.get('accessToken'));
 
-console.log(accessToken);
 export const instance = axios.create({
   //baseURL: import.meta.env.VITE_APP_SERVER_URL, //TODO: 서버 URL
   baseURL:"",
   headers: {
-    Authorization: `Bearer ${accessToken}`,
+    Authorization: `Bearer ${Cookies.get('accessToken')}`,
   },
 });
 
 instance.interceptors.request.use(
   config => {
-    config.headers.Authorization = `Bearer ${accessToken}`;
+    config.headers.Authorization = `Bearer ${Cookies.get('accessToken')}`;
     return config;
   },
   error => Promise.reject(error)
@@ -29,12 +27,12 @@ instance.interceptors.response.use(
 
     if (error.response && error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
-      if (!refreshToken) {
+      if (!Cookies.get('refreshToken')) {
         throw new Error('토큰 없음');
       }
       
-        await sendRefreshToken(refreshToken);
-        originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
+        await sendRefreshToken(Cookies.get('refreshToken'));
+        originalRequest.headers['Authorization'] = `Bearer ${Cookies.get('accessToken')}`;
         return instance(originalRequest);
     }
 
@@ -44,12 +42,12 @@ instance.interceptors.response.use(
 
 
 
-const sendRefreshToken = async refreshToken => {
-    const response = await instance.get('/auth/token', {
+const sendRefreshToken = async (refreshToken: string) => {
+    const response = await instance.post('/api/v1/auth/resume', {}, {
       headers: {
-        refreshToken,
+        Authorization: `Bearer ${refreshToken}`,
       },
     });
-    useSetTokens(response.data.accessToken, response.data.refreshToken);
+    useSetTokens(Cookies.get('accessToken'), Cookies.get('refreshToken'));
     return response;
 };
