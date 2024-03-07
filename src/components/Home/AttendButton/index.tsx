@@ -25,7 +25,7 @@ export default function AttendButton(props: AttendButtonProps) {
         >
           {props.children}
         </Button>
-        <Styled.GlowContainer />
+        {/* <Styled.GlowContainer /> */}
       </>
       )}
     </>
