@@ -18,16 +18,18 @@ import CatModal from '@/components/Home/CatModal';
 import { useRecoilValue } from 'recoil';
 import { getCatState } from '@/atoms/getCatState';
 import { useEffect } from 'react';
+import { useGetUserInfo } from '@/hooks/useGetUserInfo';
 
 export default function Home() {
   const createdDayCnt = 3; // TODO: 서버로 부터 받은 값으로 변경. 이건 임시 값
   const nickname = 'asdfasdf'; //TODO: 서버로 부터 받은 값으로 변경. 이건 임시 값
+  const { myId, isMyHome } = useIsMyHome();
+  //const { data } =  useGetUserInfo(myId); // TODO: 여기서 서버로 부터 받은 값으로 변경
   const navigate = useNavigate();
   const { isOpenModal: isOpenLetterListModal, openModal: openLetterListModal, closeModal: closeLetterListModal } = useModal('LetterListModal');
   const { isOpenModal: isOpenSendLetterModal, openModal: openSendLetterModal, closeModal: closeSendLetterModal } = useModal('SendLetterModal');
   const { isOpenModal: isOpenSkinModal, openModal: openSkinModal, closeModal: closeSkinModal } = useModal('SkinModal');
   const { isOpenModal: isOpenCatModal, openModal: openCatModal, closeModal: closeCatModal } = useModal('CatModal');
-  const { myId, isMyHome } = useIsMyHome();
   const { displayToast } = useToast();
   const catState = useRecoilValue(getCatState);
 
