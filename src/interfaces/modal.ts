@@ -51,4 +51,10 @@ export interface ModalProps {
     };
   }
 
-  
+  export interface AttendModalProps extends Partial<ModalProps> {
+    createdDayCnt: number;
+  }
+
+  export interface CatModalProps extends Partial<ModalProps> {
+    catID: number;
+  }

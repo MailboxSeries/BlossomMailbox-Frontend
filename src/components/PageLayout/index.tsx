@@ -7,6 +7,9 @@ import FlowerFalling from '../FlowerFalling';
 import MenuButton from '@/components/Home/MenuButton';
 import getCurrentBackgroundImage from '@/utils/getCurrentBackgroundImage';
 import AttendButton from '@/components/Home/AttendButton';
+import useToast from '@/hooks/useToast';
+import useModal from '@/hooks/useModal';
+import AttendModal from '@/components/Home/AttendModal';
 
 interface Props {
   children: React.ReactNode;
@@ -16,6 +19,8 @@ interface Props {
 
 export default function PageLayout({ children, nickname, createdDayCnt }: Props) {
   const { pathname } = useLocation();
+  const { isOpenModal: isOpenAttendModal, openModal: openAttendModal, closeModal: closeAttendModal } = useModal('AttendModal');
+  const { displayToast } = useToast();
 
   let titleText: string;
   if (pathname === '/redirect') {
@@ -29,12 +34,16 @@ export default function PageLayout({ children, nickname, createdDayCnt }: Props)
   const subLogoText1 = pathname === '/redirect' ? '' : "봄을 기다리며,";
   const subLogoText2 = pathname === '/redirect' ? '' : "벚꽃이 흩날리는 당신만의 공원을 꾸며보아요.";
 
+  const handleAttendModalOpen = () => {
+    openAttendModal();
+  }
   return (
+    <>
       <Layout>
         <Style.SkyWrapper path={skyImagePath}>
           <Style.Wrapper  path={backgroundImagePath}>
           <MenuButton />
-          <AttendButton />
+          <AttendButton onClick={() => handleAttendModalOpen()}/>
           <FlowerFalling />
             <Style.TextWrapper>
               <Style.SubLogoText>{subLogoText1}</Style.SubLogoText>
@@ -45,5 +54,14 @@ export default function PageLayout({ children, nickname, createdDayCnt }: Props)
           </Style.Wrapper>
         </Style.SkyWrapper>
       </Layout>
+
+      {isOpenAttendModal && (
+        <AttendModal
+          isOpen={isOpenAttendModal}
+          onClose={closeAttendModal}
+          createdDayCnt={createdDayCnt}
+        />
+      )}
+    </>
   );
 }

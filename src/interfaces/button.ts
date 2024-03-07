@@ -36,6 +36,7 @@ export interface SocialButtonProps extends Partial<ButtonProps> {}
 
 export interface AnimalButtonProps extends Partial<ButtonProps> {
   animal?: number;
+  isCatModal?: boolean;
 }
 
 export interface BackButtonProps extends Partial<ButtonProps> {}

@@ -14,6 +14,10 @@ import { useNavigate } from 'react-router-dom';
 import SendLetterModal from '@/components/Home/SendLetter/SendLetterModal';
 import SkinModal from '@/components/Home/Skin/SkinModal';
 import useToast from '@/hooks/useToast';
+import CatModal from '@/components/Home/CatModal';
+import { useRecoilValue } from 'recoil';
+import { getCatState } from '@/atoms/getCatState';
+import { useEffect } from 'react';
 
 export default function Home() {
   const createdDayCnt = 3; // TODO: 서버로 부터 받은 값으로 변경. 이건 임시 값
@@ -22,8 +26,10 @@ export default function Home() {
   const { isOpenModal: isOpenLetterListModal, openModal: openLetterListModal, closeModal: closeLetterListModal } = useModal('LetterListModal');
   const { isOpenModal: isOpenSendLetterModal, openModal: openSendLetterModal, closeModal: closeSendLetterModal } = useModal('SendLetterModal');
   const { isOpenModal: isOpenSkinModal, openModal: openSkinModal, closeModal: closeSkinModal } = useModal('SkinModal');
+  const { isOpenModal: isOpenCatModal, openModal: openCatModal, closeModal: closeCatModal } = useModal('CatModal');
   const { myId, isMyHome } = useIsMyHome();
   const { displayToast } = useToast();
+  const catState = useRecoilValue(getCatState);
 
   const handleopenLetterListModal = () => {
     openLetterListModal();
@@ -38,6 +44,12 @@ export default function Home() {
       openSkinModal();
     }
   };
+  
+  useEffect(() => {
+    if (catState.getCat) {
+      openCatModal();
+    }
+  }, [catState.getCat]);
 
   return (
     <>
@@ -71,19 +83,32 @@ export default function Home() {
         </Styled.ButtonWrapper>
       </PageLayout>
 
-      <LetterListModal 
-        onClose={closeLetterListModal} 
-        isOpen={isOpenLetterListModal}
-        createdDayCnt={createdDayCnt}
-      />
-      <SendLetterModal
-        onClose={closeSendLetterModal}
-        isOpen={isOpenSendLetterModal}
-      />
-      <SkinModal
-        onClose={closeSkinModal}
-        isOpen={isOpenSkinModal}
-      />
+      {isOpenLetterListModal && (
+        <LetterListModal 
+          onClose={closeLetterListModal} 
+          isOpen={isOpenLetterListModal}
+          createdDayCnt={createdDayCnt}
+        />
+      )}
+      {isOpenSendLetterModal && (
+        <SendLetterModal
+          onClose={closeSendLetterModal}
+          isOpen={isOpenSendLetterModal}
+        />
+      )}
+      {isOpenSkinModal && (
+        <SkinModal
+          onClose={closeSkinModal}
+          isOpen={isOpenSkinModal}
+        />
+      )}
+      {(isOpenCatModal && catState.getCat) && (
+        <CatModal
+          isOpen={isOpenCatModal}
+          onClose={closeCatModal}
+          catID={catState.catID}
+        />
+      )}
     </>
   );
 }
