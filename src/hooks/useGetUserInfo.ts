@@ -3,10 +3,14 @@ import { getUserInfo } from '@/apis/userInfo';
 import { skinState } from '@/atoms/skinState';
 import { useSetRecoilState } from 'recoil';
 import { useEffect } from 'react';
+import useToast from '@/hooks/useToast';
+import { useNavigate } from 'react-router-dom';
 
 export const useGetUserInfo = (encodingUserID: string) => {
     const setSkin = useSetRecoilState(skinState);
-
+    const { displayToast } = useToast();
+    const navigate = useNavigate();
+    
     const { data, isSuccess } = useSuspenseQuery({
         queryKey: ['userInfo', encodingUserID],
         queryFn: async () => (await getUserInfo(encodingUserID)),
@@ -27,8 +31,11 @@ export const useGetUserInfo = (encodingUserID: string) => {
                 rightStore,
                 leftStore,
             });
+        } else {
+            displayToast('세션이 만료되었어요. 다시 로그인해주세요');
+            navigate('/')
         }
-    }, [data, isSuccess, setSkin]);
+    }, [isSuccess]);
 
     return data;
 }

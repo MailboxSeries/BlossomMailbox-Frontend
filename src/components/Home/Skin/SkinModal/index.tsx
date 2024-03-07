@@ -9,6 +9,7 @@ import * as Styled from './style';
 import SexButton from '@/components/Home/Skin/SexButton';
 import LongButton from '@/components/LongButton';
 import BackButton from '@/components/BackButton';
+import { useGetSkins } from '@/hooks/useGetSkins';
 
 export const data = {
         lockSkinCnt: 5,
@@ -51,7 +52,7 @@ export const data = {
 
 function SkinModal({ isOpen, onClose }: SkinModalProps) {
     const [skin, setSkin] = useRecoilState(skinState);
-
+    //const { data } = useGetSkins(); //TODO: 더미데이터 삭제 후 이걸로 교체
     const onSelectSkin = useCallback((skinType, selectedSkinIndex: number) => {
         setSkin(prevSkin => ({
             ...prevSkin,
