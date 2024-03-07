@@ -68,7 +68,7 @@ function AttendModal({ isOpen, onClose, createdDayCnt }: AttendModalProps) {
                 <CatModal
                     isOpen={isOpenCatModal}
                     onClose={closeCatModal}
-                    catNum={1} //TODO: 임시
+                    catID={1} //TODO: 임시
                 />
             )}
         </>
