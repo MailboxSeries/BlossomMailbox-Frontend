@@ -54,11 +54,13 @@ function LetterListModal({onClose, isOpen, createdDayCnt}: LetterListModalProps)
     const { isOpenModal: isOpenDayLetterListModal,
         openModal: openDayLetterListModal, 
         closeModal: closeDayLetterListModal } = useModal('DayLetterListModal');
+        const { closeModal: closeLetterListModal } = useModal('LetterListModal');
+
     const [selectedDate, setSelectedDate] = useState<number>(1);
     console.log('render')
     const handleDayLetterListModalOpen = (date: number) => {
         setSelectedDate(date); // 버튼을 클릭하면 선택된 날짜를 설정
-        onClose();
+        closeLetterListModal();
         openDayLetterListModal();
     };
 
@@ -103,13 +105,11 @@ function LetterListModal({onClose, isOpen, createdDayCnt}: LetterListModalProps)
                 </Styled.Wrapper>
             </Modal>
 
-            {isOpenDayLetterListModal && (
                 <DayLetterListModal 
                     onClose={closeDayLetterListModal} 
                     isOpen={isOpenDayLetterListModal}
                     selectedDate={selectedDate}
                 />
-            )}
         </>
     );
 }
