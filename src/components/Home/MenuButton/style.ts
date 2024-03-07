@@ -84,15 +84,14 @@ export const MenuItem = styled.button<MenuItemProps>`
     white-space: nowrap;
 `;
 
-// MenuWrapper 스타일 수정
 export const MenuWrapper = styled.div`
     display: flex;
-    flex-direction: column; // 항목을 세로로 나열
-    align-items: center; // 중앙 정렬
+    flex-direction: column;
+    align-items: center;
     position: absolute;
     top: 80px;
-    right: 22px;
-    z-index: 10; // z-index 조정
+    right: 18px;
+    z-index: 10;
     font-size: 16px;
     text-align: center;
 `;

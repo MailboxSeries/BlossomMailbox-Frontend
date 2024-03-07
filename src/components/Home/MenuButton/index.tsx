@@ -40,7 +40,7 @@ export default function MenuButton(props: MenuButtonProps) {
         </Button>
 
       {isOpen &&
-        Array.from({ length: 50 }, (_, i) => (
+        Array.from({ length: 60 }, (_, i) => (
           <Styled.SunRay
               key={i}
               style={{
