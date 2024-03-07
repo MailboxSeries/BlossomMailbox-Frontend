@@ -1,9 +1,9 @@
 import { useMutation } from '@tanstack/react-query';
 import { ISkinState } from '@/interfaces/skinState';
-import { postSkins } from '@/apis/skins';
+import { putSkins } from '@/apis/skins';
 
-export const usePostSkins = () => {
+export const usePutSkins = () => {
     return useMutation({
-        mutationFn: (body: ISkinState) => postSkins(body),
+        mutationFn: (body: ISkinState) => putSkins(body),
     });
 };

@@ -12,7 +12,7 @@ import BackButton from '@/components/BackButton';
 import { useGetSkins } from '@/hooks/useGetSkins';
 import { ISkinState } from '@/interfaces/skinState';
 import { useQueryClient } from '@tanstack/react-query';
-import { usePostSkins } from '@/hooks/usePostSkins';
+import { usePutSkins } from '@/hooks/usePutSkins';
 import { isAxiosError } from 'axios';
 import useToast from '@/hooks/useToast';
 import { useNavigate } from 'react-router-dom';
@@ -60,7 +60,7 @@ function SkinModal({ isOpen, onClose }: SkinModalProps) {
     const [skin, setSkin] = useRecoilState(skinState);
     //const { data } = useGetSkins(); //TODO: 더미데이터 삭제 후 이걸로 교체
     const queryClient = useQueryClient();
-    const { mutate }  = usePostSkins();
+    const { mutate }  = usePutSkins();
     const { displayToast } = useToast();
     const navigate = useNavigate();
 
@@ -108,7 +108,7 @@ function SkinModal({ isOpen, onClose }: SkinModalProps) {
             },
                 onError: (error) => {
                     if(isAxiosError(error)) {
-                        displayToast('출석하셨어요! 고양이에게 스킨을 받아가세요.');
+                        displayToast('세션이 만료되었어요! 다시 로그인해주세요');
                         navigate('/')
                     }
                 },

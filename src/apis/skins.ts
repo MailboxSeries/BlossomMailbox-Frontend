@@ -7,9 +7,9 @@ export const getSkins = async () => {
     return response.data.data;
 };
 
-export const postSkins = async (body: ISkinState) => {
+export const putSkins = async (body: ISkinState) => {
     try {
-        const response = await instance.post<ISkinState>(`/api/v1/skins`, {
+        const response = await instance.put<ISkinState>(`/api/v1/skins`, {
             sex: body.sex,
             top: body.top,
             bottom: body.bottom,
