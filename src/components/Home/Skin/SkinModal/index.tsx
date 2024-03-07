@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { useRecoilState } from 'recoil';
 import { skinState } from '@/atoms/skinState';
 import Modal from '@/components/common/Modal';
@@ -10,9 +10,7 @@ import SexButton from '@/components/Home/Skin/SexButton';
 import LongButton from '@/components/LongButton';
 import BackButton from '@/components/BackButton';
 
-export const mockData = {
-    success: true,
-    data: {
+export const data = {
         lockSkinCnt: 5,
         hair: {
             having: [1, ],
@@ -49,8 +47,6 @@ export const mockData = {
             unlock: [2, 3],
             lock: [4, 5, 7, 8, 9, 10, 11, 12]
         }
-    },
-    error: null
 };
 
 function SkinModal({ isOpen, onClose }: SkinModalProps) {
@@ -61,25 +57,38 @@ function SkinModal({ isOpen, onClose }: SkinModalProps) {
             ...prevSkin,
             [skinType]: selectedSkinIndex
         }));
-        console.log('selectedSkinIndex', selectedSkinIndex);
     }, [setSkin]);
 
+    const sortedItemsByType = useMemo(() => {
+        // skins 배열에서 현재 성별에 해당하는 항목들만 처리
+        return skins[skin.sex].reduce((acc, {type, items, title}) => {
+            const typeData = data[type];
+            if (!typeData) {
+                return acc; // 해당 타입에 대한 데이터가 없으면 건너뜀
+            }
+    
+            // 각 타입별로 having, unlock, lock 순서대로 재배열
+            const allIndices = [...typeData.having, ...typeData.unlock, ...typeData.lock];
+            const sortedItems = allIndices
+                .map(index => items.find(item => item.index === index))
+                .filter(item => item !== undefined); // 존재하지 않는 아이템은 제외
+    
+            acc[type] = { items: sortedItems, title }; // 재배열된 아이템과 타이틀 저장
+            return acc;
+        }, {});
+    }, [skin.sex, data]);
+    
     const skinStatus = useCallback((type, index) => {
-        //const item = data[skinType] && data[skinType][index]; //TODO: 서버로 부터 받은 { data }에서 가져와야함.
-        // if (item.missionStatus && !item.missionChecked) {
-        //     return 'unlocked';
-        // } else {
-        //     return 'locked';
-        // }
-        // const statusData = mockData.data[type];
-        // if (statusData.lock.includes(index)) return 'locked';
-        // if (statusData.unlock.includes(index)) return 'unlocked';
-        // if (statusData.having.includes(index)) return 'having';
-        return ''; // 기본값
-    }, []);
-
-    console.log('skin',skin)
-
+        const statusData = data[type];
+        if (!statusData) {
+            return '';
+        }
+        if (statusData.having.includes(index)) return 'having';
+        if (statusData.unlock.includes(index)) return 'unlock';
+        if (statusData.lock.includes(index)) return 'lock';
+        return '';
+    }, [data]);
+    
     const handleSelectComplete = () => {
         //TODO: mutate해서 서버에 스킨 정보 업데이트. skin값 보내면 됨.
     }
@@ -93,17 +102,21 @@ function SkinModal({ isOpen, onClose }: SkinModalProps) {
                     <SexButton selectedSex="woman" onClick={() => setSkin(prevState => ({ ...prevState, sex: "woman" }))}/>
                 </Styled.RowContainer>
                 <Styled.InnerWrapper>
-                    {skins[skin.sex].map(({ type, items, title }) => (
-                    <React.Fragment key={type}>
-                    <Styled.SkinTitle>{title}</Styled.SkinTitle>
-                    <SkinSelector
-                        items={items}
-                        selectedType={skin[type]}
-                        onSelect={(selectedSkinIndex) => onSelectSkin(type, selectedSkinIndex)}
-                        skinStatus={skinStatus}
-                        />
-                    </React.Fragment>
-                    ))}
+                {Object.keys(sortedItemsByType).map((type) => {
+                    const { items, title } = sortedItemsByType[type];
+                    return (
+                        <React.Fragment key={type}>
+                            <Styled.SkinTitle>{title}</Styled.SkinTitle>
+                            <SkinSelector
+                                type={type}
+                                items={items}
+                                selectedType={skin[type]}
+                                onSelect={(selectedSkinIndex) => onSelectSkin(type, selectedSkinIndex)}
+                                skinStatus={skinStatus}
+                            />
+                        </React.Fragment>
+                    );
+                })}
                 </Styled.InnerWrapper>
                 <LongButton margin={"-10px 0 0 0"} onClick={() => handleSelectComplete()}>
                     선택 완료!
