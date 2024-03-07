@@ -27,7 +27,7 @@ function ReplyModal({onClose, isOpen, data}: ReplyModalProps) {
         } else {
             //TODO: mutate
             onClose();
-            displayToast(`${data.sender}님께 답장을 보냈어요!`);
+            displayToast(`${data.replyLetter.nickname}님께 답장을 보냈어요!`);
         }
     }
     return (
@@ -43,11 +43,11 @@ function ReplyModal({onClose, isOpen, data}: ReplyModalProps) {
                         보내기
                     </ReplyButton>
                     <Styled.InnerWrapper>
-                        <Styled.SenderNameText>보낸이 : {data.sender}</Styled.SenderNameText>
+                        <Styled.SenderNameText>보낸이 : {data.replyLetter.nickname}</Styled.SenderNameText>
                         <Styled.ImageWrapper>
-                            <Styled.LetterImage src={data.image} />
+                            <Styled.LetterImage src={data.replyLetter.image} />
                         </Styled.ImageWrapper>
-                        <Styled.LetterContentText>{data.content}</Styled.LetterContentText>
+                        <Styled.LetterContentText>{data.replyLetter.content}</Styled.LetterContentText>
                         <Styled.Line />
                         <Styled.Form>
                             <Styled.ImageUploadLabel

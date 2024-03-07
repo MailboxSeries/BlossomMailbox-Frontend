@@ -42,12 +42,15 @@ export interface ModalProps {
 
   export interface ReplyModalProps extends Partial<ModalProps> {
     data: {
-      reply: boolean;
-      myContent: string;
-      myImage: string;
-      sender: string;
-      content: string;
-      image: string;
+      sendLetter: {
+        content: string;
+        image: string;
+      };
+      replyLetter: {
+        content: string;
+        image: string;
+        nickname: string;
+      }
     };
   }
 

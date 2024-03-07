@@ -58,8 +58,8 @@ function LetterListModal({onClose, isOpen, createdDayCnt}: LetterListModalProps)
     console.log('render')
     const handleDayLetterListModalOpen = (date: number) => {
         setSelectedDate(date); // 버튼을 클릭하면 선택된 날짜를 설정
-        openDayLetterListModal();
         onClose();
+        openDayLetterListModal();
     };
 
 
