@@ -4,6 +4,7 @@ import { isAxiosError } from 'axios';
 import { useSetRecoilState } from 'recoil';
 import { myIdState } from '@/atoms/userInfoState';
 import Cookies from 'js-cookie';
+import { useEffect } from 'react';
 import { useLogout } from './useLogout';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -14,16 +15,14 @@ export const usePostMyId = () => {
     const location = useLocation();
     const accessToken = Cookies.get('accessToken');
 
+    useEffect(() => { // 엑세스 토큰이 없을 시 return
+        if (!accessToken) {
+            return;
+        }
+    },[])
+
     return useMutation({
-        mutationFn: async () => {
-            // 엑세스 토큰이 없을 경우 실행을 중지하고 null을 반환
-            if (!accessToken) {
-                console.error("No access token available.");
-                return null;
-            }
-            // 엑세스 토큰이 있는 경우, 서버에 요청
-            return await postMyId();
-        },
+        mutationFn: () => postMyId(),
         onSuccess: async (myId) => {
             setMyId(myId);
             // 현재 URL이 루트('/')일 경우 /home으로 리다이렉트
