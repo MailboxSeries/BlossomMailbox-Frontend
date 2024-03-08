@@ -2,8 +2,8 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import useSetTokens from '@/hooks/useSetTokens';
 
-const getAccessTokenFromCookies = () => Cookies.get('accessCookie');
-const getRefreshTokenFromCookies = () => Cookies.get('refreshCookie');
+const getAccessTokenFromCookies = () => Cookies.get('accessToken');
+const getRefreshTokenFromCookies = () => Cookies.get('refreshToken');
 
 export const instance = axios.create({
   baseURL: import.meta.env.VITE_APP_SERVER_URL,
@@ -43,7 +43,7 @@ instance.interceptors.response.use(
 
 
 
-const sendRefreshToken = async (refreshToken: string) => {
+const sendRefreshToken = async (refreshToken) => {
     const response = await instance.post('/api/v1/auth/reissue', {}, {
       headers: {
         Authorization: `Bearer ${refreshToken}`,
