@@ -2,7 +2,7 @@ import Modal from '@/components/common/Modal';
 import { SignoutModalProps } from '@/interfaces/modal';
 import * as Styled from './style';
 import { useSignout } from '@/hooks/useSignout';
-import ShortButton from '@/components/ShortButton';
+import ShortButton from '@/components/common/Button/ShortButton';
 import React from 'react';
 import useModal from '@/hooks/useModal';
 import useInput from '@/hooks/useInput';

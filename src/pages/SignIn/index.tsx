@@ -1,10 +1,10 @@
 import SocialButton from '@/components/SignIn/SocialButton';
-import PageLayout from '@/components/PageLayout';
+import PageLayout from '@/components/common/Layout/PageLayout';
 import * as Styled from './style';
-import LongButton from '@/components/LongButton';
+import LongButton from '@/components/common/Button/LongButton';
 import { useState } from 'react';
-import StoreLayout from '@/components/StoreLayout';
-import CharacterLayout from '@/components/CharacterLayout';
+import StoreLayout from '@/components/common/Layout/StoreLayout';
+import CharacterLayout from '@/components/common/Layout/CharacterLayout';
 import AnimalButton from '@/components/Home/AnimalButton';
 import PolicyLinkText from '@/components/SignIn/PolicyLinkText';
 

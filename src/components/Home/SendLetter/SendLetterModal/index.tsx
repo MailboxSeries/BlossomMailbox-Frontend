@@ -3,7 +3,7 @@ import React from 'react';
 import Modal from '@/components/common/Modal';
 import { SendLetterModalProps } from '@/interfaces/modal';
 import useInput from '@/hooks/useInput';
-import LongButton from '@/components/LongButton';
+import LongButton from '@/components/common/Button/LongButton';
 import useToast from '@/hooks/useToast';
 import { useImageUpload } from '@/hooks/useImageUpload';
 import { usePostLetter } from '@/hooks/usePostLetter';

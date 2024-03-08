@@ -7,8 +7,8 @@ import { skins } from '@/assets/skin'; // 스킨 데이터 경로 확인
 import { SkinModalProps } from '@/interfaces/modal';
 import * as Styled from './style';
 import SexButton from '@/components/Home/Skin/SexButton';
-import LongButton from '@/components/LongButton';
-import BackButton from '@/components/BackButton';
+import LongButton from '@/components/common/Button/LongButton';
+import BackButton from '@/components/common/Button/BackButton';
 import { useGetSkins } from '@/hooks/useGetSkins';
 import { useQueryClient } from '@tanstack/react-query';
 import { usePutSkins } from '@/hooks/usePutSkins';

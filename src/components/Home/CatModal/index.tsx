@@ -2,7 +2,7 @@ import Modal from '@/components/common/Modal';
 import { CatModalProps } from '@/interfaces/modal';
 import * as Styled from './style';
 import React from 'react';
-import MediumButton from '@/components/MediumButton';
+import MediumButton from '@/components/common/Button/MediumButton';
 import { getCurrentAnimalImage } from '@/utils/getCurrentAnimalImage';
 
 function CatModal({ isOpen, onClose, catID }: CatModalProps) {

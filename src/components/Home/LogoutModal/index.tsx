@@ -1,8 +1,8 @@
 import Modal from '@/components/common/Modal';
 import { LogoutModalProps } from '@/interfaces/modal';
 import * as Styled from './style';
-import BackButton from '@/components/BackButton';
-import MediumButton from '../../MediumButton';
+import BackButton from '@/components/common/Button/BackButton';
+import MediumButton from '../../common/Button/MediumButton';
 import { useLogout } from '@/hooks/useLogout';
 import SignoutButton from '@/components/Home/SignoutButton';
 import React from 'react';

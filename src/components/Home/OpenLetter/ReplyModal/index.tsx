@@ -3,7 +3,7 @@ import React from 'react';
 import Modal from '@/components/common/Modal';
 import { ReplyModalProps } from '@/interfaces/modal';
 import useModal from '@/hooks/useModal';
-import BackButton from '@/components/BackButton';
+import BackButton from '@/components/common/Button/BackButton';
 import ReplyButton from '@/components/Home/OpenLetter/ReplyButton';
 import useToast from '@/hooks/useToast';
 import useInput from '@/hooks/useInput';
@@ -51,7 +51,7 @@ function ReplyModal({onClose, isOpen, data, id}: ReplyModalProps) {
             });
         }
     }
-    
+
     return (
             <Modal
                 isOpen={isOpen}

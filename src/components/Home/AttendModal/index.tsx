@@ -4,7 +4,7 @@ import * as Styled from './style';
 import React from 'react';
 import useModal from '@/hooks/useModal';
 import useToast from '@/hooks/useToast';
-import MediumButton from '@/components/MediumButton';
+import MediumButton from '@/components/common/Button/MediumButton';
 import CatModal from '@/components/Home/CatModal';
 import { useRecoilState } from 'recoil';
 import { getCatState } from '@/atoms/getCatState';

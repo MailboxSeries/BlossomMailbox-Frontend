@@ -3,7 +3,7 @@ import * as Style from './style';
 import { useLocation } from 'react-router-dom';
 import getCurrentSkyImage from '@/utils/getCurrentSkyImage';
 import Layout from '@/components/common/Layout';
-import FlowerFalling from '../FlowerFalling';
+import FlowerFalling from '../../FlowerFalling';
 import MenuButton from '@/components/Home/MenuButton';
 import getCurrentBackgroundImage from '@/utils/getCurrentBackgroundImage';
 import AttendButton from '@/components/Home/AttendButton';

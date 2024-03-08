@@ -3,7 +3,7 @@ import React from 'react';
 import Modal from '@/components/common/Modal';
 import { LetterModalProps } from '@/interfaces/modal';
 import useModal from '@/hooks/useModal';
-import BackButton from '@/components/BackButton';
+import BackButton from '@/components/common/Button/BackButton';
 import ReplyButton from '@/components/Home/OpenLetter/ReplyButton';
 import ReplyModal from '@/components/Home/OpenLetter/ReplyModal';
 import { useGetLetter } from '@/hooks/useGetLetter';
