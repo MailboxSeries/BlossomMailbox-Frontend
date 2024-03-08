@@ -13,13 +13,13 @@ import { useQueryClient } from '@tanstack/react-query';
 import { usePostAttend } from '@/hooks/usePostAttend';
 import { useNavigate } from 'react-router-dom';
 import { isAxiosError } from 'axios';
+import { useLogout } from '@/hooks/useLogout';
 
 function AttendModal({ isOpen, onClose, createdDayCnt }: AttendModalProps) {
     const { displayToast } = useToast();
     //const { data } = useGetAttendanceStatus(); //TODO: 더미데이터 삭제 후 이걸로 교체
     const queryClient = useQueryClient();
     const { mutate }  = usePostAttend();
-    const navigate = useNavigate();
     const data = { attendanceCompleted: false, getCat: true }; //TODO: 임시값
     const { isOpenModal: isOpenCatModal, openModal: openCatModal, closeModal: closeCatModal } = useModal('CatModal');
     const [catState, setCatState] = useRecoilState(getCatState);
@@ -42,10 +42,10 @@ function AttendModal({ isOpen, onClose, createdDayCnt }: AttendModalProps) {
                 onError: (error) => {
                     if(isAxiosError(error)) {
                         displayToast('세션이 만료되었어요! 다시 로그인해주세요');
-                        navigate('/')
+                        useLogout();
                     }
                     displayToast('세션이 만료되었어요! 다시 로그인해주세요');
-                    navigate('/')
+                    useLogout();
                 },
         });
     }

@@ -6,8 +6,8 @@ import useToast from '@/hooks/useToast';
 import { ISkinItem, ISkinSelectorProps } from '@/interfaces/skinState';
 import { useQueryClient } from '@tanstack/react-query';
 import { usePatchSkinUnlock } from '@/hooks/usePatchSkinUnlock';
-import { useNavigate } from 'react-router-dom';
 import { isAxiosError } from 'axios';
+import { useLogout } from '@/hooks/useLogout';
 
 export const SkinSelector: React.FC<ISkinSelectorProps> = ({
     type,
@@ -19,7 +19,6 @@ export const SkinSelector: React.FC<ISkinSelectorProps> = ({
     const { displayToast } = useToast();
     const queryClient = useQueryClient();
     const { mutate }  = usePatchSkinUnlock();
-    const navigate = useNavigate();
 
     const handleItemClick = (item: ISkinItem) => {
         const status = skinStatus(type, item.index);
@@ -37,10 +36,10 @@ export const SkinSelector: React.FC<ISkinSelectorProps> = ({
                     onError: (error) => {
                         if(isAxiosError(error)) {
                             displayToast('세션이 만료되었어요! 다시 로그인해주세요');
-                            navigate('/')
+                            useLogout();
                         }
                         displayToast('세션이 만료되었어요! 다시 로그인해주세요');
-                        navigate('/')
+                        useLogout();
                     },
             });
         } else {

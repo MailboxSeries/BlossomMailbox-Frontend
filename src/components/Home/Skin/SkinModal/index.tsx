@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { useRecoilState } from 'recoil';
 import { skinState } from '@/atoms/skinState';
 import Modal from '@/components/common/Modal';
@@ -10,12 +10,11 @@ import SexButton from '@/components/Home/Skin/SexButton';
 import LongButton from '@/components/LongButton';
 import BackButton from '@/components/BackButton';
 import { useGetSkins } from '@/hooks/useGetSkins';
-import { ISkinState } from '@/interfaces/skinState';
 import { useQueryClient } from '@tanstack/react-query';
 import { usePutSkins } from '@/hooks/usePutSkins';
 import { isAxiosError } from 'axios';
 import useToast from '@/hooks/useToast';
-import { useNavigate } from 'react-router-dom';
+import { useLogout } from '@/hooks/useLogout';
 
 export const data = {
         lockSkinCnt: 5,
@@ -62,7 +61,6 @@ function SkinModal({ isOpen, onClose }: SkinModalProps) {
     const queryClient = useQueryClient();
     const { mutate }  = usePutSkins();
     const { displayToast } = useToast();
-    const navigate = useNavigate();
 
     const onSelectSkin = useCallback((skinType, selectedSkinIndex: number) => {
         setSkin(prevSkin => ({
@@ -109,10 +107,10 @@ function SkinModal({ isOpen, onClose }: SkinModalProps) {
                 onError: (error) => {
                     if(isAxiosError(error)) {
                         displayToast('세션이 만료되었어요! 다시 로그인해주세요');
-                        navigate('/')
+                        useLogout();
                     }
                     displayToast('세션이 만료되었어요! 다시 로그인해주세요');
-                    navigate('/')
+                    useLogout();
                 },
         });
     }
