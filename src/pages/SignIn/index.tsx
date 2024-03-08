@@ -8,7 +8,7 @@ import CharacterLayout from '@/components/CharacterLayout';
 import AnimalButton from '@/components/Home/AnimalButton';
 import PolicyLinkText from '@/components/SignIn/PolicyLinkText';
 
-export default function Home() {
+export default function Signin() {
   const [isGoToSignIn, setIsGoToSignIn] = useState<boolean>(false);
 
   const handleGoToSignIn = () => {

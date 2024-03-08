@@ -6,13 +6,16 @@ import { myIdState } from '@/atoms/userInfoState';
 import Cookies from 'js-cookie';
 import { useEffect } from 'react';
 import { useLogout } from './useLogout';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export const usePostMyId = () => {
     const setMyId = useSetRecoilState(myIdState);
     const { mutate: logout } = useLogout();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const accessToken = Cookies.get('accessToken');
 
     useEffect(() => { // 엑세스 토큰이 없을 시 return
-        const accessToken = Cookies.get('accessToken');
         if (!accessToken) {
             return;
         }
@@ -22,6 +25,10 @@ export const usePostMyId = () => {
         mutationFn: () => postMyId(),
         onSuccess: async (myId) => {
             setMyId(myId);
+            // 현재 URL이 루트('/')일 경우 /home으로 리다이렉트
+            if (location.pathname === '/') {
+                navigate(`/home?u=${myId}`);
+            }
         },
         onError: (error) => {
             // 로그아웃 실패 시 처리
