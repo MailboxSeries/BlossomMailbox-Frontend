@@ -5,11 +5,20 @@ import { useSetRecoilState } from 'recoil';
 import { myIdState } from '@/atoms/userInfoState';
 import useToast from '@/hooks/useToast';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import { useEffect } from 'react';
 
 export const usePostMyId = () => {
     const setMyId = useSetRecoilState(myIdState);
     const { displayToast } = useToast();
     const navigate = useNavigate();
+
+    useEffect(() => { // 엑세스 토큰이 없을 시 return
+        const accessToken = Cookies.get('accessToken');
+        if (!accessToken) {
+            return;
+        }
+    },[])
 
     return useMutation({
         mutationFn: () => postMyId(),
