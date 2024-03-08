@@ -3,13 +3,12 @@ import { getUserInfo } from '@/apis/userInfo';
 import { skinState } from '@/atoms/skinState';
 import { useSetRecoilState } from 'recoil';
 import { useEffect } from 'react';
-import useToast from '@/hooks/useToast';
 import { useLogout } from '@/hooks/useLogout';
 
 export const useGetUserInfo = (encodingUserID: string) => {
     const setSkin = useSetRecoilState(skinState);
-    const { displayToast } = useToast();
-    
+    const { mutate: logout } = useLogout();
+
     const { data, isSuccess } = useSuspenseQuery({
         queryKey: ['userInfo', encodingUserID],
         queryFn: async () => (await getUserInfo(encodingUserID)),
@@ -31,8 +30,7 @@ export const useGetUserInfo = (encodingUserID: string) => {
                 leftStore,
             });
         } else {
-            displayToast('세션이 만료되었어요. 다시 로그인해주세요');
-            useLogout();
+            logout();
         }
     }, [isSuccess]);
 

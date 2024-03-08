@@ -12,11 +12,10 @@ import SignoutModal from '@/components/Home/SignoutModal';
 function LogoutModal({ isOpen, onClose }: LogoutModalProps) {
     const { isOpenModal: isOpenSignoutModal, openModal: openSignoutModal, closeModal: closeSignoutModal } = useModal('SignoutModal');
     const { closeModal: closeLogoutModal } = useModal('LogoutModal');
-    const logout = useLogout();
+    const { mutate: logout } = useLogout();
 
     const handleLogout = () => {
-        //TODO: 로그아웃 mutate
-        //logout();
+        logout();
     }
 
     const handleSignouSummitModalOpen = () => {

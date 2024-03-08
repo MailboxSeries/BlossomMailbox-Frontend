@@ -19,6 +19,7 @@ export const SkinSelector: React.FC<ISkinSelectorProps> = ({
     const { displayToast } = useToast();
     const queryClient = useQueryClient();
     const { mutate }  = usePatchSkinUnlock();
+    const { mutate: logout } = useLogout();
 
     const handleItemClick = (item: ISkinItem) => {
         const status = skinStatus(type, item.index);
@@ -35,11 +36,9 @@ export const SkinSelector: React.FC<ISkinSelectorProps> = ({
                 },
                     onError: (error) => {
                         if(isAxiosError(error)) {
-                            displayToast('세션이 만료되었어요! 다시 로그인해주세요');
-                            useLogout();
+                            logout();
                         }
-                        displayToast('세션이 만료되었어요! 다시 로그인해주세요');
-                        useLogout();
+                        logout();
                     },
             });
         } else {

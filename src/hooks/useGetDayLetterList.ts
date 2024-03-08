@@ -1,12 +1,11 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
-import useToast from '@/hooks/useToast';
 import { getDayLetterList } from '@/apis/letter';
 import { useLogout } from '@/hooks/useLogout';
 
 export const useGetDayLetterList = (selectedDate: number) => {
-    const { displayToast } = useToast();
-    
+    const { mutate: logout } = useLogout();
+
     const { data, isSuccess } = useSuspenseQuery({
         queryKey: ['dayLetterList', selectedDate],
         queryFn: async () => (await getDayLetterList(selectedDate)),
@@ -16,8 +15,7 @@ export const useGetDayLetterList = (selectedDate: number) => {
 
     useEffect(() => {
         if (!isSuccess) {
-            displayToast('세션이 만료되었어요. 다시 로그인해주세요');
-            useLogout();
+            logout();
         }
     }, [isSuccess]);
 

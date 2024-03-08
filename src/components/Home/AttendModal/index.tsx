@@ -23,6 +23,8 @@ function AttendModal({ isOpen, onClose, createdDayCnt }: AttendModalProps) {
     const data = { attendanceCompleted: false, getCat: true }; //TODO: 임시값
     const { isOpenModal: isOpenCatModal, openModal: openCatModal, closeModal: closeCatModal } = useModal('CatModal');
     const [catState, setCatState] = useRecoilState(getCatState);
+    const { mutate: logout } = useLogout();
+    
     const handleAttend = () => {
         mutate(null, {
             onSuccess: async (data) => {
@@ -41,11 +43,12 @@ function AttendModal({ isOpen, onClose, createdDayCnt }: AttendModalProps) {
             },
                 onError: (error) => {
                     if(isAxiosError(error)) {
-                        displayToast('세션이 만료되었어요! 다시 로그인해주세요');
-                        useLogout();
+                        logout();
+                        onClose();
                     }
-                    displayToast('세션이 만료되었어요! 다시 로그인해주세요');
-                    useLogout();
+                    logout();
+                    onClose();
+
                 },
         });
     }
