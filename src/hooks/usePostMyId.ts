@@ -3,17 +3,18 @@ import { postMyId } from '@/apis/myId';
 import { isAxiosError } from 'axios';
 import { useSetRecoilState } from 'recoil';
 import { myIdState } from '@/atoms/userInfoState';
-import Cookies from 'js-cookie';
+import {Cookies} from 'react-cookie';
 import { useEffect } from 'react';
 import { useLogout } from './useLogout';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export const usePostMyId = () => {
+    const cookies = new Cookies();
     const setMyId = useSetRecoilState(myIdState);
     const { mutate: logout } = useLogout();
     const navigate = useNavigate();
     const location = useLocation();
-    const accessToken = Cookies.get('accessToken');
+    const accessToken = cookies.get('accessToken');
 
     useEffect(() => { // 엑세스 토큰이 없을 시 return
         if (!accessToken) {
