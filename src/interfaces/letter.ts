@@ -7,3 +7,14 @@ export interface ILetter {
 export interface ILetterList {
     letters: ILetter[];
 }
+
+export interface IPostLetter {
+    id?: number;
+    sender?: string;
+    content: string;
+}
+
+export interface IPostLetterWithFile {
+    body: IPostLetter;
+    imageFile: File;
+}

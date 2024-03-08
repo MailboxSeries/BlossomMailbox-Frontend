@@ -41,6 +41,7 @@ export interface ModalProps {
   }
 
   export interface ReplyModalProps extends Partial<ModalProps> {
+    id: number;
     data: {
       sendLetter: {
         content: string;

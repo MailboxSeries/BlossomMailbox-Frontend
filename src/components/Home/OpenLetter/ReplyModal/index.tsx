@@ -8,13 +8,18 @@ import ReplyButton from '@/components/Home/OpenLetter/ReplyButton';
 import useToast from '@/hooks/useToast';
 import useInput from '@/hooks/useInput';
 import { useImageUpload } from '@/hooks/useImageUpload';
+import { usePostLetter } from '@/hooks/usePostLetter';
+import { useQueryClient } from '@tanstack/react-query';
+import { useLogout } from '@/hooks/useLogout';
+import { isAxiosError } from 'axios';
 
-function ReplyModal({onClose, isOpen, data}: ReplyModalProps) {
+function ReplyModal({onClose, isOpen, data, id}: ReplyModalProps) {
     const { displayToast } = useToast();
     const { openModal: openLetterReadModal } = useModal('LetterReadModal');
     const content = useInput<HTMLTextAreaElement>(); // 편지 내용을 관리하는 상태
-    const { uploadedImage, handleFileInputChange } = useImageUpload();
-
+    const { imageFile, uploadedImage, handleFileInputChange } = useImageUpload();
+    const { mutate }  = usePostLetter();
+    const { mutate: logout } = useLogout();
     const handleBackButton = () => {
         onClose();
         openLetterReadModal();
@@ -25,11 +30,28 @@ function ReplyModal({onClose, isOpen, data}: ReplyModalProps) {
             displayToast(`편지를 입력해야 해요.`);
             return;
         } else {
-            //TODO: mutate
-            onClose();
-            displayToast(`${data.replyLetter.nickname}님께 답장을 보냈어요!`);
+            const postData = {
+                body: {
+                    id: id,
+                    content: content.value,
+                },
+                imageFile: imageFile,
+            }
+            mutate(postData, {
+                onSuccess: async () => {
+                    onClose();
+                    displayToast(`${data.replyLetter.nickname}님께 답장을 보냈어요!`);
+                },
+                onError: (error) => {
+                    if(isAxiosError(error)) {
+                        logout();
+                    }
+                    logout();                    
+                },
+            });
         }
     }
+    
     return (
             <Modal
                 isOpen={isOpen}
