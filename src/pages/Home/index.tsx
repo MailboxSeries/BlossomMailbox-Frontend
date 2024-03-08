@@ -19,11 +19,22 @@ import { useRecoilValue } from 'recoil';
 import { getCatState } from '@/atoms/getCatState';
 import { useEffect } from 'react';
 
+const data = { //TODO: 임시 값
+  nickname: 'asdfasdf',
+  sex: "man",
+  top: 1,
+  hair: 1,
+  face: 1,
+  bottom: 1,
+  animal: 1,
+  rightStore: 1,
+  leftStore: 1,
+  createdDayCnt: 1,
+};
+
 export default function Home() {
-  const createdDayCnt = 3; // TODO: 서버로 부터 받은 값으로 변경. 이건 임시 값
-  const nickname = 'asdfasdf'; //TODO: 서버로 부터 받은 값으로 변경. 이건 임시 값
   const { myId, isMyHome } = useIsMyHome();
-  //const { data } =  useGetUserInfo(myId); // TODO: 여기서 서버로 부터 받은 값으로 변경
+  //const { data } =  useGetUserInfo(myId); // TODO: 주석 해제 후 더미데이터 삭제
   const navigate = useNavigate();
   const { isOpenModal: isOpenLetterListModal, openModal: openLetterListModal, closeModal: closeLetterListModal } = useModal('LetterListModal');
   const { isOpenModal: isOpenSendLetterModal, openModal: openSendLetterModal, closeModal: closeSendLetterModal } = useModal('SendLetterModal');
@@ -54,10 +65,10 @@ export default function Home() {
 
   return (
     <>
-      <PageLayout nickname={nickname} createdDayCnt={createdDayCnt}>
-        <StoreLayout /> {/* TODO: rightStore, leftStore 서버로 부터 받은 값 넘겨야함 */}
-        <CharacterLayout /> {/* TODO: sex, hair, face, top, bottom 서버로 부터 받은 값 넘겨야함 */}
-        <AnimalButton onClick={() => handleOpenSkinModal()} /> {/* TODO: animal 서버로 부터 받은 값 넘겨야함 */}
+      <PageLayout nickname={data.nickname} createdDayCnt={data.createdDayCnt}>
+        <StoreLayout rightStore={data.rightStore} leftStore={data.leftStore}/>
+        <CharacterLayout sex={data.sex} hair={data.hair} face={data.face} top={data.top} bottom={data.bottom}/>
+        <AnimalButton onClick={() => handleOpenSkinModal()} animal={data.animal}/>
         <Styled.ButtonWrapper>
         {isMyHome ? (
           <>
@@ -65,8 +76,8 @@ export default function Home() {
               <MediumButton onClick={() => handleopenLetterListModal()}>
                 편지 보기
               </MediumButton>
-              <ShortButton onClick={() => displayToast(`${20-createdDayCnt}일 뒤에 벚꽃이 만개해요!`)}>
-                D-{20-createdDayCnt} {/* TODO: 서버로 부터 받은 값으로 변경. 이건 임시 값 */}
+              <ShortButton onClick={() => displayToast(`${20-data.createdDayCnt}일 뒤에 벚꽃이 만개해요!`)}>
+                D-{20-data.createdDayCnt}
               </ShortButton>
             </Styled.RowContainer>
             <ShareButton />
@@ -87,7 +98,7 @@ export default function Home() {
         <LetterListModal 
           onClose={closeLetterListModal} 
           isOpen={isOpenLetterListModal}
-          createdDayCnt={createdDayCnt}
+          createdDayCnt={data.createdDayCnt}
         />
       {isOpenSendLetterModal && (
         <SendLetterModal

@@ -7,18 +7,19 @@ import React from 'react';
 import useModal from '@/hooks/useModal';
 import useInput from '@/hooks/useInput';
 import useToast from '@/hooks/useToast';
+import { useLogout } from '@/hooks/useLogout';
 
 function SignoutModal({ isOpen, onClose }: SignoutModalProps) {
     const { closeModal: closeSignoutModal } = useModal('SignoutModal');
-    const signout = useSignout();
+    const { mutate: signout } = useSignout();
+    const { mutate: logout } = useLogout();
     const input = useInput<HTMLInputElement>(); // 보내는 사람 이름을 관리하는 상태
     const { displayToast } = useToast();
 
     const handleSignOut = () => {
-        //TODO: 로그아웃 mutate
-        //logout();
+        logout();
         if(input.value == 'BloSsomMailBox'){
-            //signout();
+            signout();
         } else {
             displayToast('잘못 입력하셨어요! 다시 입력해주세요.');
             closeSignoutModal();
