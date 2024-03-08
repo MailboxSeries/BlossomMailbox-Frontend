@@ -36,7 +36,7 @@ const data = { //TODO: 임시 값
 
 export default function Home() {
   const { myId, isMyHome } = useIsMyHome();
-  const { data, isSuccess } =  useGetUserInfo(myId); // TODO: 주석 해제 후 더미데이터 삭제
+  //const { data, isSuccess } =  useGetUserInfo(myId); // TODO: 주석 해제 후 더미데이터 삭제
   const navigate = useNavigate();
   const { isOpenModal: isOpenLetterListModal, openModal: openLetterListModal, closeModal: closeLetterListModal } = useModal('LetterListModal');
   const { isOpenModal: isOpenSendLetterModal, openModal: openSendLetterModal, closeModal: closeSendLetterModal } = useModal('SendLetterModal');
@@ -68,7 +68,7 @@ export default function Home() {
   return (
     <>
       <PageLayout nickname={data.nickname} createdDayCnt={data.createdDayCnt}>
-        <Splash showSplash={isSuccess} />
+        <Splash showSplash={true} /> {/** TODO: isSuccess로 바꿔야함 */}
         <StoreLayout rightStore={data.rightStore} leftStore={data.leftStore}/>
         <CharacterLayout sex={data.sex} hair={data.hair} face={data.face} top={data.top} bottom={data.bottom}/>
         <AnimalButton onClick={() => handleOpenSkinModal()} animal={data.animal}/>
