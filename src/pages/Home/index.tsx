@@ -76,7 +76,7 @@ export default function Home() {
             <LongButton onClick={() => handleOpenSendLetterModal()}>
               편지 보내기
             </LongButton>
-            <LongButton onClick={() => navigate(`/home/${myId}`)}>
+            <LongButton onClick={() => navigate(`/home?u=${myId}`)}>
               내 공원으로 가기
             </LongButton>
           </>
