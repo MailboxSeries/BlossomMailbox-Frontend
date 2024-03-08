@@ -18,11 +18,11 @@ export const ButtonWrapper = styled.div`
   width: 230px;
 `;
 
-interface OrnamentButtonProps {
+interface ButtonProps {
   image: string;
 };
 
-export const DayButton = styled.button<OrnamentButtonProps>`
+export const DayButton = styled.button<ButtonProps>`
   font-family: 'NanumBarunpenB';
   font-weight: bolder;
   text-align: center;
