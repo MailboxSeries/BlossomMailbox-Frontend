@@ -12,6 +12,7 @@
   "dependencies": {
     "@tanstack/react-query": "^5.17.19",
     "@tanstack/react-query-devtools": "^5.17.21",
+    "@types/js-cookie": "^3.0.6",
     "@types/workbox-precaching": "^5.0.0",
     "@types/workbox-routing": "^5.0.0",
     "@types/workbox-strategies": "^5.0.0",

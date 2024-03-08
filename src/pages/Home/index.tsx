@@ -23,8 +23,8 @@ import Splash from '@/components/common/Splash';
 import useHideSplash from '@/hooks/useHideSplash';
 
 export default function Home() {
-  const { myId, isMyHome } = useIsMyHome();
-  const { data, isSuccess } =  useGetUserInfo(myId);
+  const { myId, isMyHome, ownerId } = useIsMyHome();
+  const { data, isSuccess } =  useGetUserInfo(ownerId);
   const navigate = useNavigate();
   const { isOpenModal: isOpenLetterListModal, openModal: openLetterListModal, closeModal: closeLetterListModal } = useModal('LetterListModal');
   const { isOpenModal: isOpenSendLetterModal, openModal: openSendLetterModal, closeModal: closeSendLetterModal } = useModal('SendLetterModal');

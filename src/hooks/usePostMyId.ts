@@ -15,12 +15,6 @@ export const usePostMyId = () => {
     const location = useLocation();
     const accessToken = Cookies.get('accessToken');
 
-    useEffect(() => { // 엑세스 토큰이 없을 시 return
-        if (!accessToken) {
-            return null;
-        }
-    },[])
-
     return useMutation({
         mutationFn: () => postMyId(),
         onSuccess: async (myId) => {
