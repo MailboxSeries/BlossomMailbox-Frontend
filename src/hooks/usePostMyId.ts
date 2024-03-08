@@ -33,10 +33,13 @@ export const usePostMyId = () => {
         onError: (error) => {
             // 로그아웃 실패 시 처리
             if (isAxiosError(error)) {
+                if (location.pathname !== '/') {
+                    logout();
+                }
+            }
+            if (location.pathname !== '/') {
                 logout();
             }
-            // 기타 에러 처리
-            logout();
         },
     });
 };
