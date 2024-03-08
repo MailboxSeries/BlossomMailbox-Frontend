@@ -29,7 +29,7 @@ export const SelectClickEvent = styled.div<{ isSelected?: boolean }>`
     }
 `;
 
-export const LockIcon = styled.button`
+export const LockIcon = styled.div`
     position: absolute;
     width: 40px;
     height: 40px;
