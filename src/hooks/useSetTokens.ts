@@ -1,8 +1,6 @@
-import {Cookies} from 'react-cookie';
+import Cookies from 'js-cookie';
 
-const cookies = new Cookies();
-
-export default function useSetTokens(accessToken, refreshToken) {
-  cookies.set('accessToken', accessToken);
-  cookies.set('refreshToken', refreshToken);
+export default function useSetTokens(accessToken: string, refreshToken: string) {
+  Cookies.set('accessToken', accessToken);
+  Cookies.set('refreshToken', refreshToken);
 }
