@@ -1,9 +1,11 @@
 import axios from 'axios';
 import useSetTokens from '@/hooks/useSetTokens';
-import { useCookies } from 'react-cookie'; 
+import { Cookies, useCookies } from 'react-cookie'; 
 
-const [accessToken] = useCookies(["accessToken"]);
-const [refreshToken] = useCookies(["refreshToken"]);
+const cookies = new Cookies();
+
+const [accessToken] = cookies.get("accessToken");
+const [refreshToken] = cookies.get("refreshToken");
 
 export const instance = axios.create({
   baseURL: import.meta.env.VITE_APP_SERVER_URL,
