@@ -3,8 +3,7 @@ import React, { useState } from 'react';
 import Modal from '@/components/common/Modal';
 import DisabledFlowerBigImg from '@/assets/flower/flowerBtnDisabled.png';
 import flowerBigImg from '@/assets/flower/flowerBtnBig.png';
-//import flowerBudBtnImg from '@/assets/flower/flowerBudBtn.png'; // TODO: 준비되면 이걸로 교체
-import flowerBudBtnImg from '@/assets/flower/flowerBtnDisabled.png';
+import flowerBudButtonImg from '@/assets/flower/flowerBudButton.png';
 import useToast from '@/hooks/useToast';
 import { LetterListModalProps } from '@/interfaces/modal';
 import useModal from '@/hooks/useModal';
@@ -80,7 +79,7 @@ function LetterListModal({onClose, isOpen, createdDayCnt}: LetterListModalProps)
                                 if (item.status === "active") {
                                     buttonImage = flowerBigImg;
                                 } else if (item.status === "inactive") {
-                                    buttonImage = flowerBudBtnImg;
+                                    buttonImage = flowerBudButtonImg;
                                 }
 
                                 return (
