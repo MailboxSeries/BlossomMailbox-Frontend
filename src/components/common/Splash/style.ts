@@ -89,6 +89,6 @@ export const SplashIcon = styled.div<SplashIconProps>`
   top: ${({ top }) => top};
   left: ${({ left }) => left};
   --rotation-end: ${({ rotation }) => rotation}deg; // CSS 변수로 회전 각도 설정
-  animation: ${flyAndSpin} 0.5s linear infinite;
+  animation: ${flyAndSpin} 2s linear infinite;
 `;
 
