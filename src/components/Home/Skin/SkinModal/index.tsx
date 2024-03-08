@@ -16,48 +16,9 @@ import { isAxiosError } from 'axios';
 import { useLogout } from '@/hooks/useLogout';
 import { sortSkinsByType } from '@/utils/sortSkinsByType';
 
-export const data = {
-        lockSkinCnt: 5,
-        hair: {
-            having: [1, ],
-            unlock: [3, ],
-            lock: [2]
-        },
-        face: {
-            having: [1, ],
-            unlock: [3, ],
-            lock: [2]
-        },
-        top: {
-            having: [1, ],
-            unlock: [3, ],
-            lock: [2]
-        },
-        bottom: {
-            having: [1, ],
-            unlock: [3, ],
-            lock: [2]
-        },
-        animal: {
-            having: [1],
-            unlock: [2],
-            lock: [3, 4]
-        },
-        rightStore: {
-            having: [1, 2, 5],
-            unlock: [3],
-            lock: [4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-        },
-        leftStore: {
-            having: [1, 6],
-            unlock: [2, 3],
-            lock: [4, 5, 7, 8, 9, 10, 11, 12]
-        }
-};
-
 function SkinModal({ isOpen, onClose }: SkinModalProps) {
     const [skin, setSkin] = useRecoilState(skinState);
-    //const { data } = useGetSkins(); //TODO: 더미데이터 삭제 후 이걸로 교체
+    const { data } = useGetSkins();
     const queryClient = useQueryClient();
     const { mutate }  = usePutSkins();
     const { mutate: logout } = useLogout();

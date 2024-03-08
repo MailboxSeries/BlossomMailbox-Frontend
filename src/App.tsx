@@ -16,7 +16,7 @@ const App = () => {
 
   return (
     <ErrorBoundary fallback={<>에러 발생</>}>
-      <Suspense fallback={<Splash showSplash={showSplash}/>}>
+      <Suspense fallback={<Splash showSplash={true}/>}>
         <ThemeProvider theme={theme}>
           <BrowserRouter>
               <Router />

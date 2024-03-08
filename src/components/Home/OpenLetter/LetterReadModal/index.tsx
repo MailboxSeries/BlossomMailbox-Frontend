@@ -8,22 +8,10 @@ import ReplyButton from '@/components/Home/OpenLetter/ReplyButton';
 import ReplyModal from '@/components/Home/OpenLetter/ReplyModal';
 import { useGetLetter } from '@/hooks/useGetLetter';
 
-const data = {
-    sendLetter: {
-        content: "Hi Alice, how are you? adsfasdfasdfsdafasdfasdfas",
-        image: "myImage1.jpg",
-    },
-    replyLetter: {
-        content: "I'm good, thanks for asking! asdfdasfasdfasdf",
-        image: "image1.jpg",
-        nickname: "Alice",
-    }
-}
-
 function LetterReadModal({onClose, isOpen, id}: LetterModalProps) {
     const { openModal: openDayLetterListModal } = useModal('DayLetterListModal');
     const { isOpenModal: isOpenReplyModal, openModal: openReplyModal, closeModal: closeReplyModal } = useModal('ReplyModal');
-    //const { data } = useGetLetter(id); //TODO: 더미데이터 삭제 후 이걸로 교체
+    const { data } = useGetLetter(id);
 
     const handleBackButton = () => {
         onClose();

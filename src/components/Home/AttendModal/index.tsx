@@ -17,10 +17,10 @@ import { useLogout } from '@/hooks/useLogout';
 
 function AttendModal({ isOpen, onClose, createdDayCnt }: AttendModalProps) {
     const { displayToast } = useToast();
-    //const { data } = useGetAttendanceStatus(); //TODO: 더미데이터 삭제 후 이걸로 교체
+    const { data } = useGetAttendanceStatus(); //더미데이터 삭제 후 이걸로 교체
     const queryClient = useQueryClient();
     const { mutate }  = usePostAttend();
-    const data = { attendanceCompleted: false, getCat: true }; //TODO: 임시값
+    //const data = { attendanceCompleted: false, getCat: true }; //임시값
     const { isOpenModal: isOpenCatModal, openModal: openCatModal, closeModal: closeCatModal } = useModal('CatModal');
     const [catState, setCatState] = useRecoilState(getCatState);
     const { mutate: logout } = useLogout();

@@ -22,23 +22,9 @@ import { useGetUserInfo } from '@/hooks/useGetUserInfo';
 import Splash from '@/components/common/Splash';
 import useHideSplash from '@/hooks/useHideSplash';
 
-const data = { //TODO: 임시 값
-  nickname: 'asdfasdf',
-  sex: "man",
-  top: 1,
-  hair: 1,
-  face: 1,
-  bottom: 1,
-  animal: 1,
-  rightStore: 1,
-  leftStore: 1,
-  createdDayCnt: 1,
-};
-
 export default function Home() {
   const { myId, isMyHome } = useIsMyHome();
-  const isSuccess = true; //TODO: 임시값
-  //const { data, isSuccess } =  useGetUserInfo(myId); // TODO: 주석 해제 후 더미데이터 삭제
+  const { data, isSuccess } =  useGetUserInfo(myId);
   const navigate = useNavigate();
   const { isOpenModal: isOpenLetterListModal, openModal: openLetterListModal, closeModal: closeLetterListModal } = useModal('LetterListModal');
   const { isOpenModal: isOpenSendLetterModal, openModal: openSendLetterModal, closeModal: closeSendLetterModal } = useModal('SendLetterModal');

@@ -10,52 +10,13 @@ import useModal from '@/hooks/useModal';
 import DayLetterListModal from '@/components/Home/OpenLetter/DayLetterListModal';
 import { useGetLetterListStatus } from '@/hooks/useGetLetterListStatus';
 
-const data = [
-    {status: "disable"},
-    {status: "disable"},
-    {status: "disable"},
-    {status: "disable"},
-    {status: "disable"},
-    {status: "disable"},
-    {status: "disable"},
-    {status: "disable"},
-    {status: "disable"},
-    {status: "disable"},
-    {status: "active"},
-    {status: "inactive"},
-    {status: "inactive"},
-    {status: "inactive"},
-    {status: "inactive"},
-    {status: "inactive"},
-    {status: "inactive"},
-    {status: "inactive"},
-    {status: "inactive"},
-    {status: "inactive"},
-    {status: "inactive"},
-    {status: "inactive"},
-    {status: "inactive"},
-    {status: "inactive"},
-    {status: "inactive"},
-    {status: "inactive"},
-    {status: "inactive"},
-    {status: "inactive"},
-    {status: "inactive"},
-    {status: "inactive"},
-    {status: "inactive"},
-    {status: "inactive"},
-    {status: "inactive"},
-    {status: "inactive"},
-    {status: "inactive"}
-]
-
-
 function LetterListModal({onClose, isOpen, createdDayCnt}: LetterListModalProps) {
     const { displayToast } = useToast();
     const { isOpenModal: isOpenDayLetterListModal,
         openModal: openDayLetterListModal, 
         closeModal: closeDayLetterListModal } = useModal('DayLetterListModal');
     const { closeModal: closeLetterListModal } = useModal('LetterListModal');
-    //const { data } = useGetLetterListStatus(); //TODO: 더미데이터 삭제 후 이걸로 교체
+    const { data } = useGetLetterListStatus();
 
     const [selectedDate, setSelectedDate] = useState<number>(1);
     const handleDayLetterListModalOpen = (date: number) => {

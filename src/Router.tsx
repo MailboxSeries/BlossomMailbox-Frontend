@@ -5,11 +5,11 @@ import { usePostMyId } from '@/hooks/usePostMyId';
 import { useEffect } from 'react';
 
 export default function Router() {
-  // const { mutate } = usePostMyId();
+  const { mutate } = usePostMyId();
 
-  // useEffect(() => {
-  //   mutate();
-  // }, [])  //TODO: 배포 시 주석 해제
+  useEffect(() => {
+    mutate();
+  }, []) 
   
   return (
     <Routes>
