@@ -5,8 +5,8 @@ import { GuideModalProps } from '@/interfaces/modal';
 
 function GuideModal({onClose, isOpen}: GuideModalProps) {
     
-    const handleNavigateInstagram = () => { //TODO: 링크 수정
-        window.location.href = 'https://instagram.com/snowmailbox_official?igshid=NzZlODBkYWE4Ng%3D%3D&utm_source=qr';
+    const handleNavigateInstagram = () => {
+        window.location.href = 'https://www.instagram.com/blossommailbox_official?igsh=NWVheHQydnJrcjJ6&utm_source=qr';
     }
 
     return (
