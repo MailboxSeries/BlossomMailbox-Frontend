@@ -9,6 +9,7 @@ import Splash from '@/components/common/Splash';
 import { useRecoilValue } from 'recoil';
 import { showSplashState } from '@/atoms/showSplashState';
 import ToastContainer from '@/components/common/ToastContainer';
+import { CookiesProvider } from 'react-cookie';
 
 const App = () => {
   useScrollToTop();
@@ -18,9 +19,11 @@ const App = () => {
     <ErrorBoundary fallback={<Splash />}>
       <Suspense fallback={<Splash showSplash={true}/>}>
         <ThemeProvider theme={theme}>
-          <BrowserRouter>
-              <Router />
-          </BrowserRouter>
+          <CookiesProvider>
+            <BrowserRouter>
+                <Router />
+            </BrowserRouter>
+          </CookiesProvider>
         </ThemeProvider>
         <ToastContainer />
       </Suspense> 
