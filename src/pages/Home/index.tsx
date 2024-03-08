@@ -49,14 +49,6 @@ export default function Home() {
   const [showSplash, setShowSplash] = useState(true);
   useHideSplash(isSuccess, setShowSplash);
 
-  const handleopenLetterListModal = () => {
-    openLetterListModal();
-  };
-
-  const handleOpenSendLetterModal = () => {
-    openSendLetterModal();
-  };
-
   const handleOpenSkinModal = () => {
     if (isMyHome) {
       openSkinModal();
@@ -80,7 +72,7 @@ export default function Home() {
         {isMyHome ? (
           <>
             <Styled.RowContainer>
-              <MediumButton onClick={() => handleopenLetterListModal()}>
+              <MediumButton onClick={() => openLetterListModal()}>
                 편지 보기
               </MediumButton>
               <ShortButton onClick={() => displayToast(`${20-data.createdDayCnt}일 뒤에 벚꽃이 만개해요!`)}>
@@ -91,7 +83,7 @@ export default function Home() {
           </>
         ) : (
           <>
-            <LongButton onClick={() => handleOpenSendLetterModal()}>
+            <LongButton onClick={() => openSendLetterModal()}>
               편지 보내기
             </LongButton>
             <LongButton onClick={() => navigate(`/home?u=${myId}`)}>
