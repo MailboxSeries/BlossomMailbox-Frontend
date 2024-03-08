@@ -17,7 +17,7 @@ export const usePostMyId = () => {
 
     useEffect(() => { // 엑세스 토큰이 없을 시 return
         if (!accessToken) {
-            return;
+            return null;
         }
     },[])
 
