@@ -5,7 +5,7 @@ import theme from './theme';
 import {Suspense} from 'react';
 import { ErrorBoundary } from "react-error-boundary";
 import useScrollToTop from '@/hooks/useScrollToTop';
-import Splash from '@/components/Splash';
+import Splash from '@/components/common/Splash';
 import { useRecoilValue } from 'recoil';
 import { showSplashState } from '@/atoms/showSplashState';
 import ToastContainer from '@/components/common/ToastContainer';

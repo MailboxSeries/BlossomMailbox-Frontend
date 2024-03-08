@@ -34,5 +34,5 @@ export const useGetUserInfo = (encodingUserID: string) => {
         }
     }, [isSuccess]);
 
-    return data;
+    return {data, isSuccess};
 }

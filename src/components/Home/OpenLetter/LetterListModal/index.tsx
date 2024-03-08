@@ -104,12 +104,14 @@ function LetterListModal({onClose, isOpen, createdDayCnt}: LetterListModalProps)
                     </Styled.InnerWrapper>
                 </Styled.Wrapper>
             </Modal>
-
+            
+            {isOpenDayLetterListModal && (
                 <DayLetterListModal 
                     onClose={closeDayLetterListModal} 
                     isOpen={isOpenDayLetterListModal}
                     selectedDate={selectedDate}
                 />
+            )}
         </>
     );
 }

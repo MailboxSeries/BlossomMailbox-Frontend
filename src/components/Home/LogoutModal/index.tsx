@@ -44,10 +44,12 @@ function LogoutModal({ isOpen, onClose }: LogoutModalProps) {
                 </Styled.Wrapper>
             </Modal>
 
-            <SignoutModal 
-            onClose={closeSignoutModal}
-            isOpen={isOpenSignoutModal}
-            />
+            {isOpenSignoutModal && 
+                <SignoutModal 
+                onClose={closeSignoutModal}
+                isOpen={isOpenSignoutModal}
+                />
+            }
         </>
     );
 }
