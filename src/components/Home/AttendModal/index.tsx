@@ -6,30 +6,48 @@ import useModal from '@/hooks/useModal';
 import useToast from '@/hooks/useToast';
 import MediumButton from '@/components/MediumButton';
 import CatModal from '@/components/Home/CatModal';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { getCatState } from '@/atoms/getCatState';
 import { useGetAttendanceStatus } from '@/hooks/useGetAttendanceStatus';
+import { useQueryClient } from '@tanstack/react-query';
+import { usePostAttend } from '@/hooks/usePostAttend';
+import { useNavigate } from 'react-router-dom';
+import { isAxiosError } from 'axios';
 
 function AttendModal({ isOpen, onClose, createdDayCnt }: AttendModalProps) {
     const { displayToast } = useToast();
     //const { data } = useGetAttendanceStatus(); //TODO: 더미데이터 삭제 후 이걸로 교체
-    const data = { attendanceCompleted: false }; //TODO: 임시값
-    const getCat = true; //TODO: 임시값
+    const queryClient = useQueryClient();
+    const { mutate }  = usePostAttend();
+    const navigate = useNavigate();
+    const data = { attendanceCompleted: false, getCat: true }; //TODO: 임시값
     const { isOpenModal: isOpenCatModal, openModal: openCatModal, closeModal: closeCatModal } = useModal('CatModal');
-    const setCatState = useSetRecoilState(getCatState);
-
+    const [catState, setCatState] = useRecoilState(getCatState);
     const handleAttend = () => {
-        if(getCat) {
-            setCatState((prevState) => ({
-                ...prevState,
-                getCat: true,
-                catID: 3
-            }));
-            onClose();
-        } else { 
-            onClose();
-            displayToast('출석하셨어요! 고양이에게 스킨을 받아가세요.');
-        }
+        mutate(null, {
+            onSuccess: async (data) => {
+                await queryClient.invalidateQueries({queryKey: ['attendance']});
+                if(data.getCat) {
+                    setCatState((prevState) => ({
+                        ...prevState,
+                        getCat: data.getCat,
+                        catID: data.catID
+                    }));
+                    onClose();
+                } else { 
+                    onClose();
+                    displayToast('출석하셨어요! 고양이에게 스킨을 받아가세요.');
+                }
+            },
+                onError: (error) => {
+                    if(isAxiosError(error)) {
+                        displayToast('세션이 만료되었어요! 다시 로그인해주세요');
+                        navigate('/')
+                    }
+                    displayToast('세션이 만료되었어요! 다시 로그인해주세요');
+                    navigate('/')
+                },
+        });
     }
 
     return (
@@ -70,7 +88,7 @@ function AttendModal({ isOpen, onClose, createdDayCnt }: AttendModalProps) {
                 <CatModal
                     isOpen={isOpenCatModal}
                     onClose={closeCatModal}
-                    catID={1} //TODO: 임시
+                    catID={catState.catID}
                 />
             )}
         </>
