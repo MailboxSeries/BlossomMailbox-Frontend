@@ -17,9 +17,10 @@ import useToast from '@/hooks/useToast';
 import CatModal from '@/components/Home/CatModal';
 import { useRecoilValue } from 'recoil';
 import { getCatState } from '@/atoms/getCatState';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useGetUserInfo } from '@/hooks/useGetUserInfo';
 import Splash from '@/components/common/Splash';
+import useHideSplash from '@/hooks/useHideSplash';
 
 const data = { //TODO: 임시 값
   nickname: 'asdfasdf',
@@ -36,6 +37,7 @@ const data = { //TODO: 임시 값
 
 export default function Home() {
   const { myId, isMyHome } = useIsMyHome();
+  const isSuccess = true; //TODO: 임시값
   //const { data, isSuccess } =  useGetUserInfo(myId); // TODO: 주석 해제 후 더미데이터 삭제
   const navigate = useNavigate();
   const { isOpenModal: isOpenLetterListModal, openModal: openLetterListModal, closeModal: closeLetterListModal } = useModal('LetterListModal');
@@ -44,7 +46,9 @@ export default function Home() {
   const { isOpenModal: isOpenCatModal, openModal: openCatModal, closeModal: closeCatModal } = useModal('CatModal');
   const { displayToast } = useToast();
   const catState = useRecoilValue(getCatState);
-  
+  const [showSplash, setShowSplash] = useState(true);
+  useHideSplash(isSuccess, setShowSplash);
+
   const handleopenLetterListModal = () => {
     openLetterListModal();
   };
@@ -68,7 +72,7 @@ export default function Home() {
   return (
     <>
       <PageLayout nickname={data.nickname} createdDayCnt={data.createdDayCnt}>
-        <Splash showSplash={true} /> {/** TODO: isSuccess로 바꿔야함 */}
+      {showSplash && <Splash showSplash={isSuccess}/> }
         <StoreLayout rightStore={data.rightStore} leftStore={data.leftStore}/>
         <CharacterLayout sex={data.sex} hair={data.hair} face={data.face} top={data.top} bottom={data.bottom}/>
         <AnimalButton onClick={() => handleOpenSkinModal()} animal={data.animal}/>

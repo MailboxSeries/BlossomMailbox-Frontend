@@ -26,7 +26,7 @@ const slideOutRight = keyframes`
     transform: translateX(0);
   }
   to {
-    opacity: 0;
+    opacity: 0.5;
     transform: translateX(100%);
   }
 `;
@@ -58,7 +58,7 @@ export const Wrapper = styled.div<WrapperProps>`
   ${({ animateOut }) =>
     animateOut &&
     css`
-      animation: ${slideOutRight} 0.5s forwards;
+      animation: ${slideOutRight} 1s forwards;
   `}
 `;
 
@@ -69,7 +69,7 @@ const flyAndSpin = keyframes`
   }
   100% {
     transform: translateX(-380%) rotate(var(--rotation-end)); // CSS 변수 사용
-    opacity: 0;
+    opacity: 0.5;
   }
 `;
 
@@ -89,6 +89,6 @@ export const SplashIcon = styled.div<SplashIconProps>`
   top: ${({ top }) => top};
   left: ${({ left }) => left};
   --rotation-end: ${({ rotation }) => rotation}deg; // CSS 변수로 회전 각도 설정
-  animation: ${flyAndSpin} 2s linear infinite;
+  animation: ${flyAndSpin} 0.5s linear infinite;
 `;
 

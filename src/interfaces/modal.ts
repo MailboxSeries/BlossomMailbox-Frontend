@@ -62,3 +62,5 @@ export interface ModalProps {
   export interface CatModalProps extends Partial<ModalProps> {
     catID: number;
   }
+
+  export interface GuideModalProps extends Partial<ModalProps> {}

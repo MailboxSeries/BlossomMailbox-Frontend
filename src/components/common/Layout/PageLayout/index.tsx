@@ -4,10 +4,9 @@ import { useLocation } from 'react-router-dom';
 import getCurrentSkyImage from '@/utils/getCurrentSkyImage';
 import Layout from '@/components/common/Layout';
 import FlowerFalling from '../../FlowerFalling';
-import MenuButton from '@/components/Home/MenuButton';
+import MenuButton from '@/components/common/Button/MenuButton';
 import getCurrentBackgroundImage from '@/utils/getCurrentBackgroundImage';
 import AttendButton from '@/components/Home/AttendButton';
-import useToast from '@/hooks/useToast';
 import useModal from '@/hooks/useModal';
 import AttendModal from '@/components/Home/AttendModal';
 
@@ -20,7 +19,6 @@ interface Props {
 export default function PageLayout({ children, nickname, createdDayCnt }: Props) {
   const { pathname } = useLocation();
   const { isOpenModal: isOpenAttendModal, openModal: openAttendModal, closeModal: closeAttendModal } = useModal('AttendModal');
-  const { displayToast } = useToast();
 
   let titleText: string;
   if (pathname === '/redirect') {

@@ -6,18 +6,16 @@ import * as Styled from './style';
 import useIsMyHome from '@/hooks/useIsMyHome';
 import LogoutModal from '@/components/Home/LogoutModal';
 import useModal from '@/hooks/useModal';
+import GuideModal from '../../Modal/GuideModal';
 
 export default function MenuButton(props: MenuButtonProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { isMyHome } = useIsMyHome();
   const { isOpenModal: isOpenLogoutModal, openModal: openLogoutModal, closeModal: closeLogoutModal } = useModal('LogoutModal');
+  const { isOpenModal: isOpenGuideModal, openModal: openGuideModal, closeModal: closeGuideModal } = useModal('GuideModal');
 
   const handleMenuOpen = () => {
     setIsOpen(!isOpen);
-  }
-
-  const handleLogoutModalOpen = () => {
-    openLogoutModal();
   }
 
   return (
@@ -54,9 +52,9 @@ export default function MenuButton(props: MenuButtonProps) {
 
         {isOpen && (
           <Styled.MenuWrapper>
-            <Styled.MenuItem isActive={isOpen}>이용안내</Styled.MenuItem>
+            <Styled.MenuItem isActive={isOpen} onClick={() => openGuideModal()}>이용안내</Styled.MenuItem>
             {isMyHome && (
-              <Styled.MenuItem isActive={isOpen} onClick={() => handleLogoutModalOpen()}>로그아웃</Styled.MenuItem>
+              <Styled.MenuItem isActive={isOpen} onClick={() => openLogoutModal()}>로그아웃</Styled.MenuItem>
             )}
           </Styled.MenuWrapper>
         )}
@@ -64,6 +62,11 @@ export default function MenuButton(props: MenuButtonProps) {
         <LogoutModal 
             onClose={closeLogoutModal}
             isOpen={isOpenLogoutModal}
+        />
+
+        <GuideModal
+            onClose={closeGuideModal}
+            isOpen={isOpenGuideModal}
         />
     </>
   );
