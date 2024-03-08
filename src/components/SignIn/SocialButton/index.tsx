@@ -6,7 +6,7 @@ export default function SocialButton(props: SocialButtonProps) {
   const socialImg = getSocialSignInImage(props.socialType);
 
   const handleSignIn = () => {
-    window.location.href = `https://blossommailbox.com/oauth2/authorization/${props.socialType}`;
+    window.location.href = `${import.meta.env.BASE_URL}/oauth2/authorization/${props.socialType}`;
   };
 
   return (
