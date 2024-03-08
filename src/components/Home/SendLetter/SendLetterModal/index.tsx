@@ -9,6 +9,7 @@ import { useImageUpload } from '@/hooks/useImageUpload';
 import { usePostLetter } from '@/hooks/usePostLetter';
 import { isAxiosError } from 'axios';
 import { useLogout } from '@/hooks/useLogout';
+import useIsMyHome from '@/hooks/useIsMyHome';
 
 function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
     const { displayToast } = useToast();
@@ -17,6 +18,7 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
     const { imageFile, uploadedImage, handleFileInputChange } = useImageUpload();
     const { mutate }  = usePostLetter();
     const { mutate: logout } = useLogout();
+    const { ownerId } = useIsMyHome();
 
     /** 편지 보내기 핸들링  */ 
     const handleSendLetter = async () => {
@@ -28,6 +30,7 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
                 body: {
                     sender: sender.value,
                     content: content.value,
+                    receiverId: ownerId,
                 },
                 imageFile: imageFile,
             }

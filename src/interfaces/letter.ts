@@ -12,6 +12,7 @@ export interface IPostLetter {
     id?: number;
     sender?: string;
     content: string;
+    receiverId?: string;
 }
 
 export interface IPostLetterWithFile {
