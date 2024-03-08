@@ -57,7 +57,6 @@ function LetterListModal({onClose, isOpen, createdDayCnt}: LetterListModalProps)
         const { closeModal: closeLetterListModal } = useModal('LetterListModal');
 
     const [selectedDate, setSelectedDate] = useState<number>(1);
-    console.log('render')
     const handleDayLetterListModalOpen = (date: number) => {
         setSelectedDate(date); // 버튼을 클릭하면 선택된 날짜를 설정
         closeLetterListModal();

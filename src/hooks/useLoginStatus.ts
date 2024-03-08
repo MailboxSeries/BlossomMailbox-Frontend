@@ -8,9 +8,6 @@ export const useLoginStatus = () => {
 
     useEffect(() => {
         const accessToken = Cookies.get('access_token');
-
-        console.log(accessToken);
-
         /**액세스 토큰과 리프레시 토큰이 모두 존재하는지 확인하여 로그인 상태 설정 */ 
         if (accessToken) {
             setIsLoggedIn(true);

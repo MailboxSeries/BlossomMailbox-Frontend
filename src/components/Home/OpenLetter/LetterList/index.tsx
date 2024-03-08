@@ -14,9 +14,6 @@ export default function LetterList({ data }: { data?: ILetterList }) {
         openLetterReadModal();
         //closeDayLetterListModal();
         setCafeId(id);
-        console.log('openLetterModal',openLetterReadModal);
-        console.log('isOpenLetterModal',isOpenLetterReadModal);
-
     }
 
     return (

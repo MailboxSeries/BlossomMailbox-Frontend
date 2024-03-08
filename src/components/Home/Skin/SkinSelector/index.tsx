@@ -3,8 +3,6 @@ import * as Styled from './style';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import useToast from '@/hooks/useToast';
-import { skinState } from '@/atoms/skinState';
-import { useRecoilValue } from 'recoil';
 import { ISkinItem, ISkinSelectorProps } from '@/interfaces/skinState';
 import { useQueryClient } from '@tanstack/react-query';
 import { usePatchSkinUnlock } from '@/hooks/usePatchSkinUnlock';
@@ -54,16 +52,15 @@ export const SkinSelector: React.FC<ISkinSelectorProps> = ({
         <Carousel showIndicators={false} emulateTouch={true} showArrows={true} showThumbs={false} showStatus={false} centerMode centerSlidePercentage={100/3}>
         {items.map((item, index) => (
             <Styled.SelectClickEvent
-    key={index}
-    onClick={() => handleItemClick(item)}
-    isSelected={selectedType === item.index}
->
-    <Styled.ImageButton src={item.imgSrc} style={{ width: `${item.width}px`, height: `${item.height}px` }}>
-        {skinStatus(type, item.index) === 'lock' && <Styled.LockIcon />}
-        {skinStatus(type, item.index) === 'unlock' && <Styled.UnLockIcon />}
-    </Styled.ImageButton>
-</Styled.SelectClickEvent>
-
+                key={index}
+                onClick={() => handleItemClick(item)}
+                isSelected={selectedType === item.index}
+            >
+                <Styled.ImageButton src={item.imgSrc} style={{ width: `${item.width}px`, height: `${item.height}px` }}>
+                    {skinStatus(type, item.index) === 'lock' && <Styled.LockIcon />}
+                    {skinStatus(type, item.index) === 'unlock' && <Styled.UnLockIcon />}
+                </Styled.ImageButton>
+            </Styled.SelectClickEvent>
         ))}
         </Carousel>
     );
