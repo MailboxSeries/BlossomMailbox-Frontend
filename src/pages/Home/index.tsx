@@ -18,7 +18,6 @@ import CatModal from '@/components/Home/CatModal';
 import { useRecoilValue } from 'recoil';
 import { getCatState } from '@/atoms/getCatState';
 import { useEffect } from 'react';
-import { useGetUserInfo } from '@/hooks/useGetUserInfo';
 
 export default function Home() {
   const createdDayCnt = 3; // TODO: 서버로 부터 받은 값으로 변경. 이건 임시 값
@@ -32,7 +31,7 @@ export default function Home() {
   const { isOpenModal: isOpenCatModal, openModal: openCatModal, closeModal: closeCatModal } = useModal('CatModal');
   const { displayToast } = useToast();
   const catState = useRecoilValue(getCatState);
-
+  
   const handleopenLetterListModal = () => {
     openLetterListModal();
   };

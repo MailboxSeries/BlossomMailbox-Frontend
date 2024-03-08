@@ -1,17 +1,20 @@
 import { useMutation } from '@tanstack/react-query';
+import { postMyId } from '@/apis/myId';
 import { isAxiosError } from 'axios';
+import { useSetRecoilState } from 'recoil';
+import { myIdState } from '@/atoms/userInfoState';
 import useToast from '@/hooks/useToast';
 import { useNavigate } from 'react-router-dom';
-import { postMyId } from '@/apis/myId';
 
-export const useMyId = () => {
+export const usePostMyId = () => {
+    const setMyId = useSetRecoilState(myIdState);
     const { displayToast } = useToast();
     const navigate = useNavigate();
 
     return useMutation({
         mutationFn: () => postMyId(),
-        onSuccess: (myId) => {
-            return myId;
+        onSuccess: async (myId) => {
+            setMyId(myId);
         },
         onError: (error) => {
             // 로그아웃 실패 시 처리

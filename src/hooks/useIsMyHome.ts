@@ -1,7 +1,6 @@
 import { myIdState } from '@/atoms/userInfoState';
 import {useParams} from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { useMyId } from '@/hooks/useMyId';
 
 export default function useIsMyHome() {
   const myId = useRecoilValue(myIdState);
