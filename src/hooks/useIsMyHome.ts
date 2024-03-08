@@ -1,5 +1,5 @@
 import { myIdState } from '@/atoms/userInfoState';
-import {useLocation, useParams} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
 export default function useIsMyHome() {

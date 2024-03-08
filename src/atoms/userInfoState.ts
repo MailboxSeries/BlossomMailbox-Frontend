@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 
-export const myIdState = atom<string>({
+export const myIdState = atom<string | null>({
     key: 'userInfo',
-    default: 'asdfasdf',
+    default: 'asdfasdf', //TODO: null로 바꾸기
 });
