@@ -1,7 +1,6 @@
 import { Route, Routes} from 'react-router-dom';
 import Home from '@/pages/Home';
 import SignIn from '@/pages/SignIn';
-import Redirect from '@/pages/Redirect';
 import { usePostMyId } from '@/hooks/usePostMyId';
 import { useEffect } from 'react';
 
