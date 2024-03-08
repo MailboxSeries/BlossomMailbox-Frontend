@@ -3,7 +3,7 @@ import { instance } from './axios';
 import { IPostLetterWithFile } from '@/interfaces/letter';
 
 export const getLetterListStatus = async () => {
-    const response = await instance.get(`/api/v1/letters`);
+    const response = await instance.get(`/api/v1/letters/list`);
     return response.data.data.cherryBlossomStatus;
 };
 
@@ -16,8 +16,6 @@ export const getLetter = async (letterID: number) => {
     const response = await instance.get(`/api/v1/letters/${letterID}`);
     return response.data.data;
 };
-
-
 
 export const postLetter = async ({ body, imageFile }: IPostLetterWithFile) => {
     const formData = new FormData();
