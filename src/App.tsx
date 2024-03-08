@@ -9,7 +9,6 @@ import Splash from '@/components/Splash';
 import { useRecoilValue } from 'recoil';
 import { showSplashState } from '@/atoms/showSplashState';
 import ToastContainer from '@/components/common/ToastContainer';
-import { MyIdProvider } from '@/contexts/myIdContext';
 
 const App = () => {
   useScrollToTop();

@@ -72,6 +72,7 @@ function LetterReadModal({onClose, isOpen, id}: LetterModalProps) {
                     onClose={closeReplyModal}
                     isOpen={isOpenReplyModal}
                     data={data}
+                    id={id}
                 />
             )}
         </>

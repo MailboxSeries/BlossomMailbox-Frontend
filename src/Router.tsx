@@ -14,7 +14,6 @@ export default function Router() {
   return (
     <Routes>
       <Route path="/" element={<SignIn />} />
-      <Route path="/redirect" element={<Redirect />} />
       <Route path="/home" element={<Home />} />
     </Routes>
   );
