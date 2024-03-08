@@ -3,8 +3,7 @@ import Cookies from 'js-cookie';
 import useSetTokens from '@/hooks/useSetTokens';
 
 export const instance = axios.create({
-  //baseURL: import.meta.env.VITE_APP_SERVER_URL, //TODO: 서버 URL
-  baseURL:"",
+  baseURL: import.meta.env.VITE_APP_SERVER_URL,
   headers: {
     Authorization: `Bearer ${Cookies.get('accessToken')}`,
   },
