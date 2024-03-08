@@ -1,4 +1,4 @@
-import { ISkinState } from '@/interfaces/skinState';
+import { ISkinState, ISkinUnlockChange } from '@/interfaces/skinState';
 import { instance } from './axios';
 import { isAxiosError } from 'axios';
 
@@ -18,6 +18,22 @@ export const putSkins = async (body: ISkinState) => {
             animal: body.animal,
             rightStore: body.rightStore,
             leftStore: body.leftStore,
+        });
+        return response;
+    } catch (error) {
+        if (isAxiosError(error)) {
+            throw error;
+        } else {
+            throw error;
+        }
+    }
+};
+
+export const patchSkinUnlock = async (body: ISkinUnlockChange) => {
+    try {
+        const response = await instance.put<ISkinUnlockChange>(`/api/v1/skins`, {
+            type: body.type,
+            index: body.index,
         });
         return response;
     } catch (error) {

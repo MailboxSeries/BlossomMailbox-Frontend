@@ -6,6 +6,10 @@ import useToast from '@/hooks/useToast';
 import { skinState } from '@/atoms/skinState';
 import { useRecoilValue } from 'recoil';
 import { ISkinItem, ISkinSelectorProps } from '@/interfaces/skinState';
+import { useQueryClient } from '@tanstack/react-query';
+import { usePatchSkinUnlock } from '@/hooks/usePatchSkinUnlock';
+import { useNavigate } from 'react-router-dom';
+import { isAxiosError } from 'axios';
 
 export const SkinSelector: React.FC<ISkinSelectorProps> = ({
     type,
@@ -15,6 +19,9 @@ export const SkinSelector: React.FC<ISkinSelectorProps> = ({
     skinStatus,
 }) => {
     const { displayToast } = useToast();
+    const queryClient = useQueryClient();
+    const { mutate }  = usePatchSkinUnlock();
+    const navigate = useNavigate();
 
     const handleItemClick = (item: ISkinItem) => {
         const status = skinStatus(type, item.index);
@@ -22,8 +29,22 @@ export const SkinSelector: React.FC<ISkinSelectorProps> = ({
         if (status === 'lock') {
             displayToast(`출석 미션을 통해 획득하실 수 있어요!`);
         } else if (status === 'unlock') {
-            //TODO: 미션 완료 로직. mutate해서 item.index, type을 서버로 보내야함.
-            displayToast(`미션 완료로 잠금 해제됩니다.`);
+            const unlockItem = { type: type, index: item.index };
+            mutate(unlockItem, {
+                onSuccess: async () => {
+                    await queryClient.invalidateQueries({queryKey: ['skins']});
+                    queryClient.fetchQuery({ queryKey: ['skins'] });
+                    displayToast(`미션 완료로 잠금 해제됩니다.`);
+                },
+                    onError: (error) => {
+                        if(isAxiosError(error)) {
+                            displayToast('세션이 만료되었어요! 다시 로그인해주세요');
+                            navigate('/')
+                        }
+                        displayToast('세션이 만료되었어요! 다시 로그인해주세요');
+                        navigate('/')
+                    },
+            });
         } else {
             onSelect(item.index);
         }

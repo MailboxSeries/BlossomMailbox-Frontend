@@ -26,3 +26,8 @@ export interface ISkinSelectorProps {
     onSelect: (index: number) => void;
     skinStatus: (type: string | number, index: number) => string;
 };
+
+export interface ISkinUnlockChange {
+    type: string;
+    index: number;
+};

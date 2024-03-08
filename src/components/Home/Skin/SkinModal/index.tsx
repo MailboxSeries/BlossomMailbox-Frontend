@@ -111,6 +111,8 @@ function SkinModal({ isOpen, onClose }: SkinModalProps) {
                         displayToast('세션이 만료되었어요! 다시 로그인해주세요');
                         navigate('/')
                     }
+                    displayToast('세션이 만료되었어요! 다시 로그인해주세요');
+                    navigate('/')
                 },
         });
     }
