@@ -6,6 +6,7 @@ import useModal from '@/hooks/useModal';
 import BackButton from '@/components/BackButton';
 import ReplyButton from '@/components/Home/OpenLetter/ReplyButton';
 import ReplyModal from '@/components/Home/OpenLetter/ReplyModal';
+import { useGetLetter } from '@/hooks/useGetLetter';
 
 const data = {
     sendLetter: {
@@ -22,12 +23,12 @@ const data = {
 function LetterReadModal({onClose, isOpen, id}: LetterModalProps) {
     const { openModal: openDayLetterListModal } = useModal('DayLetterListModal');
     const { isOpenModal: isOpenReplyModal, openModal: openReplyModal, closeModal: closeReplyModal } = useModal('ReplyModal');
+    //const { data } = useGetLetter(id); //TODO: 더미데이터 삭제 후 이걸로 교체
 
     const handleBackButton = () => {
         onClose();
         openDayLetterListModal();
     }
-    //TODO: id를 파라미터로 보내서 편지 내용을 가져오기
 
     const handleOpenReplyModal = () => {
         onClose();
