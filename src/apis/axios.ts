@@ -28,7 +28,7 @@ instance.interceptors.response.use(
     if (error.response && error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       const refreshToken = getRefreshTokenFromCookies();
-      if (refreshToken) {
+      if (!refreshToken) {
         throw new Error('토큰 없음');
       }
       
