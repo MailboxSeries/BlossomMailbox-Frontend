@@ -16,7 +16,7 @@ export default function Router() {
     <Routes>
       <Route path="/" element={<SignIn />} />
       <Route path="/redirect" element={<Redirect />} />
-      <Route path="/home/:ownerId" element={<Home />} />
+      <Route path="/home" element={<Home />} />
     </Routes>
   );
 }
