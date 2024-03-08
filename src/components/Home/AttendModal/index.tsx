@@ -8,10 +8,12 @@ import MediumButton from '@/components/MediumButton';
 import CatModal from '@/components/Home/CatModal';
 import { useSetRecoilState } from 'recoil';
 import { getCatState } from '@/atoms/getCatState';
+import { useGetAttendanceStatus } from '@/hooks/useGetAttendanceStatus';
 
 function AttendModal({ isOpen, onClose, createdDayCnt }: AttendModalProps) {
     const { displayToast } = useToast();
-    const attendanceCompleted = false; //TODO: 임시값
+    //const { data } = useGetAttendanceStatus(); //TODO: 더미데이터 삭제 후 이걸로 교체
+    const data = { attendanceCompleted: false }; //TODO: 임시값
     const getCat = true; //TODO: 임시값
     const { isOpenModal: isOpenCatModal, openModal: openCatModal, closeModal: closeCatModal } = useModal('CatModal');
     const setCatState = useSetRecoilState(getCatState);
@@ -35,7 +37,7 @@ function AttendModal({ isOpen, onClose, createdDayCnt }: AttendModalProps) {
             <Modal isOpen={isOpen} onClose={onClose} modalTitle="" modalType='SmallModal'>
                 <Styled.Wrapper>
                     <Styled.InnerWrapper>
-                    {attendanceCompleted ? (
+                    {data.attendanceCompleted ? (
                         <>
                             <Styled.ModalText>
                                 {`이미 오늘 출석을 완료했어요! \n 내일을 기대해주세요!`}
