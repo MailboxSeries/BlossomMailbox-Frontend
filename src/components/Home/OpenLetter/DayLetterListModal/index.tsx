@@ -5,9 +5,10 @@ import { DayLetterListModalProps } from '@/interfaces/modal';
 import useModal from '@/hooks/useModal';
 import BackButton from '@/components/BackButton';
 import LetterList from '@/components/Home/OpenLetter/LetterList';
+import { useGetLetterListStatus } from '@/hooks/useGetLetterListStatus';
 
 // 더미 데이터
-const lettersList = {
+const data = {
     "letters":[
         {
             "id": 1,
@@ -64,6 +65,7 @@ const lettersList = {
 
 function DayLetterListModal({onClose, isOpen, selectedDate}: DayLetterListModalProps) {
     const { openModal: openLetterListModal } = useModal('LetterListModal');
+    //const { data } = useGetLetterListStatus(selectedDate); //TODO: 더미데이터 삭제 후 이걸로 교체 
     const handleBackButton = () => {
         onClose();
         openLetterListModal();
@@ -79,7 +81,7 @@ function DayLetterListModal({onClose, isOpen, selectedDate}: DayLetterListModalP
                 <BackButton onClick={() => handleBackButton()}/>
                 <Styled.Wrapper>
                     <Styled.InnerWrapper>
-                        <LetterList data={lettersList}/>
+                        <LetterList data={data}/>
                     </Styled.InnerWrapper>
                 </Styled.Wrapper>
             </Modal>
