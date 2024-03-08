@@ -94,11 +94,11 @@ export default function Home() {
         </Styled.ButtonWrapper>
       </PageLayout>
 
-        <LetterListModal 
-          onClose={closeLetterListModal} 
-          isOpen={isOpenLetterListModal}
-          createdDayCnt={data.createdDayCnt}
-        />
+      <LetterListModal 
+        onClose={closeLetterListModal} 
+        isOpen={isOpenLetterListModal}
+        createdDayCnt={data.createdDayCnt}
+      />
       {isOpenSendLetterModal && (
         <SendLetterModal
           onClose={closeSendLetterModal}

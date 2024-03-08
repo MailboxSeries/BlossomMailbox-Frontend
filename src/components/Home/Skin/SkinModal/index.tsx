@@ -13,8 +13,8 @@ import { useGetSkins } from '@/hooks/useGetSkins';
 import { useQueryClient } from '@tanstack/react-query';
 import { usePutSkins } from '@/hooks/usePutSkins';
 import { isAxiosError } from 'axios';
-import useToast from '@/hooks/useToast';
 import { useLogout } from '@/hooks/useLogout';
+import { sortSkinsByType } from '@/utils/sortSkinsByType';
 
 export const data = {
         lockSkinCnt: 5,
@@ -60,7 +60,6 @@ function SkinModal({ isOpen, onClose }: SkinModalProps) {
     //const { data } = useGetSkins(); //TODO: 더미데이터 삭제 후 이걸로 교체
     const queryClient = useQueryClient();
     const { mutate }  = usePutSkins();
-    const { displayToast } = useToast();
     const { mutate: logout } = useLogout();
 
     const onSelectSkin = useCallback((skinType, selectedSkinIndex: number) => {
@@ -70,25 +69,8 @@ function SkinModal({ isOpen, onClose }: SkinModalProps) {
         }));
     }, [setSkin]);
 
-    const sortedItemsByType = useMemo(() => {
-        // skins 배열에서 현재 성별에 해당하는 항목들만 처리
-        return skins[skin.sex].reduce((acc, {type, items, title}) => {
-            const typeData = data[type];
-            if (!typeData) {
-                return acc; // 해당 타입에 대한 데이터가 없으면 건너뜀
-            }
-    
-            // 각 타입별로 having, unlock, lock 순서대로 재배열
-            const allIndices = [...typeData.having, ...typeData.unlock, ...typeData.lock];
-            const sortedItems = allIndices
-                .map(index => items.find(item => item.index === index))
-                .filter(item => item !== undefined); // 존재하지 않는 아이템은 제외
-    
-            acc[type] = { items: sortedItems, title }; // 재배열된 아이템과 타이틀 저장
-            return acc;
-        }, {});
-    }, [skin.sex, data]);
-    
+    const sortedItemsByType = useMemo(() => sortSkinsByType(skins, skin.sex, data), [skin.sex, data]);
+
     const skinStatus = useCallback((type, index) => {
         const statusData = data[type];
         if (!statusData) {
@@ -148,4 +130,4 @@ function SkinModal({ isOpen, onClose }: SkinModalProps) {
     );
 }
 
-export default SkinModal;
+export default React.memo(SkinModal);
