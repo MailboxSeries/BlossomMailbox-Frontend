@@ -51,7 +51,7 @@ export const Wrapper = styled.div<WrapperProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(10deg, #ffd8cc 0%, #ffb9b9 100%);
+  background: linear-gradient(10deg, #ffb9b9 0%, #ffabc8 100%);
   z-index: 100;
   overflow: hidden; /* 경계를 넘어서는 자식 요소들 숨김 처리 */
 

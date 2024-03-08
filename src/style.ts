@@ -1,6 +1,7 @@
 import {createGlobalStyle} from 'styled-components';
 import NanumBarunpenB from './static/fonts/NanumBarunpenB.woff2';
 import BareunHipi from './static/fonts/BareunHipi.woff2';
+import theme from './theme';
 
 export const GlobalStyle = createGlobalStyle`
     @font-face {
@@ -27,7 +28,7 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: 400;
     margin: 0;
     font-size: 16px;
-    background-color: #ffb9b9;
+    background-color: ${theme.colors.babyPink};
   }
 
   #content {

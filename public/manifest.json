@@ -3,8 +3,8 @@
   "short_name": "벚꽃우편함",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffb9b9",
-  "theme_color": "#ffb9b9",
+  "background_color": "#ffabc8",
+  "theme_color": "#ffabc8",
   "description": "Blossom mailbox",
   "categories": ["food", "drink", "lifestyle"],
   "icons": [
