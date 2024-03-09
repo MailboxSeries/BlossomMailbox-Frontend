@@ -2,8 +2,16 @@ import { instance } from './axios';
 import { isAxiosError } from 'axios';
 
 export const getAttendanceStatus = async () => {
-    const response = await instance.get(`/api/v1/attendances`);
-    return response.data.data;
+    try {
+        const response = await instance.get(`/api/v1/attendances`);
+        return response.data.data;
+    } catch (error) {
+        if (isAxiosError(error)) {
+            throw error;
+        } else {
+            throw error;
+        }
+    }
 };
 
 export const postAttend = async () => {
