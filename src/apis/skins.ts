@@ -31,7 +31,7 @@ export const putSkins = async (body: ISkinState) => {
 
 export const patchSkinUnlock = async (body: ISkinUnlockChange) => {
     try {
-        const response = await instance.put<ISkinUnlockChange>(`/api/v1/skins`, {
+        const response = await instance.patch<ISkinUnlockChange>(`/api/v1/skins`, {
             type: body.type,
             index: body.index,
         });

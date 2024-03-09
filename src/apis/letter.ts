@@ -25,7 +25,7 @@ export const postLetter = async ({ body, imageFile }: IPostLetterWithFile) => {
     formData.append('image', imageFile);
 
     try {
-        const response = await instance.put(`/api/v1/skins`, formData, {
+        const response = await instance.put(`/api/v1/letters`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
