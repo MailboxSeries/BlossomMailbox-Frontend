@@ -38,7 +38,6 @@ instance.interceptors.response.use(
         }
       }
     }
-
     return Promise.reject(error);
   }
 );
@@ -49,10 +48,9 @@ const sendRefreshToken = async (refreshToken) => {
         Authorization: `Bearer ${refreshToken}`,
       },
     });
-    // 토큰 저장
-    if (response.status === 200) {
-      Cookies.set('accessToken', accessToken, { path: '/', domain: 'blossommailbox.com' });
-      Cookies.set('refreshToken', refreshToken, { path: '/', domain: 'blossommailbox.com' });
-    }
+
+    Cookies.set('accessToken', accessToken, { path: '/', domain: 'blossommailbox.com' });
+    Cookies.set('refreshToken', refreshToken, { path: '/', domain: 'blossommailbox.com' });
+    
     return response;
 };
