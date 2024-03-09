@@ -21,6 +21,7 @@ import { useEffect, useState } from 'react';
 import { useGetUserInfo } from '@/hooks/useGetUserInfo';
 import Splash from '@/components/common/Splash';
 import useHideSplash from '@/hooks/useHideSplash';
+import getDDayAndMessage from '@/utils/getDDayAndMessage';
 
 export default function Home() {
   const { myId, isMyHome, ownerId } = useIsMyHome();
@@ -34,6 +35,7 @@ export default function Home() {
   const catState = useRecoilValue(getCatState);
   const [showSplash, setShowSplash] = useState(true);
   useHideSplash(isSuccess, setShowSplash);
+  const { dDay, message } = getDDayAndMessage(data.createdDayCnt);
 
   const handleOpenSkinModal = () => {
     if (isMyHome) {
@@ -87,8 +89,8 @@ export default function Home() {
               <MediumButton onClick={() => openLetterListModal()}>
                 편지 보기
               </MediumButton>
-              <ShortButton onClick={() => displayToast(`${20-data.createdDayCnt}일 뒤에 벚꽃이 만개해요!`)}>
-                D-{20-data.createdDayCnt}
+              <ShortButton onClick={() => displayToast(message)}>
+                D-{dDay}
               </ShortButton>
             </Styled.RowContainer>
             <ShareButton />
@@ -105,6 +107,7 @@ export default function Home() {
         )}
         </Styled.ButtonWrapper>
       </PageLayout>
+      
       {isMyHome && (
         <LetterListModal 
           onClose={closeLetterListModal} 
