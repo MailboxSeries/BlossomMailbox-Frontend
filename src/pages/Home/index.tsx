@@ -21,7 +21,6 @@ import { useEffect, useState } from 'react';
 import { useGetUserInfo } from '@/hooks/useGetUserInfo';
 import Splash from '@/components/common/Splash';
 import useHideSplash from '@/hooks/useHideSplash';
-import { useLoginStatus } from '@/hooks/useLoginStatus';
 
 export default function Home() {
   const { myId, isMyHome, ownerId } = useIsMyHome();
@@ -57,7 +56,6 @@ export default function Home() {
       displayToast('로그인을 하셔야 편지를 쓰실 수 있어요!');
       localStorage.setItem('redirect', ownerId);
     } else {
-      localStorage.removeItem('redirect');
       openSendLetterModal();
     }
   }
@@ -65,6 +63,7 @@ export default function Home() {
     const redirectOwnerId = localStorage.getItem('redirect');
     if (redirectOwnerId) {
       navigate(`/home?u=${redirectOwnerId}`);
+      localStorage.removeItem('redirect');
     }
   },[]);
 
