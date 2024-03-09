@@ -34,6 +34,7 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
                 },
                 imageFile: imageFile,
             }
+            alert(content.value);
             mutate(postData, {
                 onSuccess: async () => {
                     onClose();
