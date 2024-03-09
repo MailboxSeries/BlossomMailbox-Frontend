@@ -15,6 +15,7 @@ import { usePutSkins } from '@/hooks/usePutSkins';
 import { isAxiosError } from 'axios';
 import { useLogout } from '@/hooks/useLogout';
 import { sortSkinsByType } from '@/utils/sortSkinsByType';
+import useIsMyHome from '@/hooks/useIsMyHome';
 
 function SkinModal({ isOpen, onClose }: SkinModalProps) {
     const [skin, setSkin] = useRecoilState(skinState);
@@ -22,7 +23,7 @@ function SkinModal({ isOpen, onClose }: SkinModalProps) {
     const queryClient = useQueryClient();
     const { mutate }  = usePutSkins();
     const { mutate: logout } = useLogout();
-
+    const { myId } = useIsMyHome();
     const onSelectSkin = useCallback((skinType, selectedSkinIndex: number) => {
         setSkin(prevSkin => ({
             ...prevSkin,
@@ -47,6 +48,8 @@ function SkinModal({ isOpen, onClose }: SkinModalProps) {
         mutate(skin, {
             onSuccess: async () => {
                 await queryClient.invalidateQueries({queryKey: ['skins']});
+                queryClient.fetchQuery({ queryKey: ['userInfo', myId] });
+                onClose();
             },
                 onError: (error) => {
                     if(isAxiosError(error)) {
