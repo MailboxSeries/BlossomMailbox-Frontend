@@ -3,7 +3,7 @@ import {instance} from './axios';
 
 export const postLogout = async () => {
   try {
-    const response = await instance.post(`/api/v1/auth/resume`, {});
+    const response = await instance.post(`/api/v1/auth/reissue`, {});
     return response;
   } catch (error) {
     if (isAxiosError(error)) {
