@@ -19,11 +19,12 @@ export const InnerWrapper = styled.div`
 
 export const NoLetterWrapper = styled.div`
   width: 100%;
-  overflow-y: auto;
+  overflow-y: hidden;
   display: flex;
   align-items: center;//세로 중앙 정렬
   justify-content: center; // 가로 중앙 정렬
   margin-top: 45px;
+  padding-top: 250px;
 `;
 
 export const Text = styled.p`
