@@ -4,7 +4,7 @@ import useSetTokens from '@/hooks/useSetTokens';
 
 const getAccessTokenFromCookies = () => Cookies.get('accessToken');
 const getRefreshTokenFromCookies = () => Cookies.get('refreshToken');
-const accessToken = Cookies.get('_ga');
+const accessToken = Cookies.get('accessToken');
 const refreshToken = Cookies.get('refreshToken');
 
 export const instance = axios.create({
