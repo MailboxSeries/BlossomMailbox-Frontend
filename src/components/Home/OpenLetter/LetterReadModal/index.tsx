@@ -1,5 +1,5 @@
 import * as Styled from './style';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Modal from '@/components/common/Modal';
 import { LetterModalProps } from '@/interfaces/modal';
 import useModal from '@/hooks/useModal';
@@ -22,6 +22,11 @@ function LetterReadModal({onClose, isOpen, id}: LetterModalProps) {
         onClose();
         openReplyModal();
     }
+    useEffect(() => {
+        if (!id) {
+            return null;
+        }
+    },[])
     return (
         <>
             <Modal

@@ -8,7 +8,7 @@ import { useState } from 'react';
 export default function LetterList({ data }: { data?: ILetterList }) {
     const { isOpenModal: isOpenDayLetterListModal, closeModal: closeDayLetterListModal } = useModal('DayLetterListModal');
     const { isOpenModal: isOpenLetterReadModal, openModal: openLetterReadModal, closeModal: closeLetterReadModal } = useModal('LetterReadModal');
-    const [letterId, setLetterId] = useState<number>(0);
+    const [letterId, setLetterId] = useState<number | null>(null);
 
     const handleLetterModalOpen = (id: number) => {
         openLetterReadModal();
@@ -38,13 +38,12 @@ export default function LetterList({ data }: { data?: ILetterList }) {
                     })
                 )}
             </Styled.Container>
-            {isOpenLetterReadModal && (
-                <LetterReadModal 
-                    onClose={closeLetterReadModal}
-                    isOpen={isOpenLetterReadModal}
-                    id={letterId}
-                />
-            )}
+
+            <LetterReadModal 
+                onClose={closeLetterReadModal}
+                isOpen={isOpenLetterReadModal}
+                id={letterId}
+            />
         </>
     );
 }
