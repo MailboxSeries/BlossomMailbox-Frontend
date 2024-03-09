@@ -90,7 +90,7 @@ export default function Home() {
                 편지 보기
               </MediumButton>
               <ShortButton onClick={() => displayToast(message)}>
-                D-{dDay}
+                {dDay}
               </ShortButton>
             </Styled.RowContainer>
             <ShareButton />
@@ -107,7 +107,7 @@ export default function Home() {
         )}
         </Styled.ButtonWrapper>
       </PageLayout>
-      
+
       {isMyHome && (
         <LetterListModal 
           onClose={closeLetterListModal} 
