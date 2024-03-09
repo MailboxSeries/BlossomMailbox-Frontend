@@ -20,8 +20,9 @@ function SignoutModal({ isOpen, onClose }: SignoutModalProps) {
         logout();
         if(input.value == 'BloSsomMailBox'){
             signout();
+            closeSignoutModal();
         } else {
-            displayToast('잘못 입력하셨어요! 다시 입력해주세요.');
+            displayToast('잘못 입력하셨어요!');
             closeSignoutModal();
         }
     }
