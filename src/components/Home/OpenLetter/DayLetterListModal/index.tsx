@@ -28,7 +28,11 @@ function DayLetterListModal({onClose, isOpen}: DayLetterListModalProps) {
                 <BackButton onClick={() => handleBackButton()}/>
                 <Styled.Wrapper>
                 {data.letters.length === 0 ? (
-                    <Styled.Text>받은 편지가 없어요.</Styled.Text>
+                    <Styled.NoLetterWrapper>
+                        <Styled.Text>
+                            받은 편지가 없어요.
+                        </Styled.Text>
+                    </Styled.NoLetterWrapper>
                 ) : (
                     <Styled.InnerWrapper>
                         <LetterList data={data}/>
