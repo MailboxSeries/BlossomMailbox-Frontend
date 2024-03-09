@@ -30,27 +30,25 @@ instance.interceptors.response.use(
       originalRequest._retry = true;
       const refreshToken = Cookies.get('refreshToken');
       if (refreshToken) {
-        const tokenResponse = await sendRefreshToken(refreshToken);
-        if (tokenResponse.status === 200) {
+        try {
+          await axios.post(`${import.meta.env.VITE_APP_SERVER_URL}/api/v1/auth/reissue`, {}, {
+            headers: {
+              Authorization: `Bearer ${refreshToken}`,
+            },
+          });
           const accessToken = Cookies.get('accessToken');
+
+          Cookies.set('accessToken', accessToken, { path: '/', domain: 'blossommailbox.com' });
+          Cookies.set('refreshToken', refreshToken, { path: '/', domain: 'blossommailbox.com' });
+
           originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
           return instance(originalRequest); // 재발급 받은 토큰으로 요청 재시도
+        } catch (error) {
+          Cookies.remove('accessToken', { path: '/', domain: 'blossommailbox.com' });
+          Cookies.remove('refreshToken', { path: '/', domain: 'blossommailbox.com' });
         }
       }
     }
     return Promise.reject(error);
   }
 );
-
-const sendRefreshToken = async (refreshToken) => {
-    const response = await axios.post(`${import.meta.env.VITE_APP_SERVER_URL}/api/v1/auth/reissue`, {}, {
-      headers: {
-        Authorization: `Bearer ${refreshToken}`,
-      },
-    });
-
-    Cookies.set('accessToken', accessToken, { path: '/', domain: 'blossommailbox.com' });
-    Cookies.set('refreshToken', refreshToken, { path: '/', domain: 'blossommailbox.com' });
-    
-    return response;
-};
