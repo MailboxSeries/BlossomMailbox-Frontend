@@ -24,7 +24,7 @@ export const NoLetterWrapper = styled.div`
   align-items: center;//세로 중앙 정렬
   justify-content: center; // 가로 중앙 정렬
   margin-top: 45px;
-  padding-top: 250px;
+  padding-top: 235px;
 `;
 
 export const Text = styled.p`
