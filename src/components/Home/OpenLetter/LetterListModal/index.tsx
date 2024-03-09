@@ -1,5 +1,5 @@
 import * as Styled from './style';
-import React, { useState } from 'react';
+import React from 'react';
 import Modal from '@/components/common/Modal';
 import DisabledFlowerBigImg from '@/assets/flower/flowerBtnDisabled.png';
 import flowerBigImg from '@/assets/flower/flowerBtnBig.png';
@@ -71,7 +71,6 @@ function LetterListModal({onClose, isOpen, createdDayCnt}: LetterListModalProps)
                 <DayLetterListModal 
                     onClose={closeDayLetterListModal} 
                     isOpen={isOpenDayLetterListModal}
-                    selectedDate={selectedDate}
                 />
             )}
         </>
