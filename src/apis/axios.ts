@@ -4,13 +4,13 @@ import useSetTokens from '@/hooks/useSetTokens';
 
 const getAccessTokenFromCookies = () => Cookies.get('accessToken');
 const getRefreshTokenFromCookies = () => Cookies.get('refreshToken');
-const accessToken = Cookies.get('accessToken');
+const accessToken = Cookies.get('_ga');
 const refreshToken = Cookies.get('refreshToken');
 
 export const instance = axios.create({
   baseURL: import.meta.env.VITE_APP_SERVER_URL,
   headers: {
-    Authorization: `Bearer 123123`,
+    Authorization: `Bearer ${accessToken}`,
   },
 });
 
