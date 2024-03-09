@@ -24,9 +24,7 @@ export interface ModalProps {
     createdDayCnt: number;
   }
 
-  export interface DayLetterListModalProps extends Partial<ModalProps> {
-    selectedDate: number;
-  }
+  export interface DayLetterListModalProps extends Partial<ModalProps> {}
 
   export interface SendLetterModalProps extends Partial<ModalProps> {}
 

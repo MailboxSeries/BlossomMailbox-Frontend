@@ -9,6 +9,8 @@ import { LetterListModalProps } from '@/interfaces/modal';
 import useModal from '@/hooks/useModal';
 import DayLetterListModal from '@/components/Home/OpenLetter/DayLetterListModal';
 import { useGetLetterListStatus } from '@/hooks/useGetLetterListStatus';
+import { useSetRecoilState } from 'recoil';
+import { selectedDateState } from '@/atoms/selectedDateState';
 
 function LetterListModal({onClose, isOpen, createdDayCnt}: LetterListModalProps) {
     const { displayToast } = useToast();
@@ -17,14 +19,13 @@ function LetterListModal({onClose, isOpen, createdDayCnt}: LetterListModalProps)
         closeModal: closeDayLetterListModal } = useModal('DayLetterListModal');
     const { closeModal: closeLetterListModal } = useModal('LetterListModal');
     const { data } = useGetLetterListStatus();
-
-    const [selectedDate, setSelectedDate] = useState<number>(1);
+    const setSelectedDate = useSetRecoilState(selectedDateState);
+    
     const handleDayLetterListModalOpen = (date: number) => {
-        setSelectedDate(date); // 버튼을 클릭하면 선택된 날짜를 설정
+        setSelectedDate(date);
         closeLetterListModal();
         openDayLetterListModal();
     };
-
 
     return (
         <>

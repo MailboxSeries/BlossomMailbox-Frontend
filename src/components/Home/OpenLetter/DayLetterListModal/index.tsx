@@ -6,10 +6,13 @@ import useModal from '@/hooks/useModal';
 import BackButton from '@/components/common/Button/BackButton';
 import LetterList from '@/components/Home/OpenLetter/LetterList';
 import { useGetDayLetterList } from '@/hooks/useGetDayLetterList';
+import { useRecoilValue } from 'recoil';
+import { selectedDateState } from '@/atoms/selectedDateState';
 
-function DayLetterListModal({onClose, isOpen, selectedDate}: DayLetterListModalProps) {
+function DayLetterListModal({onClose, isOpen}: DayLetterListModalProps) {
     const { openModal: openLetterListModal } = useModal('LetterListModal');
-    const { data } = useGetDayLetterList(selectedDate); //더미데이터 삭제 후 이걸로 교체 
+    const selectedDate = useRecoilValue(selectedDateState);
+    const { data } = useGetDayLetterList(selectedDate);
     const handleBackButton = () => {
         onClose();
         openLetterListModal();
