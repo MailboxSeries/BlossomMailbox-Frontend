@@ -18,7 +18,7 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
     const { imageFile, uploadedImage, handleFileInputChange } = useImageUpload();
     const { mutate }  = usePostLetter();
     const { mutate: logout } = useLogout();
-    const { myId } = useIsMyHome();
+    const { ownerId } = useIsMyHome();
 
     /** 편지 보내기 핸들링  */ 
     const handleSendLetter = async () => {
@@ -30,7 +30,7 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
                 body: {
                     sender: sender.value,
                     content: content.value,
-                    receiverId: myId,
+                    receiverId: ownerId,
                 },
                 imageFile: imageFile,
             }
