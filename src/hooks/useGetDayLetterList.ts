@@ -19,5 +19,5 @@ export const useGetDayLetterList = (selectedDate: number) => {
         }
     }, [isSuccess]);
 
-    return data;
+    return {data};
 }

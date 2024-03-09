@@ -19,5 +19,5 @@ export const useGetSkins = () => {
         }
     }, [isSuccess]);
 
-    return data;
+    return {data};
 }

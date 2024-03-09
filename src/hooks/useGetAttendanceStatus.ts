@@ -19,5 +19,5 @@ export const useGetAttendanceStatus = () => {
         }
     }, [isSuccess]);
 
-    return data;
+    return {data};
 }

@@ -19,5 +19,5 @@ export const useGetLetter = (letterID: number) => {
         }
     }, [isSuccess]);
 
-    return data;
+    return {data};
 }
