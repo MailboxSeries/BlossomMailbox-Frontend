@@ -48,7 +48,7 @@ instance.interceptors.response.use(
 );
 
 const sendRefreshToken = async (refreshToken) => {
-    const response = await instance.post('/api/v1/auth/reissue', {}, {
+    const response = await axios.post(`${import.meta.env.VITE_APP_SERVER_URL}/api/v1/auth/reissue`, {}, {
       headers: {
         Authorization: `Bearer ${refreshToken}`,
       },
