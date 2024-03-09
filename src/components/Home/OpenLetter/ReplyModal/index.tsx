@@ -15,6 +15,7 @@ import { isAxiosError } from 'axios';
 
 function ReplyModal({onClose, isOpen, data, id}: ReplyModalProps) {
     const { displayToast } = useToast();
+    const queryClient = useQueryClient();
     const { openModal: openLetterReadModal } = useModal('LetterReadModal');
     const content = useInput<HTMLTextAreaElement>(); // 편지 내용을 관리하는 상태
     const { imageFile, uploadedImage, handleFileInputChange } = useImageUpload();
@@ -41,6 +42,7 @@ function ReplyModal({onClose, isOpen, data, id}: ReplyModalProps) {
                 onSuccess: async () => {
                     onClose();
                     displayToast(`${data.replyLetter.nickname}님께 답장을 보냈어요!`);
+                    queryClient.fetchQuery({ queryKey: ['letter', id] });
                 },
                 onError: (error) => {
                     if(isAxiosError(error)) {
