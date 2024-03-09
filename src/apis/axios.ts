@@ -12,13 +12,15 @@ export const instance = axios.create({
   },
 });
 
-instance.interceptors.request.use(
-  config => {
+instance.interceptors.request.use((config) => {
     const accessToken = Cookies.get('accessToken'); // 요청을 보낼 때마다 쿠키에서 액세스 토큰을 가져옵니다.
-    config.headers.Authorization = `Bearer ${accessToken}`;
+    if (accessToken) {
+      config.headers['Authorization'] = `Bearer ${accessToken}`; // 액세스 토큰이 있으면 헤더에 추가합니다.
+    }
     return config;
-  },
-  error => Promise.reject(error)
+  }, (error) => {
+    return Promise.reject(error);
+  }
 );
 
 instance.interceptors.response.use(
