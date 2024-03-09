@@ -15,6 +15,7 @@ function LogoutModal({ isOpen, onClose }: LogoutModalProps) {
     const { mutate: logout } = useLogout();
 
     const handleLogout = () => {
+        onClose();
         logout();
     }
 
