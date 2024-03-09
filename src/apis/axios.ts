@@ -28,10 +28,13 @@ instance.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-    if (error.response.status === 401 && !originalRequest._retry) {
+    if (error.response.status === 401) {
       originalRequest._retry = true;
-        const tokenResponse = await sendRefreshToken();
-        if (tokenResponse.status === 200) {
+      const response = await axios.post(`${import.meta.env.VITE_APP_SERVER_URL}/api/v1/auth/reissue`, {}, {
+        withCredentials: true,
+      });
+      Cookies.set('accessToken', accessToken, { path: '/', domain: 'blossommailbox.com' });
+        if (response.status === 200) {
           const accessToken = Cookies.get('accessToken');
           originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
           return instance(originalRequest); // 재발급 받은 토큰으로 요청 재시도
@@ -41,11 +44,3 @@ instance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
-const sendRefreshToken = async () => {
-    const response = await axios.post(`${import.meta.env.VITE_APP_SERVER_URL}/api/v1/auth/reissue`, {}, {
-      withCredentials: true,
-    });
-    Cookies.set('accessToken', accessToken, { path: '/', domain: 'blossommailbox.com' });
-return response;
-};
