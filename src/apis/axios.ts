@@ -52,7 +52,7 @@ instance.interceptors.response.use(
             Cookies.set('accessToken', accessToken, { path: '/', domain: 'blossommailbox.com' });
             // 헤더에 새로운 accessToken 설정
             originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
-
+            originalRequest.withCredentials = true;
             // 재발급 받은 토큰으로 요청 재시도
             return instance(originalRequest);
           }
