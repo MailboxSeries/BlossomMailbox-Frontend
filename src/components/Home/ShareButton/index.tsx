@@ -3,12 +3,13 @@ import LongButton from '@/components/common/Button/LongButton';
 import useToast from '@/hooks/useToast';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { useLocation } from 'react-router-dom';
+import useIsMyHome from '@/hooks/useIsMyHome';
 
 const BASE_URL = 'https://www.blossommailbox.com';
 
 export default function ShareButton() {
-  const { pathname } = useLocation();
-  const link = `${BASE_URL}${pathname}`;
+  const { myId } = useIsMyHome();
+  const link = `${BASE_URL}/home?u=${myId}`;
   const { displayToast } = useToast();
 
   const handleShareLink = async () => {
