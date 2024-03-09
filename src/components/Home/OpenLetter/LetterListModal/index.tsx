@@ -10,6 +10,44 @@ import useModal from '@/hooks/useModal';
 import DayLetterListModal from '@/components/Home/OpenLetter/DayLetterListModal';
 import { useGetLetterListStatus } from '@/hooks/useGetLetterListStatus';
 
+const data = [
+    {status: "disable"},
+    {status: "disable"},
+    {status: "disable"},
+    {status: "disable"},
+    {status: "disable"},
+    {status: "disable"},
+    {status: "disable"},
+    {status: "disable"},
+    {status: "disable"},
+    {status: "disable"},
+    {status: "active"},
+    {status: "inactive"},
+    {status: "inactive"},
+    {status: "inactive"},
+    {status: "inactive"},
+    {status: "inactive"},
+    {status: "inactive"},
+    {status: "inactive"},
+    {status: "inactive"},
+    {status: "inactive"},
+    {status: "inactive"},
+    {status: "inactive"},
+    {status: "inactive"},
+    {status: "inactive"},
+    {status: "inactive"},
+    {status: "inactive"},
+    {status: "inactive"},
+    {status: "inactive"},
+    {status: "inactive"},
+    {status: "inactive"},
+    {status: "inactive"},
+    {status: "inactive"},
+    {status: "inactive"},
+    {status: "inactive"},
+    {status: "inactive"}
+]
+
 function LetterListModal({onClose, isOpen, createdDayCnt}: LetterListModalProps) {
     const { displayToast } = useToast();
     const { isOpenModal: isOpenDayLetterListModal,
