@@ -8,6 +8,7 @@ const accessToken = Cookies.get('accessToken');
 
 export const instance = axios.create({
   baseURL: import.meta.env.VITE_APP_SERVER_URL,
+  withCredentials: true,
   headers: {
     Authorization: `Bearer ${accessToken}`,
   },
@@ -49,6 +50,7 @@ instance.interceptors.response.use(
 
 const sendRefreshToken = async (refreshToken) => {
     const response = await axios.post(`${import.meta.env.VITE_APP_SERVER_URL}/api/v1/auth/reissue`, {}, {
+      withCredentials: true,
       headers: {
         Authorization: `Bearer ${refreshToken}`,
       },
