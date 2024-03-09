@@ -5,6 +5,8 @@ import { IPostLetterWithFile } from '@/interfaces/letter';
 export const getLetterListStatus = async () => {
     const response = await instance.get(`/api/v1/letters/list`);
     alert(response.data)
+    alert(response.data.data)
+
     alert(response.data.data.cherryBlossomStatus);
     return response.data.data.cherryBlossomStatus;
 };

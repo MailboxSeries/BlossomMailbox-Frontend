@@ -18,7 +18,7 @@ export const useGetUserInfo = (encodingUserID: string) => {
 
     useEffect(() => {
         if (isSuccess) {
-            const { sex, top, bottom, face, hair, animal, rightStore, leftStore } = data.data;
+            const { sex, top, bottom, face, hair, animal, rightStore, leftStore } = data;
             setSkin({
                 sex,
                 top,
