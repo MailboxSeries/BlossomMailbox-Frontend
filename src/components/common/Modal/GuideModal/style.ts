@@ -1,7 +1,6 @@
 import theme from '@/theme';
 import styled from 'styled-components';
 
-
 export const Wrapper = styled.div`
   width: 100%;
   height: 98.5%;
@@ -78,13 +77,14 @@ export const Text = styled.span`
 
 export const InstagramButton = styled.button`
   background:  ${theme.colors.babyPink};
-  background-size: 180px 36px;
+  background-size: 220px 36px;
   z-index: 2;
-  width:180px;
+  width: 220px;
   height:36px;
   margin-left: 5px;
   margin-top: 2px;
   margin-bottom: 5px;
+  padding: 5px;
   font-family: 'NanumBarunPenB';
   align-items:center;
   border: transparent;
