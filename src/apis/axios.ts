@@ -56,8 +56,6 @@ const sendRefreshToken = async (refreshToken) => {
       },
     });
     // 토큰 저장
-    if (response.status === 200) {
-      useSetTokens(getAccessTokenFromCookies(), getRefreshTokenFromCookies());
-    }
+    useSetTokens(getAccessTokenFromCookies(), getRefreshTokenFromCookies());
     return response;
 };
