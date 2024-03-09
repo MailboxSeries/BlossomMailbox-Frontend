@@ -40,7 +40,23 @@ export default function Home() {
       openSkinModal();
     }
   };
-  
+
+  const handleOpenSendLetterModal = () => {
+    if(!myId) {
+      navigate('/login');
+      displayToast('로그인을 하셔야 편지를 쓰실 수 있어요!');
+      localStorage.setItem('redirect', ownerId);
+    } else {
+      openSendLetterModal();
+    }
+  }
+  useEffect(() => {
+    const redirectOwnerId = localStorage.getItem('redirect');
+    if (redirectOwnerId) {
+      navigate(`/home?u=${redirectOwnerId}`);
+    }
+  },[]);
+
   useEffect(() => {
     if (catState.getCat) {
       openCatModal();
@@ -69,7 +85,7 @@ export default function Home() {
           </>
         ) : (
           <>
-            <LongButton onClick={() => openSendLetterModal()}>
+            <LongButton onClick={() => handleOpenSendLetterModal()}>
               편지 보내기
             </LongButton>
             <LongButton onClick={() => navigate(`/home?u=${myId}`)}>
