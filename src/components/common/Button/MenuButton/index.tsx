@@ -3,14 +3,14 @@ import { MenuButtonProps } from '@/interfaces/button';
 import MenuButtonImg from '@/assets/flower/flowerBtnBig.png';
 import { useState } from 'react';
 import * as Styled from './style';
-import useIsMyHome from '@/hooks/useIsMyHome';
 import LogoutModal from '@/components/Home/LogoutModal';
 import useModal from '@/hooks/useModal';
 import GuideModal from '../../Modal/GuideModal';
+import { useLoginStatus } from '@/hooks/useLoginStatus';
 
 export default function MenuButton(props: MenuButtonProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const { isMyHome } = useIsMyHome();
+  const { isLoggedIn } = useLoginStatus();
   const { isOpenModal: isOpenLogoutModal, openModal: openLogoutModal, closeModal: closeLogoutModal } = useModal('LogoutModal');
   const { isOpenModal: isOpenGuideModal, openModal: openGuideModal, closeModal: closeGuideModal } = useModal('GuideModal');
 
@@ -53,7 +53,7 @@ export default function MenuButton(props: MenuButtonProps) {
         {isOpen && (
           <Styled.MenuWrapper>
             <Styled.MenuItem isActive={isOpen} onClick={() => openGuideModal()}>이용안내</Styled.MenuItem>
-            {isMyHome && (
+            {isLoggedIn && (
               <Styled.MenuItem isActive={isOpen} onClick={() => openLogoutModal()}>로그아웃</Styled.MenuItem>
             )}
           </Styled.MenuWrapper>

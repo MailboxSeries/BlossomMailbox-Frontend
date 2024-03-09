@@ -9,6 +9,7 @@ import getCurrentBackgroundImage from '@/utils/getCurrentBackgroundImage';
 import AttendButton from '@/components/Home/AttendButton';
 import useModal from '@/hooks/useModal';
 import AttendModal from '@/components/Home/AttendModal';
+import { useLoginStatus } from '@/hooks/useLoginStatus';
 
 interface Props {
   children: React.ReactNode;
@@ -19,6 +20,7 @@ interface Props {
 export default function PageLayout({ children, nickname, createdDayCnt }: Props) {
   const { pathname } = useLocation();
   const { isOpenModal: isOpenAttendModal, openModal: openAttendModal, closeModal: closeAttendModal } = useModal('AttendModal');
+  const { isLoggedIn } = useLoginStatus();
 
   let titleText: string;
   if (pathname === '/redirect') {
@@ -40,8 +42,10 @@ export default function PageLayout({ children, nickname, createdDayCnt }: Props)
       <Layout>
         <Style.SkyWrapper path={skyImagePath}>
           <Style.Wrapper  path={backgroundImagePath}>
-          <MenuButton />
-          <AttendButton onClick={() => handleAttendModalOpen()}/>
+              <MenuButton />
+              {isLoggedIn &&
+                <AttendButton onClick={() => handleAttendModalOpen()}/>
+              } 
           <FlowerFalling />
             <Style.TextWrapper>
               <Style.SubLogoText>{subLogoText1}</Style.SubLogoText>

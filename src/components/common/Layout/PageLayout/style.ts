@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 import theme from '@/theme';
-import Background from '@/assets/background/flower.png';
-
 
 interface WrapperProps {
   path: string;
