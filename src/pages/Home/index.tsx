@@ -43,6 +43,15 @@ export default function Home() {
     }
   };
 
+  const handleGoMyHome = () => {
+    if(isLoggedIn) {
+      navigate(`/home?u=${myId}`);
+    } else {
+      navigate('/');
+      displayToast('로그인해야 내 공원으로 갈 수 있어요!');
+    }
+  }
+
   const handleOpenSendLetterModal = () => {
     if(!isLoggedIn) {
       navigate('/');
@@ -91,7 +100,7 @@ export default function Home() {
             <LongButton onClick={() => handleOpenSendLetterModal()}>
               편지 보내기
             </LongButton>
-            <LongButton onClick={() => navigate(`/home?u=${myId}`)}>
+            <LongButton onClick={() => handleGoMyHome()}>
               내 공원으로 가기
             </LongButton>
           </>
