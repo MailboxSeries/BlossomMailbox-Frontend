@@ -46,17 +46,21 @@ function LetterReadModal({onClose, isOpen, id}: LetterModalProps) {
                         {data.sendLetter && (
                             <>
                                 <Styled.SenderNameText>RE:</Styled.SenderNameText>
-                                <Styled.ImageWrapper>
-                                    <Styled.LetterImage src={data.sendLetter.image} />
-                                </Styled.ImageWrapper>
+                                {data.sendLetter.image &&
+                                    <Styled.ImageWrapper>
+                                        <Styled.LetterImage src={data.sendLetter.image} />
+                                    </Styled.ImageWrapper>
+                                }
                                 <Styled.LetterContentText>{data.sendLetter.content}</Styled.LetterContentText>  
                                 <Styled.Line />
                             </>
                         )}
                         <Styled.SenderNameText>보낸이 : {data.replyLetter.nickname}</Styled.SenderNameText>
-                        <Styled.ImageWrapper>
-                            <Styled.LetterImage src={data.replyLetter.image} />
-                        </Styled.ImageWrapper>
+                        {data.replyLetter.image && 
+                            <Styled.ImageWrapper>
+                                <Styled.LetterImage src={data.replyLetter.image} />
+                            </Styled.ImageWrapper>
+                        }
                         <Styled.LetterContentText>{data.replyLetter.content}</Styled.LetterContentText>
                     </Styled.InnerWrapper>
                 </Styled.Wrapper>

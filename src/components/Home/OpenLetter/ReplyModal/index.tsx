@@ -68,9 +68,11 @@ function ReplyModal({onClose, isOpen, data, id}: ReplyModalProps) {
                     </ReplyButton>
                     <Styled.InnerWrapper>
                         <Styled.SenderNameText>보낸이 : {data.replyLetter.nickname}</Styled.SenderNameText>
-                        <Styled.ImageWrapper>
-                            <Styled.LetterImage src={data.replyLetter.image} />
-                        </Styled.ImageWrapper>
+                        {data.replyLetter.image &&
+                            <Styled.ImageWrapper>
+                                <Styled.LetterImage src={data.replyLetter.image} />
+                            </Styled.ImageWrapper>
+                        }
                         <Styled.LetterContentText>{data.replyLetter.content}</Styled.LetterContentText>
                         <Styled.Line />
                         <Styled.Form>
