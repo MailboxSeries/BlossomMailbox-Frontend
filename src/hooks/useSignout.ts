@@ -4,18 +4,20 @@ import { isAxiosError } from 'axios';
 import { deleteSignout } from '@/apis/signout';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import useIsMyHome from '@/hooks/useIsMyHome';
 
 export const useSignout = () => {
     //const { closeModal } = useModal();
     const queryClient = useQueryClient();
     const { displayToast } = useToast();
     const navigate = useNavigate();
+    const { myId } = useIsMyHome();
 
     return useMutation({
         mutationFn: () => deleteSignout(),
         onSuccess: async () => {
             // 로그아웃 성공 시 처리
-            await queryClient.invalidateQueries({queryKey: ['userInfo']});
+            await queryClient.invalidateQueries({queryKey: ['userInfo', myId]});
             displayToast('회원탈퇴되었어요.');
             Cookies.remove('accessToken', { path: '/', domain: 'blossommailbox.com' });
             Cookies.remove('refreshToken', { path: '/', domain: 'blossommailbox.com' });            
