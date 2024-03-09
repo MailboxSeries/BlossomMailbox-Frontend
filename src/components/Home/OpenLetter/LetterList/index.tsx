@@ -38,12 +38,13 @@ export default function LetterList({ data }: { data?: ILetterList }) {
                     })
                 )}
             </Styled.Container>
-
-            <LetterReadModal 
-                onClose={closeLetterReadModal}
-                isOpen={isOpenLetterReadModal}
-                id={cafeId}
-            />
+            {isOpenDayLetterListModal && (
+                <LetterReadModal 
+                    onClose={closeLetterReadModal}
+                    isOpen={isOpenLetterReadModal}
+                    id={cafeId}
+                />
+            )}
         </>
     );
 }
