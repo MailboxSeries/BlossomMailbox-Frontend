@@ -6,7 +6,6 @@ import LetterReadModal from '@/components/Home/OpenLetter/LetterReadModal';
 import { useState } from 'react';
 
 export default function LetterList({ data }: { data?: ILetterList }) {
-    const { isOpenModal: isOpenDayLetterListModal, closeModal: closeDayLetterListModal } = useModal('DayLetterListModal');
     const { isOpenModal: isOpenLetterReadModal, openModal: openLetterReadModal, closeModal: closeLetterReadModal } = useModal('LetterReadModal');
     const [letterId, setLetterId] = useState<number | null>(null);
 

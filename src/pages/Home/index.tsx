@@ -21,6 +21,7 @@ import { useEffect, useState } from 'react';
 import { useGetUserInfo } from '@/hooks/useGetUserInfo';
 import Splash from '@/components/common/Splash';
 import useHideSplash from '@/hooks/useHideSplash';
+import { useLoginStatus } from '@/hooks/useLoginStatus';
 
 export default function Home() {
   const { myId, isMyHome, ownerId } = useIsMyHome();
@@ -33,6 +34,7 @@ export default function Home() {
   const { displayToast } = useToast();
   const catState = useRecoilValue(getCatState);
   const [showSplash, setShowSplash] = useState(true);
+  const { isLoggedIn } = useLoginStatus();
   useHideSplash(isSuccess, setShowSplash);
 
   const handleOpenSkinModal = () => {
@@ -42,11 +44,12 @@ export default function Home() {
   };
 
   const handleOpenSendLetterModal = () => {
-    if(!myId) {
-      navigate('/login');
+    if(!isLoggedIn) {
+      navigate('/');
       displayToast('로그인을 하셔야 편지를 쓰실 수 있어요!');
       localStorage.setItem('redirect', ownerId);
     } else {
+      localStorage.removeItem('redirect');
       openSendLetterModal();
     }
   }
