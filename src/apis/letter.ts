@@ -4,11 +4,8 @@ import { IPostLetterWithFile } from '@/interfaces/letter';
 
 export const getLetterListStatus = async () => {
     const response = await instance.get(`/api/v1/letters/list`);
-    alert(response.data)
-    alert(JSON.stringify(response.data.data, null, 2));
-    alert(JSON.stringify(response.data.data.cherryBlossomStatus, null, 2));
 
-    return response.data.data.cherryBlossomStatus;
+    return JSON.stringify(response.data.data.cherryBlossomStatus);
 };
 
 export const getDayLetterList = async (selectedDate: number) => {
