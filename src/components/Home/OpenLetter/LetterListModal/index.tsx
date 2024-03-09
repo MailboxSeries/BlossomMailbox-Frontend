@@ -32,8 +32,8 @@ function LetterListModal({onClose, isOpen, createdDayCnt}: LetterListModalProps)
                 <Styled.Wrapper>
                     <Styled.InnerWrapper>
                         <Styled.ButtonWrapper>
-                            {data.map((item, index) => {
-                                const date = index + 1;
+                            {data.map((item, index: number) => {
+                                const date: number = index + 1;
                                 let buttonImage = DisabledFlowerBigImg; // 기본 이미지는 비활성화 이미지로 설정
 
                                 // 상태에 따라 버튼 이미지 변경
