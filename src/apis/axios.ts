@@ -26,21 +26,35 @@ instance.interceptors.request.use((config) => {
 instance.interceptors.response.use(
   response => response,
   async (error) => {
-    const originalRequest = error.config;
+    // error.response가 undefined인 경우를 대비한 조건 추가
+    if (error.response && error.response.status === 401) {
+      const originalRequest = error.config;
+      if (!originalRequest._retry) {
+        originalRequest._retry = true;
 
-    if (error.response.status === 401) {
-      originalRequest._retry = true;
-      const response = await axios.post(`${import.meta.env.VITE_APP_SERVER_URL}/api/v1/auth/reissue`, {}, {
-        withCredentials: true,
-      });
-      Cookies.set('accessToken', accessToken, { path: '/', domain: 'blossommailbox.com' });
-        if (response.status === 200) {
-          const accessToken = Cookies.get('accessToken');
-          originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
-          return instance(originalRequest); // 재발급 받은 토큰으로 요청 재시도
+        try {
+          // 토큰 재발급 요청
+          const response = await axios.post(`${import.meta.env.VITE_APP_SERVER_URL}/api/v1/auth/reissue`, {}, {
+            withCredentials: true,
+          });
+
+          if (response.status === 200) {
+            // 새로운 accessToken과 refreshToken을 쿠키에 설정
+            const accessToken = Cookies.get('accessToken');
+            Cookies.set('accessToken', accessToken, { path: '/', domain: 'blossommailbox.com' });
+            // 헤더에 새로운 accessToken 설정
+            originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
+
+            // 재발급 받은 토큰으로 요청 재시도
+            return instance(originalRequest);
+          }
+        } catch (refreshError) {
+          return Promise.reject(refreshError);
         }
+      }
     }
 
+    // 네트워크 오류 또는 서버가 응답을 전혀 보내지 않은 경우
     return Promise.reject(error);
   }
 );
