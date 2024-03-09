@@ -17,7 +17,7 @@ function LetterListModal({onClose, isOpen, createdDayCnt}: LetterListModalProps)
         closeModal: closeDayLetterListModal } = useModal('DayLetterListModal');
     const { closeModal: closeLetterListModal } = useModal('LetterListModal');
     const { data } = useGetLetterListStatus();
-    console.log("cherryBlossomStatus", data)
+    alert(data)
 
     const [selectedDate, setSelectedDate] = useState<number>(1);
     const handleDayLetterListModalOpen = (date: number) => {
