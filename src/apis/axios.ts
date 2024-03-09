@@ -16,6 +16,9 @@ instance.interceptors.request.use((config) => {
     if (accessToken) {
       config.headers['Authorization'] = `Bearer ${accessToken}`; // 액세스 토큰이 있으면 헤더에 추가합니다.
     }
+
+    console.error('Request headers:', config.headers);
+
     return config;
   }, (error) => {
     return Promise.reject(error);
