@@ -21,7 +21,6 @@ export const getLetter = async (letterID: number) => {
 export const postLetter = async ({ body, imageFile }: IPostLetterWithFile) => {
     const formData = new FormData();
     const jsonData = JSON.stringify(body);
-    alert(body.content)
     formData.append('body', new Blob([jsonData], {type: 'application/json'}));
     formData.append('image', imageFile);
 
