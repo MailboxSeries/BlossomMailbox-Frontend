@@ -29,16 +29,16 @@ instance.interceptors.response.use(
   response => response,
   async (error) => {
     const originalRequest = error.config;
-
+    alert(error)
+    alert(error.response)
+    alert(error.response.status)
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       const refreshToken = Cookies.get('refreshToken');
       if (refreshToken) {
         const tokenResponse = await sendRefreshToken(refreshToken);
         if (tokenResponse.status === 200) {
-          const { accessToken, refreshToken } = tokenResponse.data;
-          Cookies.set('accessToken', accessToken, { path: '/', domain: 'blossommailbox.com' });
-          Cookies.set('refreshToken', refreshToken, { path: '/', domain: 'blossommailbox.com' });
+          const accessToken = Cookies.get('accessToken');
           originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
           return instance(originalRequest); // 재발급 받은 토큰으로 요청 재시도
         }
