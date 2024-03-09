@@ -15,7 +15,7 @@ const App = () => {
   const showSplash = useRecoilValue(showSplashState); //TODO: 데이터 패치 성공 시 true로 바뀌어야함
 
   return (
-    <ErrorBoundary fallback={<Splash showSplash={true}/>}>
+    <ErrorBoundary fallback={<Splash showSplash={false}/>}>
       <Suspense fallback={<Splash showSplash={true}/>}>
         <ThemeProvider theme={theme}>
           <BrowserRouter>
