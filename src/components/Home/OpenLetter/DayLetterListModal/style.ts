@@ -1,3 +1,4 @@
+import theme from '@/theme';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
@@ -15,3 +16,18 @@ export const InnerWrapper = styled.div`
   justify-content: center; // 가로 중앙 정렬
   margin-top: 45px;
   `;
+
+export const NoLetterWrapper = styled.div`
+  width: 100%;
+  overflow-y: auto;
+  display: flex;
+  align-items: center;//세로 중앙 정렬
+  justify-content: center; // 가로 중앙 정렬
+  margin-top: 45px;
+`;
+
+export const Text = styled.p`
+  font-size: 18px;
+  color: ${theme.colors.white};
+  margin: 0;
+`;

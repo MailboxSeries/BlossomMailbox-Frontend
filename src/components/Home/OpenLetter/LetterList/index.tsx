@@ -19,10 +19,7 @@ export default function LetterList({ data }: { data?: ILetterList }) {
     return (
         <>
             <Styled.Container>
-                {data.letters.length === 0 ? (
-                    <Styled.Text>받은 편지가 없어요.</Styled.Text>
-                ) : (
-                    data.letters.map((letter) => {
+                {data.letters.map((letter) => {
                     return (
                         <Styled.Wrapper
                         key={letter.id}
@@ -36,7 +33,7 @@ export default function LetterList({ data }: { data?: ILetterList }) {
                         </Styled.Wrapper>
                     );
                     })
-                )}
+                }
             </Styled.Container>
 
         {letterId && 
