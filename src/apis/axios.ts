@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import Cookies from 'js-cookie';
 import useSetTokens from '@/hooks/useSetTokens';
 
@@ -26,26 +26,39 @@ instance.interceptors.request.use((config) => {
 
 // 응답 인터셉터
 instance.interceptors.response.use(
-  response => response,
+  (response) => {
+    const res = response.data;
+    return res;
+  },
   async (error) => {
-    const originalRequest = error.config;
+    const err = error as AxiosError;
+    const originalRequest = await axios.request(error.config);
 
-    if (error.response.status === 401 && !originalRequest._retry) {
-      originalRequest._retry = true;
-      const refreshToken = Cookies.get('refreshToken');
-      if (refreshToken) {
-        const tokenResponse = await sendRefreshToken(refreshToken);
-        if (tokenResponse.status === 200) {
-          const accessToken = Cookies.get('accessToken');
-          originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
-          return instance(originalRequest); // 재발급 받은 토큰으로 요청 재시도
+    // 401 error일 때
+    if (err.response?.status === 401) {
+        const refreshToken = Cookies.get('refreshToken');
+        if (refreshToken) {
+          const tokenResponse = await sendRefreshToken(refreshToken);
+          if (tokenResponse.status === 200) {
+            const accessToken = Cookies.get('accessToken');
+                      
+            // 재요청
+            originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
+            return instance(originalRequest); // 재발급 받은 토큰으로 요청 재시도
+          }
         }
-      }
+        
+        // 재요청
+        const originalResponse = await axios.request(error.config);
+        return originalResponse.data;
+        
+        // 405 error일 때 (리프레시 토큰 만료)
+    } else if (err.response?.status === 405) {
+        alert("로그아웃 되었습니다.");
+        
     }
-
     return Promise.reject(error);
-  }
-);
+});
 
 const sendRefreshToken = async (refreshToken) => {
     const response = await axios.post(`${import.meta.env.VITE_APP_SERVER_URL}/api/v1/auth/reissue`, {}, {
