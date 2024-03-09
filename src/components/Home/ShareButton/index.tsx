@@ -2,7 +2,6 @@ import React from 'react';
 import LongButton from '@/components/common/Button/LongButton';
 import useToast from '@/hooks/useToast';
 import CopyToClipboard from 'react-copy-to-clipboard';
-import { useLocation } from 'react-router-dom';
 import useIsMyHome from '@/hooks/useIsMyHome';
 
 const BASE_URL = 'https://www.blossommailbox.com';

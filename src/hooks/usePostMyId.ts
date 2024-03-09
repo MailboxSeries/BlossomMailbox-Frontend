@@ -3,8 +3,6 @@ import { postMyId } from '@/apis/myId';
 import { isAxiosError } from 'axios';
 import { useSetRecoilState } from 'recoil';
 import { myIdState } from '@/atoms/userInfoState';
-import Cookies from 'js-cookie';
-import { useEffect } from 'react';
 import { useLogout } from './useLogout';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -13,7 +11,6 @@ export const usePostMyId = () => {
     const { mutate: logout } = useLogout();
     const navigate = useNavigate();
     const location = useLocation();
-    const accessToken = Cookies.get('accessToken');
 
     return useMutation({
         mutationFn: () => postMyId(),
