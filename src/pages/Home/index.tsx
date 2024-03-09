@@ -34,7 +34,6 @@ export default function Home() {
   const { displayToast } = useToast();
   const catState = useRecoilValue(getCatState);
   const [showSplash, setShowSplash] = useState(true);
-  const { isLoggedIn } = useLoginStatus();
   useHideSplash(isSuccess, setShowSplash);
 
   const handleOpenSkinModal = () => {
@@ -44,7 +43,7 @@ export default function Home() {
   };
 
   const handleGoMyHome = () => {
-    if(isLoggedIn) {
+    if(myId) {
       navigate(`/home?u=${myId}`);
     } else {
       navigate('/');
@@ -53,7 +52,7 @@ export default function Home() {
   }
 
   const handleOpenSendLetterModal = () => {
-    if(!isLoggedIn) {
+    if(!myId) {
       navigate('/');
       displayToast('로그인을 하셔야 편지를 쓰실 수 있어요!');
       localStorage.setItem('redirect', ownerId);
