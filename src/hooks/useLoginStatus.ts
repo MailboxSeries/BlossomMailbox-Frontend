@@ -16,8 +16,8 @@ export const useLoginStatus = () => {
         }
     }, []);
 
-    Cookies.remove('accessToken');
-    Cookies.remove('refreshToken');
+    Cookies.remove('accessToken', { path: '/', domain: 'blossommailbox.com' });
+    Cookies.remove('refreshToken', { path: '/', domain: 'blossommailbox.com' });            
     setIsLoggedIn(false);
 
     return { isLoggedIn };
