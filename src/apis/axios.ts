@@ -5,7 +5,6 @@ import useSetTokens from '@/hooks/useSetTokens';
 const getAccessTokenFromCookies = () => Cookies.get('accessToken');
 const getRefreshTokenFromCookies = () => Cookies.get('refreshToken');
 const accessToken = Cookies.get('accessToken');
-const refreshToken = Cookies.get('refreshToken');
 
 export const instance = axios.create({
   baseURL: import.meta.env.VITE_APP_SERVER_URL,
@@ -25,25 +24,29 @@ instance.interceptors.request.use((config) => {
   }
 );
 
+// 응답 인터셉터
 instance.interceptors.response.use(
   response => response,
-  async error => {
+  async (error) => {
     const originalRequest = error.config;
 
-    if (error.response && error.response.status === 401 && !originalRequest._retry) {
+    if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       const refreshToken = Cookies.get('refreshToken');
-      if (!refreshToken) {
-        throw new Error('토큰 없음');
+      if (refreshToken) {
+        const tokenResponse = await sendRefreshToken(refreshToken);
+        if (tokenResponse.status === 200) {
+          const { accessToken, refreshToken } = tokenResponse.data;
+          Cookies.set('accessToken', accessToken, { path: '/', domain: 'blossommailbox.com' });
+          Cookies.set('refreshToken', refreshToken, { path: '/', domain: 'blossommailbox.com' });
+          originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
+          return instance(originalRequest); // 재발급 받은 토큰으로 요청 재시도
+        }
       }
-      
-        await sendRefreshToken(refreshToken);
-        originalRequest.headers['Authorization'] = `Bearer ${refreshToken}`;
-        return instance(originalRequest);
     }
 
     return Promise.reject(error);
-  },
+  }
 );
 
 const sendRefreshToken = async (refreshToken) => {
