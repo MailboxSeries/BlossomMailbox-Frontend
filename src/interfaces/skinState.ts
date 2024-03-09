@@ -1,5 +1,5 @@
 export interface ISkinState {
-    sex: "man" | "woman";
+    sex: string;
     top: number;
     bottom: number;
     face: number;
