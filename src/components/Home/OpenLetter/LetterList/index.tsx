@@ -39,11 +39,13 @@ export default function LetterList({ data }: { data?: ILetterList }) {
                 )}
             </Styled.Container>
 
+        {letterId && 
             <LetterReadModal 
                 onClose={closeLetterReadModal}
                 isOpen={isOpenLetterReadModal}
                 id={letterId}
             />
+        }
         </>
     );
 }

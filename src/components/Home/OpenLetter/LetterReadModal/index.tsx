@@ -1,5 +1,5 @@
 import * as Styled from './style';
-import React, { useEffect } from 'react';
+import React from 'react';
 import Modal from '@/components/common/Modal';
 import { LetterModalProps } from '@/interfaces/modal';
 import useModal from '@/hooks/useModal';
