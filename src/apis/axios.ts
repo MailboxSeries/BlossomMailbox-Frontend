@@ -10,7 +10,7 @@ const refreshToken = Cookies.get('refreshToken');
 export const instance = axios.create({
   baseURL: import.meta.env.VITE_APP_SERVER_URL,
   headers: {
-    Authorization: `Bearer ${accessToken}`,
+    Authorization: `Bearer 123123`,
   },
 });
 
