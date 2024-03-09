@@ -8,7 +8,7 @@ const getRefreshTokenFromCookies = () => Cookies.get('refreshToken');
 export const instance = axios.create({
   baseURL: import.meta.env.VITE_APP_SERVER_URL,
   headers: {
-    Authorization: `Bearer ${getAccessTokenFromCookies()}`,
+    authorization: `Bearer ${getAccessTokenFromCookies()}`,
   },
 });
 
@@ -47,7 +47,7 @@ instance.interceptors.response.use(
 const sendRefreshToken = async (refreshToken) => {
     const response = await instance.post('/api/v1/auth/reissue', {}, {
       headers: {
-        Authorization: `Bearer ${refreshToken}`,
+        authorization: `Bearer ${refreshToken}`,
       },
     });
     useSetTokens(getAccessTokenFromCookies(), getRefreshTokenFromCookies());
