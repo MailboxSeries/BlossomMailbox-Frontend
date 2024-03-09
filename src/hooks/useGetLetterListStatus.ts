@@ -13,11 +13,11 @@ export const useGetLetterListStatus = () => {
         gcTime: 12000,
     });
 
-    useEffect(() => {
-        if (!isSuccess) {
-            logout();
-        }
-    }, [isSuccess]);
+    // useEffect(() => {
+    //     if (!isSuccess) {
+    //         logout();
+    //     }
+    // }, [isSuccess]);
 
     return data;
 }
