@@ -11,16 +11,14 @@ import { getCatState } from '@/atoms/getCatState';
 import { useGetAttendanceStatus } from '@/hooks/useGetAttendanceStatus';
 import { useQueryClient } from '@tanstack/react-query';
 import { usePostAttend } from '@/hooks/usePostAttend';
-import { useNavigate } from 'react-router-dom';
 import { isAxiosError } from 'axios';
 import { useLogout } from '@/hooks/useLogout';
 
 function AttendModal({ isOpen, onClose, createdDayCnt }: AttendModalProps) {
     const { displayToast } = useToast();
-    const { data } = useGetAttendanceStatus(); //더미데이터 삭제 후 이걸로 교체
+    const { data } = useGetAttendanceStatus();
     const queryClient = useQueryClient();
     const { mutate }  = usePostAttend();
-    //const data = { attendanceCompleted: false, getCat: true }; //임시값
     const { isOpenModal: isOpenCatModal, openModal: openCatModal, closeModal: closeCatModal } = useModal('CatModal');
     const [catState, setCatState] = useRecoilState(getCatState);
     const { mutate: logout } = useLogout();
@@ -36,6 +34,7 @@ function AttendModal({ isOpen, onClose, createdDayCnt }: AttendModalProps) {
                         catID: data.catID
                     }));
                     onClose();
+                    openCatModal();
                 } else { 
                     onClose();
                     displayToast('출석하셨어요! 고양이에게 스킨을 받아가세요.');
