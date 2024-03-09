@@ -10,7 +10,7 @@ export const useGetUserInfo = (encodingUserID: string) => {
     const { mutate: logout } = useLogout();
 
     const { data, isSuccess } = useSuspenseQuery({
-        queryKey: ['userInfo', encodingUserID],
+        queryKey: ['userInfo'],
         queryFn: async () => (await getUserInfo(encodingUserID)),
         staleTime: 6000,
         gcTime: 12000,
