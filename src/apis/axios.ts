@@ -1,9 +1,6 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import useSetTokens from '@/hooks/useSetTokens';
 
-const getAccessTokenFromCookies = () => Cookies.get('accessToken');
-const getRefreshTokenFromCookies = () => Cookies.get('refreshToken');
 const accessToken = Cookies.get('accessToken');
 
 export const instance = axios.create({
@@ -33,26 +30,22 @@ instance.interceptors.response.use(
 
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
-      const refreshToken = Cookies.get('refreshToken');
-      if (refreshToken) {
-        const tokenResponse = await sendRefreshToken(refreshToken);
+        const tokenResponse = await sendRefreshToken();
         if (tokenResponse.status === 200) {
           const accessToken = Cookies.get('accessToken');
           originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
           return instance(originalRequest); // 재발급 받은 토큰으로 요청 재시도
         }
-      }
     }
 
     return Promise.reject(error);
   }
 );
 
-const sendRefreshToken = async (refreshToken) => {
+const sendRefreshToken = async () => {
     const response = await axios.post(`${import.meta.env.VITE_APP_SERVER_URL}/api/v1/auth/reissue`, {}, {
       withCredentials: true,
     });
     Cookies.set('accessToken', accessToken, { path: '/', domain: 'blossommailbox.com' });
-    Cookies.set('refreshToken', refreshToken, { path: '/', domain: 'blossommailbox.com' });
 return response;
 };
