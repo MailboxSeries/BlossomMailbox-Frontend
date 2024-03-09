@@ -29,7 +29,6 @@ instance.interceptors.response.use(
   response => response,
   async (error) => {
     const originalRequest = error.config;
-    alert(error.response.status)
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       const refreshToken = Cookies.get('refreshToken');
@@ -54,6 +53,8 @@ const sendRefreshToken = async (refreshToken) => {
       },
     });
     // 토큰 저장
-    useSetTokens(getAccessTokenFromCookies(), getRefreshTokenFromCookies());
+    if (response.status === 200) {
+      useSetTokens(getAccessTokenFromCookies(), getRefreshTokenFromCookies());
+    }
     return response;
 };
