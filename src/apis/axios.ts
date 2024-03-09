@@ -51,9 +51,6 @@ instance.interceptors.response.use(
 const sendRefreshToken = async (refreshToken) => {
     const response = await axios.post(`${import.meta.env.VITE_APP_SERVER_URL}/api/v1/auth/reissue`, {}, {
       withCredentials: true,
-      headers: {
-        Authorization: `Bearer ${refreshToken}`,
-      },
     });
     Cookies.set('accessToken', accessToken, { path: '/', domain: 'blossommailbox.com' });
     Cookies.set('refreshToken', refreshToken, { path: '/', domain: 'blossommailbox.com' });
