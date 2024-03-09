@@ -7,11 +7,13 @@ import BackButton from '@/components/common/Button/BackButton';
 import ReplyButton from '@/components/Home/OpenLetter/ReplyButton';
 import ReplyModal from '@/components/Home/OpenLetter/ReplyModal';
 import { useGetLetter } from '@/hooks/useGetLetter';
+import useToast from '@/hooks/useToast';
 
 function LetterReadModal({onClose, isOpen, id}: LetterModalProps) {
     const { openModal: openDayLetterListModal } = useModal('DayLetterListModal');
     const { isOpenModal: isOpenReplyModal, openModal: openReplyModal, closeModal: closeReplyModal } = useModal('ReplyModal');
     const { data } = useGetLetter(id);
+    const { displayToast } = useToast();
 
     const handleBackButton = () => {
         onClose();
@@ -19,8 +21,12 @@ function LetterReadModal({onClose, isOpen, id}: LetterModalProps) {
     }
 
     const handleOpenReplyModal = () => {
-        onClose();
-        openReplyModal();
+        if(data.isReplied) {
+            displayToast("이미 답장을 보냈어요.");
+        } else {
+            onClose();
+            openReplyModal();
+        }
     }
 
     return (
