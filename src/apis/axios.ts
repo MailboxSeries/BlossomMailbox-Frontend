@@ -26,8 +26,8 @@ instance.interceptors.request.use((config) => {
 instance.interceptors.response.use(
   response => response,
   async (error) => {
-    console.log('error.response', error.response)
-    console.log('error.response.status', error.response.status)
+    console.error('error.response', error.response)
+    console.error('error.response.status', error.response.status)
     if (error.response && error.response.status === 401) {
       const originalRequest = error.config;
       if (!originalRequest._retry) {
@@ -38,13 +38,13 @@ instance.interceptors.response.use(
           const response = await axios.post(`${import.meta.env.VITE_APP_SERVER_URL}/api/v1/auth/reissue`, {}, {
             withCredentials: true,
           });
-          console.log('response', response)
-          console.log('response.status', response.status)
+          console.error('response', response)
+          console.error('response.status', response.status)
 
           if (response.status === 200) {
             // 새로운 accessToken과 refreshToken을 쿠키에 설정
             const accessToken = Cookies.get('accessToken');
-            console.log('accessToken', accessToken)
+            console.error('accessToken', accessToken)
             Cookies.set('accessToken', accessToken, { path: '/', domain: 'blossommailbox.com' });
             // 헤더에 새로운 accessToken 설정
             originalRequest.headers['Authorization'] = `Bearer ${accessToken}`;
