@@ -15,6 +15,7 @@ instance.interceptors.request.use((config) => {
     const accessToken = Cookies.get('accessToken'); // 요청을 보낼 때마다 쿠키에서 액세스 토큰을 가져옵니다.
     if (accessToken) {
       config.headers['Authorization'] = `Bearer ${accessToken}`; // 액세스 토큰이 있으면 헤더에 추가합니다.
+      config.withCredentials = true;
     }
 
     console.error('Request headers:', config.headers);
