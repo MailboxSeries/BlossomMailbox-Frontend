@@ -1,9 +1,6 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import useSetTokens from '@/hooks/useSetTokens';
 
-const getAccessTokenFromCookies = () => Cookies.get('accessToken');
-const getRefreshTokenFromCookies = () => Cookies.get('refreshToken');
 const accessToken = Cookies.get('accessToken');
 
 export const instance = axios.create({
@@ -54,7 +51,8 @@ const sendRefreshToken = async (refreshToken) => {
     });
     // 토큰 저장
     if (response.status === 200) {
-      useSetTokens(getAccessTokenFromCookies(), getRefreshTokenFromCookies());
+      Cookies.set('accessToken', accessToken, { path: '/', domain: 'blossommailbox.com' });
+      Cookies.set('refreshToken', refreshToken, { path: '/', domain: 'blossommailbox.com' });
     }
     return response;
 };
