@@ -1,4 +1,4 @@
-export const sortSkinsByType = (skins, skinSex: "man" | "woman", data) => {
+export const sortSkinsByType = (skins, skinSex: string, data) => {
     return skins[skinSex].reduce((acc, {type, items, title}) => {
         const typeData = data[type];
         if (!typeData) {
