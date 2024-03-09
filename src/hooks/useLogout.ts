@@ -25,13 +25,11 @@ export const useLogout = () => {
         onError: (error) => {
             // 로그아웃 실패 시 처리
             if (isAxiosError(error)) {
-                displayToast('세션이 만료되었어요. 다시 로그인해주세요');
                 navigate('/')
                 Cookies.remove('accessToken', { path: '/', domain: 'blossommailbox.com' });
                 Cookies.remove('refreshToken', { path: '/', domain: 'blossommailbox.com' });            
             }
             // 기타 에러 처리
-            displayToast('세션이 만료되었어요. 다시 로그인해주세요');
             navigate('/')
             Cookies.remove('accessToken', { path: '/', domain: 'blossommailbox.com' });
             Cookies.remove('refreshToken', { path: '/', domain: 'blossommailbox.com' });            
