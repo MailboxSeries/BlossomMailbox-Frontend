@@ -22,11 +22,7 @@ function LetterReadModal({onClose, isOpen, id}: LetterModalProps) {
         onClose();
         openReplyModal();
     }
-    useEffect(() => {
-        if (!id) {
-            return null;
-        }
-    },[])
+
     return (
         <>
             <Modal
