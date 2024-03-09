@@ -36,7 +36,7 @@ import womanBottom3 from '@/assets/character/woman/bottom/bottom3.png';
 
 /** 캐릭터 스킨 이미지 반환하는 함수 */
 export default function getCurrentCharacterImage(
-    sex: string = 'woman',
+    sex: string = "woman",
     hair: number = 3,
     face: number = 1,
     top: number = 3,
@@ -45,19 +45,19 @@ export default function getCurrentCharacterImage(
     
     // 이미지 경로 매핑
     const imageMap = {
-        man: {
-        body: manBody,
-        hair: [manHair1, manHair2, manHair3],
-        face: [manFace1, manFace2, manFace3],
-        top: [manTop1, manTop2, manTop3],
-        bottom: [manBottom1, manBottom2, manBottom3],
+        "man": {
+        "body": manBody,
+        "hair": [manHair1, manHair2, manHair3],
+        "face": [manFace1, manFace2, manFace3],
+        "top": [manTop1, manTop2, manTop3],
+        "bottom": [manBottom1, manBottom2, manBottom3],
         },
-        woman: {
-        body: womanBody,
-        hair: [womanHair1, womanHair2, womanHair3],
-        face: [womanFace1, womanFace2, womanFace3],
-        top: [womanTop1, womanTop2, womanTop3],
-        bottom: [womanBottom1, womanBottom2, womanBottom3],
+        "woman": {
+        "body": womanBody,
+        "hair": [womanHair1, womanHair2, womanHair3],
+        "face": [womanFace1, womanFace2, womanFace3],
+        "top": [womanTop1, womanTop2, womanTop3],
+        "bottom": [womanBottom1, womanBottom2, womanBottom3],
         }
     };
 
