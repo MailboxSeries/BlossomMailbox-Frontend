@@ -48,9 +48,7 @@ export const DayButton = styled.button<ButtonProps>`
 export const InnerWrapper = styled.div`
   width: 100%;
   margin-top: 45px;
-  padding-top: 230px;
   overflow-y: auto;
   display: flex;
   justify-content: center; // 가로 중앙 정렬
-  align-items: center; // 세로 중앙 정렬
 `;
