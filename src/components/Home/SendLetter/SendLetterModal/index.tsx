@@ -1,5 +1,5 @@
 import * as Styled from './style';
-import React from 'react';
+import React, { useState } from 'react';
 import Modal from '@/components/common/Modal';
 import { SendLetterModalProps } from '@/interfaces/modal';
 import useInput from '@/hooks/useInput';
@@ -19,6 +19,7 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
     const { mutate }  = usePostLetter();
     const { mutate: logout } = useLogout();
     const { ownerId } = useIsMyHome();
+    const [isLoading, setIsLoading] = useState(false); // 로딩 상태 관리
 
     /** 편지 보내기 핸들링  */ 
     const handleSendLetter = async () => {
@@ -26,6 +27,7 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
             displayToast(`이름과 편지 모두 입력해야 해요.`);
             return;
         } else {
+            setIsLoading(true); // 로딩 시작
             const postData = {
                 body: {
                     sender: sender.value,
@@ -38,12 +40,14 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
                 onSuccess: async () => {
                     onClose();
                     displayToast(`편지를 보냈어요! 답장을 기다려보아요!`);
+                    setIsLoading(false); // 로딩 종료
                 },
                 onError: (error) => {
                     if(isAxiosError(error)) {
                         logout();
                     }
-                    logout();                    
+                    logout();         
+                    setIsLoading(false); // 로딩 종료           
                 },
             });
         }
@@ -91,7 +95,7 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
                         />
                         <Styled.CheckTextLength>{content.value.length}/200</Styled.CheckTextLength>
                     </Styled.Form>
-                    <LongButton onClick={() => handleSendLetter()}>
+                    <LongButton onClick={() => handleSendLetter()} disabled={isLoading}>
                         보내기
                     </LongButton>
                 </Styled.Wrapper>
