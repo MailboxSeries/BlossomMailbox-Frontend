@@ -30,6 +30,10 @@ function ReplyModal({onClose, isOpen, data, id}: ReplyModalProps) {
 
     /** 편지 답장하기 핸들링 */
     const handleSendReply = () => {
+        if(isLoading) {
+            displayToast(`편지가 보내지고 있어요. 잠시만 기다려주세요.`);
+            return;
+        }
         if (!content.value.trim()) {
             displayToast(`편지를 입력해야 해요.`);
             return;
@@ -69,7 +73,7 @@ function ReplyModal({onClose, isOpen, data, id}: ReplyModalProps) {
             >
                 <BackButton onClick={() => handleBackButton()}/>
                 <Styled.Wrapper>
-                    <ReplyButton onClick={() => handleSendReply()} disabled={isLoading}>
+                    <ReplyButton onClick={() => handleSendReply()}>
                         보내기
                     </ReplyButton>
                     <Styled.InnerWrapper>

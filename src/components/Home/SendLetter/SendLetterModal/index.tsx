@@ -23,6 +23,10 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
 
     /** 편지 보내기 핸들링  */ 
     const handleSendLetter = async () => {
+        if(isLoading) {
+            displayToast(`편지가 보내지고 있어요. 잠시만 기다려주세요.`);
+            return;
+        }
         if (!sender.value.trim() || !content.value.trim()) {
             displayToast(`이름과 편지 모두 입력해야 해요.`);
             return;
@@ -95,7 +99,7 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
                         />
                         <Styled.CheckTextLength>{content.value.length}/200</Styled.CheckTextLength>
                     </Styled.Form>
-                    <LongButton onClick={() => handleSendLetter()} disabled={isLoading}>
+                    <LongButton onClick={() => handleSendLetter()}>
                         보내기
                     </LongButton>
                 </Styled.Wrapper>
