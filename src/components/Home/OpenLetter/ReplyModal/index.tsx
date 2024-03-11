@@ -1,5 +1,5 @@
 import * as Styled from './style';
-import React from 'react';
+import React, { useState } from 'react';
 import Modal from '@/components/common/Modal';
 import { ReplyModalProps } from '@/interfaces/modal';
 import useModal from '@/hooks/useModal';
@@ -21,16 +21,20 @@ function ReplyModal({onClose, isOpen, data, id}: ReplyModalProps) {
     const { imageFile, uploadedImage, handleFileInputChange } = useImageUpload();
     const { mutate }  = usePostLetter();
     const { mutate: logout } = useLogout();
+    const [isLoading, setIsLoading] = useState(false); // 로딩 상태 관리
+
     const handleBackButton = () => {
         onClose();
         openLetterReadModal();
     }
 
+    /** 편지 답장하기 핸들링 */
     const handleSendReply = () => {
         if (!content.value.trim()) {
             displayToast(`편지를 입력해야 해요.`);
             return;
         } else {
+            setIsLoading(true); // 로딩 시작
             const postData = {
                 body: {
                     id: id,
@@ -43,12 +47,14 @@ function ReplyModal({onClose, isOpen, data, id}: ReplyModalProps) {
                     onClose();
                     displayToast(`${data.replyLetter.nickname}님께 답장을 보냈어요!`);
                     queryClient.fetchQuery({ queryKey: ['letter', id] });
+                    setIsLoading(false); // 로딩 종료
                 },
                 onError: (error) => {
                     if(isAxiosError(error)) {
                         logout();
                     }
-                    logout();                    
+                    logout(); 
+                    setIsLoading(false); // 로딩 종료                   
                 },
             });
         }
@@ -63,7 +69,7 @@ function ReplyModal({onClose, isOpen, data, id}: ReplyModalProps) {
             >
                 <BackButton onClick={() => handleBackButton()}/>
                 <Styled.Wrapper>
-                    <ReplyButton onClick={() => handleSendReply()}>
+                    <ReplyButton onClick={() => handleSendReply()} disabled={isLoading}>
                         보내기
                     </ReplyButton>
                     <Styled.InnerWrapper>
