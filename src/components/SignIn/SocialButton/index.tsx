@@ -8,11 +8,7 @@ export default function SocialButton(props: SocialButtonProps) {
   const { displayToast } = useToast();
 
   const handleSignIn = () => {
-    if(props.socialType === 'naver') {
-      displayToast('네이버 로그인은 2일 뒤에 사용가능해요.');
-    } else {
-      window.location.href = `https://api.blossommailbox.com/oauth2/authorization/${props.socialType}`;
-    }
+    window.location.href = `https://api.blossommailbox.com/oauth2/authorization/${props.socialType}`;
   };
 
   return (
