@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import * as Style from './style';
 import { useLocation } from 'react-router-dom';
 import getCurrentSkyImage from '@/utils/getCurrentSkyImage';
@@ -21,15 +21,6 @@ export default function PageLayout({ children, nickname, createdDayCnt }: Props)
   const { pathname } = useLocation();
   const { isOpenModal: isOpenAttendModal, openModal: openAttendModal, closeModal: closeAttendModal } = useModal('AttendModal');
   const { isMyHome } = useIsMyHome();
-  const [titleText, setTitleText] = useState<string>('');
-
-  useEffect(() => {
-    if (pathname === '/redirect') {
-      setTitleText('');
-    } else {
-      setTitleText(nickname ? `${nickname}의 벚꽃 공원` : "벚꽃 우편함");
-    }
-  }, [pathname, nickname]);
 
   const skyImagePath = getCurrentSkyImage(); // 현재 시간에 따른 이미지 경로 가져오기
   const backgroundImagePath = getCurrentBackgroundImage(createdDayCnt); // 현재 시간에 따른 이미지 경로 가져오기
@@ -52,7 +43,10 @@ export default function PageLayout({ children, nickname, createdDayCnt }: Props)
           <FlowerFalling />
             <Style.TextWrapper>
               <Style.SubLogoText>{subLogoText1}</Style.SubLogoText>
-              <Style.LogoText>{titleText}</Style.LogoText>
+              {nickname ? 
+                <Style.LogoText>{`${nickname}의 벚꽃 공원`}</Style.LogoText> 
+                : <Style.LogoText>벚꽃 우편함</Style.LogoText>
+              }
               <Style.SubLogoText>{subLogoText2}</Style.SubLogoText>
             </Style.TextWrapper>
             {children}

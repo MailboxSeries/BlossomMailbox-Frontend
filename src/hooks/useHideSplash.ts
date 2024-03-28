@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-export default function useHideSplash (isSuccess, setShowSplash) {
+export default function useHideSplash (isSuccess: boolean, setShowSplash) {
     useEffect(() => {
         if (isSuccess) {
         const timer = setTimeout(() => {
