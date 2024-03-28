@@ -108,7 +108,7 @@ export default function Home() {
         </Styled.ButtonWrapper>
       </PageLayout>
 
-      {isOpenLetterListModal && (
+      {isMyHome && (
         <LetterListModal 
           onClose={closeLetterListModal} 
           isOpen={isOpenLetterListModal}
