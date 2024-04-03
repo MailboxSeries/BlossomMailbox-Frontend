@@ -41,8 +41,6 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
         }
     }, [image, setValue]);
 
-    
-
     /** 편지 보내기 핸들링  */ 
     const onSubmit = async (data: IForm) => {
         if(isSubmitting) {
@@ -68,7 +66,7 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
                     displayToast(`편지를 보냈어요! 답장을 기다려보아요!`);
                 },
                 onError: () => {
-                    displayToast(`편지를 보내는 데에 실패했어요. 로그아웃 후 다시 로그인해보세요.`);
+                    displayToast(`편지를 보내는 데에 실패했어요. 다시 로그인해주세요.`);
                 },
             });
         }
@@ -82,7 +80,7 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
                 modalTitle="편지 보내기"
                 modalType="Modal"
             >
-                <Styled.Wrapper as="form" onSubmit={handleSubmit(onSubmit)}>
+                <Styled.Form onSubmit={handleSubmit(onSubmit)}>
                     <Styled.ImageUploadLabel htmlFor="image-upload" onClick={(event) => event.stopPropagation()}>
                         <Styled.ImageUploadLabelText>사진 올리기(선택)</Styled.ImageUploadLabelText>
                         <Styled.ImageInput
@@ -109,7 +107,7 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
                     <LongButton type="submit">
                         보내기
                     </LongButton>
-                </Styled.Wrapper>
+                </Styled.Form>
             </Modal>
         </>
     );

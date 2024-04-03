@@ -62,7 +62,7 @@ export const Line = styled.div`
   margin: 10px 0 10px 0;
 `;
 
-export const Form = styled.form`
+export const FormDiv = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
