@@ -65,10 +65,7 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
                     displayToast(`편지를 보냈어요! 답장을 기다려보아요!`);
                 },
                 onError: (error) => {
-                    if (isAxiosError(error)) {
-                        logout();
-                    }
-                    logout();
+                    displayToast(`편지를 보내는 데에 실패했어요. 로그아웃 후 다시 로그인해보세요.`);
                 },
             });
         }
