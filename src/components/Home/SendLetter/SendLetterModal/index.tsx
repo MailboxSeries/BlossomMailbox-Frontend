@@ -11,7 +11,7 @@ import { useForm } from 'react-hook-form';
 interface IForm {
     sender: string;
     content: string;
-    imageFile: File | null;
+    image: File | null;
     previewImage?: string | null;
 }
 
@@ -23,17 +23,18 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
         defaultValues: {
             sender: '',
             content: '',
-            imageFile: null,
+            image: null,
             previewImage: null,
         }
     });
+    const image = watch("image");
     const previewImage = watch("previewImage");
 
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const files = event.target.files;
         if (files && files.length > 0) {
             const file = files[0];
-            setValue("imageFile", file);
+            setValue("image", file);
             setValue("previewImage", URL.createObjectURL(file));
         }
     };
@@ -54,7 +55,7 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
                     content: data.content,
                     receiverId: ownerId,
                 },
-                imageFile: data.imageFile,
+                image: image,
             }
             mutate(postData, {
                 onSuccess: () => {
@@ -80,7 +81,7 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
                     <Styled.ImageUploadLabel htmlFor="image-upload" onClick={(event) => event.stopPropagation()}>
                         <Styled.ImageUploadLabelText>사진 올리기(선택)</Styled.ImageUploadLabelText>
                         <Styled.ImageInput
-                            {...register("imageFile")}
+                            {...register("image")}
                             id="image-upload"
                             type="file"
                             accept="image/*"

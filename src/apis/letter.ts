@@ -41,11 +41,11 @@ export const getLetter = async (letterID: number) => {
     }
 };
 
-export const postLetter = async ({ body, imageFile }: IPostLetterWithFile) => {
+export const postLetter = async ({ body, image }: IPostLetterWithFile) => {
     const formData = new FormData();
     const jsonData = JSON.stringify(body);
     formData.append('body', new Blob([jsonData], {type: 'application/json'}));
-    formData.append('image', imageFile);
+    formData.append('image', image);
 
     try {
         const response = await instance.post(`/api/v1/letters`, formData, {

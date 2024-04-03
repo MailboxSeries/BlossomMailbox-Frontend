@@ -17,5 +17,5 @@ export interface IPostLetter {
 
 export interface IPostLetterWithFile {
     body: IPostLetter;
-    imageFile: File;
+    image: File;
 }
