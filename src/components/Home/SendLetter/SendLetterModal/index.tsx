@@ -33,6 +33,7 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
         const files = event.target.files;
         if (files && files.length > 0) {
             const file = files[0];
+            setValue("imageFile", file);
             setValue("previewImage", URL.createObjectURL(file));
         }
     };
@@ -79,7 +80,7 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
                     <Styled.ImageUploadLabel htmlFor="image-upload" onClick={(event) => event.stopPropagation()}>
                         <Styled.ImageUploadLabelText>사진 올리기(선택)</Styled.ImageUploadLabelText>
                         <Styled.ImageInput
-                            {...register("imageFile", { required: true })}
+                            {...register("imageFile")}
                             id="image-upload"
                             type="file"
                             accept="image/*"
