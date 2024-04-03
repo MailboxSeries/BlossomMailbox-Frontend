@@ -33,7 +33,6 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
         const files = event.target.files;
         if (files && files.length > 0) {
             const file = files[0];
-            setValue("imageFile", file);
             setValue("previewImage", URL.createObjectURL(file));
         }
     };
