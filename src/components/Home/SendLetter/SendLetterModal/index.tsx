@@ -29,12 +29,17 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
     });
     const previewImage = watch("previewImage");
     const image = watch("image");
+    
     useEffect(() => {
         if (image) {
             const file = image[0];
-            setValue("previewImage" ,URL.createObjectURL(file));
+            setValue("previewImage", URL.createObjectURL(file));
+        } else {
+            // 파일이 없는 경우, previewImage 상태를 null로 설정해야 할 수 있습니다.
+            setValue("previewImage", null);
         }
-    }, [image]);
+    }, [image, setValue]);
+    
 
     /** 편지 보내기 핸들링  */ 
     const onSubmit = async (data: IForm) => {
@@ -52,7 +57,7 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
                     content: data.content,
                     receiverId: ownerId,
                 },
-                image: data.image[0],
+                image: data?.image[0],
             }
             mutate(postData, {
                 onSuccess: () => {
@@ -86,14 +91,14 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
                         {previewImage && <Styled.ImagePreview src={previewImage} />}
                     </Styled.ImageUploadLabel>
                     <Styled.NameInput
-                        {...register("sender")}
+                        {...register("sender", { required: true })}
                         maxLength={10}
                         type="text"
                         placeholder="이름을 적어주세요."
                     />
                     <Styled.CheckTextLength>{watch('sender').length}/10</Styled.CheckTextLength>
                     <Styled.LetterArea
-                        {...register("content")}
+                        {...register("content", { required: true })}
                         placeholder="따뜻한 마음을 남겨주세요."
                         maxLength={200}
                     />
