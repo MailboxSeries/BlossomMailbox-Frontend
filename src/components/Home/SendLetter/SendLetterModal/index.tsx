@@ -31,13 +31,16 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
     const image = watch("image");
 
     useEffect(() => {
-        if (image) {
+        // image 객체가 실제로 File 객체인지 확인
+        if (image && image[0] instanceof File) {
             const file = image[0];
-            setValue("previewImage", URL.createObjectURL(file));
+            const objectURL = URL.createObjectURL(file);
+            setValue("previewImage", objectURL);
         } else {
             setValue("previewImage", null);
         }
     }, [image, setValue]);
+
     
 
     /** 편지 보내기 핸들링  */ 
