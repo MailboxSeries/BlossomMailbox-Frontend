@@ -54,7 +54,7 @@ export default function Home() {
   }
 
   const handleOpenSendLetterModal = () => {
-    if(myId) { //TODO: !myId
+    if(!myId) {
       navigate('/');
       displayToast('로그인을 하셔야 편지를 쓰실 수 있어요!');
       localStorage.setItem('redirect', ownerId);

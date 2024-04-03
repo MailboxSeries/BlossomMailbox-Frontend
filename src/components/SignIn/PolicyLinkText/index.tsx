@@ -2,7 +2,6 @@ import * as Styled from './style';
 
 export default function PolicyLinkText() {
   return (
-    //TODO: 벚꽃우편함 껄로 새로 변경해야 함
     <Styled.PolicyTextsWrapper>
       <Styled.PolicyTextsStyle>
         계속 진행하면 <Styled.PolicyStyledLink target="_blank" href="https://lyrical-recess-827.notion.site/d34c90a6e7ce4de8a8ced223ab79c29f">
