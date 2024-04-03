@@ -20,7 +20,6 @@ interface IForm {
 function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
     const { displayToast } = useToast();
     const { mutate }  = usePostLetter();
-    const { mutate: logout } = useLogout();
     const { ownerId } = useIsMyHome();
     const { register, handleSubmit, watch, setValue, formState: { isSubmitting } } = useForm<IForm>({
         defaultValues: {
@@ -30,6 +29,8 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
             previewImage: null,
         }
     });
+    const sender = watch("sender");
+    const content = watch("content");
     const imageFile = watch("imageFile");
     const previewImage = watch("previewImage");
 
@@ -42,19 +43,19 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
     };
 
     /** 편지 보내기 핸들링  */ 
-    const onSubmit = async (data: IForm) => {
+    const onSubmit = async () => {
         if(isSubmitting) {
             displayToast(`편지가 보내지고 있어요. 잠시만 기다려주세요.`);
             return;
         }
-        if (!data.sender.trim() || !data.content.trim()) {
+        if (!sender.trim() || !content.trim()) {
             displayToast(`이름과 편지 모두 입력해야 해요.`);
             return;
         } else {
             const postData = {
                 body: {
-                    sender: data.sender,
-                    content: data.content,
+                    sender: sender,
+                    content: content,
                     receiverId: ownerId,
                 },
                 imageFile,
@@ -64,7 +65,7 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
                     onClose();
                     displayToast(`편지를 보냈어요! 답장을 기다려보아요!`);
                 },
-                onError: (error) => {
+                onError: () => {
                     displayToast(`편지를 보내는 데에 실패했어요. 로그아웃 후 다시 로그인해보세요.`);
                 },
             });
