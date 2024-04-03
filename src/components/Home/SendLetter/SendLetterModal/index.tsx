@@ -1,5 +1,5 @@
 import * as Styled from './style';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Modal from '@/components/common/Modal';
 import { SendLetterModalProps } from '@/interfaces/modal';
 import LongButton from '@/components/common/Button/LongButton';
@@ -28,15 +28,14 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
         }
     });
     const previewImage = watch("previewImage");
-
-    const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const files = event.target.files;
-        if (files && files.length > 0) {
-            const file = files[0];
-            setValue("image", file);
-            setValue("previewImage", URL.createObjectURL(file));
+    const image = watch("image");
+    
+    useEffect(() => {
+        if (image) {
+            const file = image[0];
+            setValue("previewImage" ,URL.createObjectURL(file));
         }
-    };
+    }, [image]);
 
     /** 편지 보내기 핸들링  */ 
     const onSubmit = async (data: IForm) => {
@@ -48,7 +47,6 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
             displayToast(`이름과 편지 모두 입력해야 해요.`);
             return;
         } else {
-            const image = watch("image");
             const postData = {
                 body: {
                     sender: data.sender,
@@ -85,7 +83,6 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
                             id="image-upload"
                             type="file"
                             accept="image/*"
-                            onChange={handleImageChange}
                         />
                         {previewImage && <Styled.ImagePreview src={previewImage} />}
                     </Styled.ImageUploadLabel>

@@ -23,10 +23,24 @@ import Splash from '@/components/common/Splash';
 import useHideSplash from '@/hooks/useHideSplash';
 import getDDayAndMessage from '@/utils/getDDayAndMessage';
 
+const data = {
+  nickname : "String",
+  sex : "man",
+  top : 1,
+  hair : 1,
+  face : 1,
+  bottom : 1,
+  animal : 1,
+  rightStore : 1,
+  leftStore : 1,
+  createdDayCnt : 1,
+}
+
+const isSuccess = true;
 //TODO: Splash컴포넌트 빼고 framer motion으로 바꾸기
 export default function Home() {
   const { myId, isMyHome, ownerId } = useIsMyHome();
-  const { data, isSuccess } =  useGetUserInfo(ownerId);
+  //const { data, isSuccess } =  useGetUserInfo(ownerId);
   const navigate = useNavigate();
   const { isOpenModal: isOpenLetterListModal, openModal: openLetterListModal, closeModal: closeLetterListModal } = useModal('LetterListModal');
   const { isOpenModal: isOpenSendLetterModal, openModal: openSendLetterModal, closeModal: closeSendLetterModal } = useModal('SendLetterModal');
@@ -54,7 +68,7 @@ export default function Home() {
   }
 
   const handleOpenSendLetterModal = () => {
-    if(!myId) {
+    if(myId) { //TODO: !myId
       navigate('/');
       displayToast('로그인을 하셔야 편지를 쓰실 수 있어요!');
       localStorage.setItem('redirect', ownerId);
