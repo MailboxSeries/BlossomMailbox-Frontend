@@ -27,7 +27,6 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
             previewImage: null,
         }
     });
-    const image = watch("image");
     const previewImage = watch("previewImage");
 
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,6 +48,7 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
             displayToast(`이름과 편지 모두 입력해야 해요.`);
             return;
         } else {
+            const image = watch("image");
             const postData = {
                 body: {
                     sender: data.sender,
