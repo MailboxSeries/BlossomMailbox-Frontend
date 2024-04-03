@@ -5,8 +5,6 @@ import { SendLetterModalProps } from '@/interfaces/modal';
 import LongButton from '@/components/common/Button/LongButton';
 import useToast from '@/hooks/useToast';
 import { usePostLetter } from '@/hooks/usePostLetter';
-import { isAxiosError } from 'axios';
-import { useLogout } from '@/hooks/useLogout';
 import useIsMyHome from '@/hooks/useIsMyHome';
 import { useForm } from 'react-hook-form';
 
@@ -84,7 +82,7 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
                     <Styled.ImageUploadLabel htmlFor="image-upload" onClick={(event) => event.stopPropagation()}>
                         <Styled.ImageUploadLabelText>사진 올리기(선택)</Styled.ImageUploadLabelText>
                         <Styled.ImageInput
-                            {...register("imageFile")}
+                            {...register("imageFile", { required: true })}
                             id="image-upload"
                             type="file"
                             accept="image/*"
