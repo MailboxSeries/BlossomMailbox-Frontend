@@ -44,7 +44,7 @@ function ReplyModal({onClose, isOpen, data, id}: ReplyModalProps) {
                     id: id,
                     content: content.value,
                 },
-                imageFile: imageFile,
+                image: imageFile,
             }
             mutate(postData, {
                 onSuccess: async () => {
