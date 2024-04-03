@@ -29,7 +29,6 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
     });
     const previewImage = watch("previewImage");
     const image = watch("image");
-    
     useEffect(() => {
         if (image) {
             const file = image[0];
@@ -53,7 +52,7 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
                     content: data.content,
                     receiverId: ownerId,
                 },
-                image: image,
+                image: data.image[0],
             }
             mutate(postData, {
                 onSuccess: () => {
@@ -87,14 +86,14 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
                         {previewImage && <Styled.ImagePreview src={previewImage} />}
                     </Styled.ImageUploadLabel>
                     <Styled.NameInput
-                        {...register("sender", { required: true })}
+                        {...register("sender")}
                         maxLength={10}
                         type="text"
                         placeholder="이름을 적어주세요."
                     />
                     <Styled.CheckTextLength>{watch('sender').length}/10</Styled.CheckTextLength>
                     <Styled.LetterArea
-                        {...register("content", { required: true })}
+                        {...register("content")}
                         placeholder="따뜻한 마음을 남겨주세요."
                         maxLength={200}
                     />
