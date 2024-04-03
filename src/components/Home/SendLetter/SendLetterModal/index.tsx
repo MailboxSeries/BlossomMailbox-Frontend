@@ -27,9 +27,6 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
             previewImage: null,
         }
     });
-    const sender = watch("sender");
-    const content = watch("content");
-    const imageFile = watch("imageFile");
     const previewImage = watch("previewImage");
 
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,22 +39,22 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
     };
 
     /** 편지 보내기 핸들링  */ 
-    const onSubmit = async () => {
+    const onSubmit = async (data: IForm) => {
         if(isSubmitting) {
             displayToast(`편지가 보내지고 있어요. 잠시만 기다려주세요.`);
             return;
         }
-        if (!sender.trim() || !content.trim()) {
+        if (!data.sender.trim() || !data.content.trim()) {
             displayToast(`이름과 편지 모두 입력해야 해요.`);
             return;
         } else {
             const postData = {
                 body: {
-                    sender: sender,
-                    content: content,
+                    sender: data.sender,
+                    content: data.content,
                     receiverId: ownerId,
                 },
-                imageFile: imageFile,
+                imageFile: data.imageFile,
             }
             mutate(postData, {
                 onSuccess: () => {
