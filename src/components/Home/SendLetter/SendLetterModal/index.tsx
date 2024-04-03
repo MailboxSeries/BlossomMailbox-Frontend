@@ -1,5 +1,5 @@
 import * as Styled from './style';
-import React, { useState } from 'react';
+import React from 'react';
 import Modal from '@/components/common/Modal';
 import { SendLetterModalProps } from '@/interfaces/modal';
 import LongButton from '@/components/common/Button/LongButton';
@@ -14,6 +14,7 @@ interface IForm {
     sender: string;
     content: string;
     imageFile: File | null;
+    previewImage?: string | null;
 }
 
 function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
@@ -21,38 +22,39 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
     const { mutate }  = usePostLetter();
     const { mutate: logout } = useLogout();
     const { ownerId } = useIsMyHome();
-    const [isLoading, setIsLoading] = useState(false); // 로딩 상태 관리
-    const { register, handleSubmit, watch, setValue} = useForm({
+    const { register, handleSubmit, watch, setValue, formState: { isSubmitting } } = useForm<IForm>({
         defaultValues: {
             sender: '',
             content: '',
             imageFile: null,
+            previewImage: null,
         }
     });
-    const uploadedImage = watch("imageFile");
-    const handleImageChange = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            setValue("imageFile", file);
+    const imageFile = watch("imageFile");
+    const previewImage = watch("previewImage");
+
+    const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const files = event.target.files;
+        if (files && files.length > 0) {
+            const file = files[0];
+            setValue("previewImage", URL.createObjectURL(file));
         }
     };
 
     /** 편지 보내기 핸들링  */ 
-    const onSubmit = async (data) => {
-        if(isLoading) {
+    const onSubmit = async (data: IForm) => {
+        if(isSubmitting) {
             displayToast(`편지가 보내지고 있어요. 잠시만 기다려주세요.`);
             return;
         }
-        const { sender, content, imageFile } = data;
-        if (!sender.trim() || !content.trim()) {
+        if (!data.sender.trim() || !data.content.trim()) {
             displayToast(`이름과 편지 모두 입력해야 해요.`);
             return;
         } else {
-            setIsLoading(true); // 로딩 시작
             const postData = {
                 body: {
-                    sender,
-                    content,
+                    sender: data.sender,
+                    content: data.content,
                     receiverId: ownerId,
                 },
                 imageFile,
@@ -61,15 +63,12 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
                 onSuccess: () => {
                     onClose();
                     displayToast(`편지를 보냈어요! 답장을 기다려보아요!`);
-                    setIsLoading(false); // 로딩 종료
                 },
                 onError: (error) => {
                     if (isAxiosError(error)) {
                         logout();
-                        setIsLoading(false); // 로딩 종료
                     }
                     logout();
-                    setIsLoading(false); // 로딩 종료
                 },
             });
         }
@@ -93,7 +92,7 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
                             accept="image/*"
                             onChange={handleImageChange}
                         />
-                        {uploadedImage && <Styled.ImagePreview src={URL.createObjectURL(uploadedImage)} />}
+                        {previewImage && <Styled.ImagePreview src={previewImage} />}
                     </Styled.ImageUploadLabel>
                     <Styled.NameInput
                         {...register("sender", { required: true })}
