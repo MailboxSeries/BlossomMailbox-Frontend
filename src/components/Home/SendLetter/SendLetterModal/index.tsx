@@ -56,7 +56,7 @@ function SendLetterModal({onClose, isOpen}: SendLetterModalProps) {
                     content: content,
                     receiverId: ownerId,
                 },
-                imageFile,
+                imageFile: imageFile,
             }
             mutate(postData, {
                 onSuccess: () => {
